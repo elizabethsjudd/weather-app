@@ -2,9 +2,9 @@
 
 ## MVP
 - [x] Setup React project
-- [ ] Linting
-    - [ ] ESLint
-    - [ ] Stylelint
+- [x] Linting
+    - [x] ESLint
+    - [x] Stylelint
 - [ ] Setup Storybook
     - [ ] Input
     - [ ] Card
