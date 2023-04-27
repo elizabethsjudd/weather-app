@@ -15,7 +15,7 @@
     - [ ] HTML validation
     - [ ] Accessibility
     - [ ] testing-library
-- [ ] Deployment of application
+- [x] Deployment of application
 
 ## Additional features
 - [ ] Provide more details from API
