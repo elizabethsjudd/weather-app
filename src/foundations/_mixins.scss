@@ -1,0 +1,42 @@
+@use "sass:string";
+@use './tokens/contextual/z-index.scss' as *;
+
+.u-focus-wrapper {
+	position: relative;
+}
+
+/// Used to create a consistent focus indicator for interactive elements
+/// @group mixins
+/// @param {String} $element-radius - Used with "element" setup to apply a border radius to the focus indicator
+/// 	Should be set to a CSS token. Default is var(--border-radius-control).
+/// @param {String} $pseudo-element - Used with the "element" setup to allow developers to choose which pseudo element
+/// 	is used.  Available options are "before" (default) and "after"
+/// @param {String} $is-inline-element - Used with the "element" setup with a self-closing element. Requires wrapping the
+/// 	element with `div.u-focus-wrapper` and have an immediate sibling `span.u-focus-indicator`. See the input component
+/// 	as an example. Available options are "true", "false" (default)
+/// @param {String} $border-width - the border width of the element having focus applied to ensure the offset
+/// 	is correct. Default is '0px'
+/// 
+/// @example @include focus; // Generates the default version
+@mixin focus($element-radius: 'var(--border-radius-control)', $pseudo-element: 'after', $is-inline-element: 'false', $border-width: '0px') {
+    $focus-selector: ':focus-visible';
+
+    // In Safari, border radius isn't applied to outlines. Using a pseudo element allows us
+    // to achieve a similar effect however inline elements do not support pseudo elements which
+    // is why an additional element is applied after the element.
+	@if $is-inline-element == 'true' {
+		$focus-selector: ':focus-visible + .u-focus-indicator';
+	}
+
+	&#{string.unquote($focus-selector)} {
+        &::#{string.unquote($pseudo-element)} {
+            border: var(--line-width-focus) solid var(--color-focus);
+            border-radius: calc(#{string.unquote($element-radius)} + var(--line-width-focus) + var(--space-offset-focus));
+            content: '';
+            display: block;
+            inset: calc((var(--space-offset-focus) + var(--line-width-focus) + #{string.unquote($border-width)}) * -1);
+            position: absolute;
+            z-index: $z-index-focus;
+        }
+	}
+}
