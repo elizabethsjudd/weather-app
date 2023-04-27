@@ -1,0 +1,16 @@
+////
+/// Contextual Sizing Tokens
+/// @group variables
+////
+$contextual-sizing-vars: (
+	"small": "06",
+	"medium": "07",
+	"large": "10"
+);
+
+:root {
+	/* Spacing */
+	@each $token-name, $token-value in $contextual-sizing-vars {
+		--size-#{$token-name}: var(--spacing-#{$token-value});
+	}
+}

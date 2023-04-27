@@ -1,0 +1,64 @@
+////
+/// Contextual Typography Tokens
+/// @group variables
+////
+
+/* Font Size Tokens */
+$contextual-font-size-vars: (
+	"headline": "05",
+	"headline-large": "06",
+	"headline-small": "02",
+
+	// Title & Interactive UI use cases follow Text's scale
+	"text": "04",
+	"text-large": "05",
+	"text-small": "03",
+	"text-xsmall": "02",
+	"text-xxsmall": "01",
+);
+
+/* Line Height Tokens */
+$contextual-line-height-vars: (
+	"headline": "09",
+	"headline-large": "07",
+	"headline-small": "09",
+
+	// Title use cases follow Text's scale
+	"text": "09",
+	"text-large": "10",
+	"text-small": "08",
+	"text-xsmall": "06",
+	"text-xxsmall": "08",
+
+	"interactive": "09",
+	"interactive-large": "10",
+	"interactive-small": "08",
+	"interactive-xsmall": "06"
+);
+
+/* Font Weight Tokens */
+$contextual-font-weight-vars: (
+	"headline": "05",
+	"title": "04",
+	"title-secondary": "03",
+	"text": "02",
+	"text-secondary": "01",
+	"interactive": "04"
+);
+
+:root {
+	// Typography - Font Size
+	@each $token-name, $token-value in $contextual-font-size-vars {
+		--type-size-#{$token-name}: var(--font-size-#{$token-value});
+	}
+
+	// Typography - Line Height
+	@each $token-name, $token-value in $contextual-line-height-vars {
+		--type-line-height-#{$token-name}: var(--line-height-#{$token-value});
+	}
+
+	// Typography - Font Weight
+	@each $token-name, $token-value in $contextual-font-weight-vars {
+		--type-weight-#{$token-name}: var(--font-weight-#{$token-value});
+	}
+}

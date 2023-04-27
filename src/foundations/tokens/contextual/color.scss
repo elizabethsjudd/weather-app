@@ -1,0 +1,64 @@
+////
+/// Contextual Color Tokens
+/// @group variables
+////
+
+$contextual-color-vars: (
+	// --------- Misc --------------
+	// Miscellaneous color tokens
+	"focus": "blue-70",
+	"focus-inverse": "white",
+	"shadows": "black",
+	"brand": "red-70",
+	"brand-hover": "red-80",
+	"brand-active": "red-90",
+	"accent": "blue-70",
+
+	// --------- Background --------------
+	"background": "white",
+	"background-hover": "gray-20",
+	"background-active": "gray-90",
+	"background-selected": "gray-90",
+	"background-disabled": "gray-40",
+
+	// Status use cases
+	"background-info": "status-info",
+	"background-success": "status-success",
+	"background-warning": "status-warning",
+	"background-error": "status-error",
+
+	// --------- Line --------------
+	"line": "gray-70",
+	"line-hover": "gray-90",
+	"line-active": "gray-100",
+	"line-selected": "gray-90",
+	"line-disabled": "gray-40",
+
+	// Design calls this "Light" but it's semantically used for dividers
+	"line-divider": "gray-20",
+
+	// --------- Text --------------
+	"text": "gray-80",
+	"text-hover": "gray-90",
+	"text-active": "gray-90",
+	"text-selected": "gray-90",
+	"text-disabled": "gray-40",
+
+	// Static text color options
+	"text-secondary": "gray-70",
+	"text-label": "gray-90",
+	"text-heading": "gray-100",
+
+	// Status colors
+	"text-success": "gray-90", // For success messages on a white background
+	"text-warning": "gray-90", // For warning messages on a white background
+	"text-error": "status-error", // For error messages on a white background
+	"text-info": "gray-90", // For info messages on a white background
+);	
+
+:root {
+	/* Color */
+	@each $token-name, $token-value in $contextual-color-vars {
+		--color-#{$token-name}: rgb(var(--#{$token-value}) / 100%);
+	}
+}

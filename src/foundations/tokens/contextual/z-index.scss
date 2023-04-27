@@ -1,0 +1,13 @@
+////
+/// Contextual z-index tokens
+/// @group variables
+///
+/// Note: this file uses Sass variables so developers can perform calculations to create scalable extensions
+////
+
+// set up variables
+$z-index-increment: 100;
+$z-index-base: 0;
+
+// Shared z-indexes 
+$z-index-focus: $z-index-base + 1;

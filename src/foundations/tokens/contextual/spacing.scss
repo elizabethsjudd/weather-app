@@ -1,0 +1,26 @@
+////
+/// Contextual Spacing Tokens
+/// @group variables
+////
+$contextual-spacing-vars: (
+	// Internal spacing (inset, squish, and stretch)
+	'inset': '03',
+	'inset-container': '08',
+	'inset-container-large': '05',
+	'inset-large': '05',
+	'inset-control': '06',
+	'inset-control-large': '05',
+
+	// Horizontal spacing (inline)
+	'inline-related': '03',
+
+	// Miscellaneous spacing tokens
+	'offset-focus': '01',
+);
+
+:root {
+	/* Spacing */
+	@each $token-name, $token-value in $contextual-spacing-vars {
+		--space-#{$token-name}: var(--spacing-#{$token-value});
+	}
+}

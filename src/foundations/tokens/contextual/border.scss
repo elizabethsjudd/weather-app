@@ -1,0 +1,35 @@
+////
+/// Contextual Border Tokens
+/// @group variables
+////
+
+$contextual-border-width-vars: (
+	"border": "02",
+	"border-selected": "02",
+	"focus": "02",
+	"control": "02",
+	"divider": "02",
+);
+$contextual-border-radius-vars: (
+	"tight": "01",
+	"content": "02",
+	"content-large": "03",
+	"control": "03",
+	"control-large": "04",
+	"container": "04",
+	"container-large": "05",
+	"rounded": "07",
+	"rounded-large": "08",
+);
+
+:root {
+	// Border Width
+	@each $token-name, $token-value in $contextual-border-width-vars {
+		--line-width-#{$token-name}: var(--stroke-#{$token-value});
+	}
+
+	// Border Radius
+	@each $token-name, $token-value in $contextual-border-radius-vars {
+		--border-radius-#{$token-name}: var(--radii-#{$token-value});
+	}
+}

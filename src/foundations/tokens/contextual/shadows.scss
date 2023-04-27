@@ -1,0 +1,21 @@
+////
+/// Contextual Shadow Tokens
+/// @group variables
+////
+
+/* Contextual Shadow Tokens */
+$contextual-shadow-vars: (
+	/* Base */
+	"lifted": "01",
+	"raised": "02",
+	"floating": "03",
+	/* Interactive */
+	"hover": "interactive-01",
+	"drag": "interactive-02"
+);
+
+:root {
+	@each $token-name, $token-value in $contextual-shadow-vars {
+		--shadows-#{$token-name}:  var(--shadow-#{$token-value});
+	}
+}
