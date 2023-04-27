@@ -19,24 +19,24 @@
 /// 
 /// @example @include focus; // Generates the default version
 @mixin focus($element-radius: 'var(--border-radius-control)', $pseudo-element: 'after', $is-inline-element: 'false', $border-width: '0px') {
-    $focus-selector: ':focus-visible';
+	$focus-selector: ':focus-visible';
 
-    // In Safari, border radius isn't applied to outlines. Using a pseudo element allows us
-    // to achieve a similar effect however inline elements do not support pseudo elements which
-    // is why an additional element is applied after the element.
+	// In Safari, border radius isn't applied to outlines. Using a pseudo element allows us
+	// to achieve a similar effect however inline elements do not support pseudo elements which
+	// is why an additional element is applied after the element.
 	@if $is-inline-element == 'true' {
 		$focus-selector: ':focus-visible + .u-focus-indicator';
 	}
 
 	&#{string.unquote($focus-selector)} {
-        &::#{string.unquote($pseudo-element)} {
-            border: var(--line-width-focus) solid var(--color-focus);
-            border-radius: calc(#{string.unquote($element-radius)} + var(--line-width-focus) + var(--space-offset-focus));
-            content: '';
-            display: block;
-            inset: calc((var(--space-offset-focus) + var(--line-width-focus) + #{string.unquote($border-width)}) * -1);
-            position: absolute;
-            z-index: $z-index-focus;
-        }
+		&::#{string.unquote($pseudo-element)} {
+			border: var(--line-width-focus) solid var(--color-focus);
+			border-radius: calc(#{string.unquote($element-radius)} + var(--line-width-focus) + var(--space-offset-focus));
+			content: '';
+			display: block;
+			inset: calc((var(--space-offset-focus) + var(--line-width-focus) + #{string.unquote($border-width)}) * -1);
+			position: absolute;
+			z-index: $z-index-focus;
+		}
 	}
 }
