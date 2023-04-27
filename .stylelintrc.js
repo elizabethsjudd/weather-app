@@ -10,6 +10,7 @@ module.exports = {
     ],
     rules: {
         // Using camelCase makes it easier to reference classes in JSX
-        'selector-class-pattern': '^[a-z][a-zA-Z0-9]+$',
+        // and "--" denotes a modifier for a component
+        'selector-class-pattern': '^([a-z][a-zA-Z0-9]+)?(--([a-z][a-zA-Z0-9]+)+){0,2}',
     },
 };
