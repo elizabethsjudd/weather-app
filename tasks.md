@@ -6,7 +6,7 @@
     - [x] ESLint
     - [x] Stylelint
 - [x] Setup Storybook
-    - [ ] Input
+    - [x] Input
     - [ ] Card
 - [ ] Application without input
 - [ ] Application with input

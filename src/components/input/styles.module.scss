@@ -1,0 +1,38 @@
+@use '../../foundations/mixins' as *;
+
+.input {
+    @include focus($is-inline-element: 'true');
+
+    padding: 0 var(--space-inset-control);
+    min-height: var(--size-large);
+    border-radius: var(--border-radius-control);
+    border: var(--line-width-control) solid var(--color-line);
+    width: 100%;
+
+    &--persistentIcon {
+        padding-left: calc(var(--size-medium) + var(--space-inset-control) + var(--space-inline-related));
+    }
+
+    &:hover {
+        border-color: var(--color-line-hover);
+        color: var(--color-text-hover);
+    }
+
+    &:focus,
+    &:focus-visible {
+        border-color: var(--color-line-hover);
+        outline: none;
+    }
+
+    &::placeholder {
+        color: var(--color-text-secondary);
+    }
+}
+
+.persistentIcon {
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    left: var(--space-inset-control);
+    color: var(--color-text);
+}
