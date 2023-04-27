@@ -1,0 +1,18 @@
+////
+/// function utilities
+/// @group functions
+////
+
+@use 'sass:math';
+
+/// Converts pixels to rems
+/// @group functions
+/// @param {Number} $value - Pixel value to convert
+/// @param {Number} $baseline - Baseline value to use, defaults to 16 the current UX standard
+/// @returns {Number} The rem equivalent of $value
+/// @example rem(600)
+@function rem($value, $baseline: 16) {
+	$rem-value: (math.div($value, 16)) + rem;
+
+	@return $rem-value;
+}

@@ -1,0 +1,31 @@
+////
+/// Global Spacing Tokens
+/// @group variables
+////
+
+/* Spacing Tokens */
+// Values in the map is the number of pixels.
+// We use a calculation to convert the pixel values to rems for accessibility support.
+$global-spacing-vars: (
+	"01": 2,
+	"02": 4,
+	"03": 8,
+	"04": 12,
+	"05": 16,
+	"06": 20,
+	"07": 24,
+	"08": 32,
+	"09": 40,
+	"10": 48,
+	"11": 64,
+	"12": 80,
+	"13": 96,
+	"14": 160,
+);
+
+:root {
+	@each $token-name, $token-value in $global-spacing-vars {
+		--spacing-#{$token-name}: calc(#{$token-value} / var(--baseline) * 1rem);
+	}
+}
+

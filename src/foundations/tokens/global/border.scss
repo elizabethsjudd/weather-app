@@ -1,0 +1,35 @@
+////
+/// Global Border Tokens
+/// @group variables
+////
+
+/* Border Radius Tokens */
+// Values in the map is the number of pixels.
+$global-border-radius-vars: (
+	"01": 2,
+	"02": 4,
+	"03": 8,
+	"04": 12,
+	"05": 16,
+	"06": 24,
+	"07": 32,
+	"08": 40,
+);
+
+/* Border Width Tokens */
+// Values in the map is the number of pixels.
+$global-border-width-vars: (
+	"01": 1,
+	"02": 2,
+);
+
+:root {
+	@each $token-name, $token-value in $global-border-radius-vars {
+		--radii-#{$token-name}: #{$token-value}px;
+	}
+
+	@each $token-name, $token-value in $global-border-width-vars {
+		--stroke-#{$token-name}: #{$token-value}px;
+	}
+}
+

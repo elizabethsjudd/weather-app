@@ -1,0 +1,37 @@
+////
+/// Global Motion Tokens
+/// @group variables
+////
+
+$global-motion-timing-vars: (
+	"m1": "0.17, 0.00, 0.00, 1.00",
+	"m2": "0, 0.5, 0, 1",
+	"m3": "0.33, 0.00, 0.67, 1.00"
+);
+$global-motion-duration-vars: (
+	"01": "17",
+	"02": "167",
+	"03": "333",
+	"04": "667"
+);
+$global-motion-distance-vars: (
+	"01": "4",
+	"02": "8"
+);
+
+:root {
+	/* Motion - Timing */
+	@each $token-name, $token-value in $global-motion-timing-vars {
+		--timing-#{$token-name}: cubic-bezier(#{$token-value});
+	}
+
+	/* Motion - Duration */
+	@each $token-name, $token-value in $global-motion-duration-vars {
+		--duration-#{$token-name}: #{$token-value}ms;
+	}
+
+	/* Motion - Distance */
+	@each $token-name, $token-value in $global-motion-distance-vars {
+		--distance-#{$token-name}: #{$token-value}px;
+	}
+}

@@ -1,0 +1,21 @@
+////
+/// Global Shadow/Elevation Tokens
+/// @group variables
+////
+
+/* Shadow/Elevation Tokens */
+$global-shadow-vars: (
+	/* Base */
+	"01": "0 0 0 1px rgba(var(--black), 0.08), 0 3px 4px rgba(var(--black), 0.08)",
+	"02": "0 0 0 1px rgba(var(--black), 0.08), 0 5px 8px rgba(var(--black), 0.08)",
+	"03": "0 0 0 1px rgba(var(--black), 0.08), 0 25px 20px rgba(var(--black), 0.12)",
+	/* Interactive */
+	"interactive-01": "0 4px 4px rgba(var(--black), 0.08)",
+	"interactive-02": "0 20px 12px rgba(var(--black), 0.12)"
+);
+
+:root {
+	@each $token-name, $token-value in $global-shadow-vars {
+		--shadow-#{$token-name}: #{$token-value};
+	}
+}

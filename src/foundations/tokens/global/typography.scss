@@ -1,0 +1,66 @@
+////
+/// Global Typography Tokens
+/// @group variables
+////
+
+/* Font Size Tokens */
+// Values in the map are the number of pixels.
+// We use a calculation to convert the pixel values to rems for accessibility support.
+$global-font-size-vars: (
+	"01": 11,
+	"02": 12,
+	"03": 14,
+	"04": 16,
+	"05": 18,
+	"06": 20,
+	"07": 24,
+	"08": 32,
+	"09": 40,
+	"10": 48,
+);
+
+
+/* Line-height Tokens */
+$global-line-height-vars: (
+	"01": 0.875,
+	"02": 1,
+	"03": 1.125,
+	"04": 1.167,
+	"05": 1.2,
+	"06": 1.33,
+	"07": 1.4,
+	"08": 1.45,
+	"09": 1.5,
+	"10": 1.56,
+	"11": 1.75,
+	"12": 2
+);
+
+/* Font Weight Tokens */
+$global-font-weight-vars: (
+	"01": 400,
+	"02": 500,
+	"03": 600,
+	"04": 700,
+	"05": 800,
+);
+
+:root {
+	--baseline: 16;
+	--font-family-01: 'Arial', 'Verdana', 'Helvetica', sans-serif;
+
+	/* Typography - Font Size */
+	@each $token-name, $token-value in $global-font-size-vars {
+		--font-size-#{$token-name}: calc(#{$token-value} / var(--baseline) * 1rem);
+	}
+
+	/* Typography - Line Height */
+	@each $token-name, $token-value in $global-line-height-vars {
+		--line-height-#{$token-name}: #{$token-value};
+	}
+
+	/* Typography - Font Weight */
+	@each $token-name, $token-value in $global-font-weight-vars {
+		--font-weight-#{$token-name}: #{$token-value} ;
+	}
+}
