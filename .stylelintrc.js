@@ -10,6 +10,7 @@ module.exports = {
         'stylelint-sassdoc',
     ],
     rules: {
+        // @todo - This is deprecated in favor of prettier which needs to be finished setting up
         "indentation": "tab",
         "max-nesting-depth": [
 			1,
