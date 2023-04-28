@@ -10,7 +10,7 @@ export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): 
 
 	return (
 		<div {...attributes}>
-			{title && <h3>{title}</h3>}
+			{title && <h3 className={styles.title}>{title}</h3>}
 
 			{slotIcon && (
 				<IconContext.Provider value={{ className: styles.icon, size: "3rem" }}>
@@ -18,7 +18,7 @@ export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): 
 				</IconContext.Provider>
 			)}
 
-			<span>{slotDetails}</span>
+			<span className={styles.details}>{slotDetails}</span>
 		</div>
 	);
 };

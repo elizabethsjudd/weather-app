@@ -8,7 +8,7 @@
 - [x] Setup Storybook
     - [x] Input
     - [x] Card
-- [ ] Application without input
+- [x] Application without input
 - [ ] Styling
 - [ ] Application with input
 - [ ] Error handling

@@ -4,6 +4,7 @@
 
 .night {
 	background: blue;
+	color: white;
 
 	.icon {
 		color: white;
@@ -11,5 +12,5 @@
 }
 
 .current {
-	border: 2px solid black;
+	box-shadow: 1px 1px 1px pink;
 }

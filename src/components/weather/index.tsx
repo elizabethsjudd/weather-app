@@ -12,6 +12,10 @@ import {
 } from "react-icons/bs";
 import { Card } from "../reusable/card";
 import { WeatherConfig } from "./constants";
+import { isCurrentDay } from "./utilities";
+import { IconContext } from "react-icons";
+
+import cardStyles from "../reusable/card/styles.module.scss";
 
 export const Weather = ({
 	day = "Today",
@@ -62,11 +66,9 @@ export const Weather = ({
 		return null;
 	};
 
-	const nameTest = day.toLowerCase();
-	const isCurrent = nameTest !== "today" && nameTest !== "tonight";
-
+	const isCurrent = isCurrentDay(day);
 	const timeClass = isDaytime ? styles.day : styles.night;
-	const typeClass = !isCurrent ? styles.current : "";
+	const typeClass = isCurrent ? styles.current : "";
 	const svg = getIcon(description.toLowerCase());
 
 	return (
@@ -83,8 +85,14 @@ export const Weather = ({
 					<span>{description}</span>
 				</>
 			}
-			slotIcon={svg}
-			title={isCurrent ? day : ""}
+			slotIcon={
+				<IconContext.Provider
+					value={{ className: `${styles.icon} ${cardStyles.icon}`, size: "3rem" }}
+				>
+					{svg}
+				</IconContext.Provider>
+			}
+			title={!isCurrent ? day : ""}
 		/>
 	);
 };

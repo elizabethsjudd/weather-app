@@ -1,5 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
+import { Input } from "@/components/reusable/input";
+import { Forecast } from "@/components/forecast";
 
 export default function Home() {
 	return (
@@ -12,8 +14,10 @@ export default function Home() {
 			</Head>
 			<header className={styles.header}>
 				<h1>What&apos;s my weather?</h1>
+				<Input id="search-input" />
 			</header>
 			<main className={styles.main}>
+				<Forecast />
 			</main>
 		</>
 	);

@@ -1,7 +1,19 @@
 .card {
 	border: var(--line-width-control) solid var(--color-line);
 	border-radius: var(--border-radius-content-large);
-	min-height: var(--size-large);
+	display: flex;
+	flex-direction: column;
+	min-height: 6rem;
 	padding: var(--space-inset-control);
 	width: 100%;
+}
+
+.icon {
+	align-self: end;
+	position: absolute;
+}
+
+.title,
+.details {
+	padding-right: 80px;
 }
