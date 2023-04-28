@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/foundations/scripts/constants";
+import { AttrsObject } from "@/foundations/scripts/utilities";
 
 /**
  * Defines enum values for Input props
