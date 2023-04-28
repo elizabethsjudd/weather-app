@@ -7,8 +7,9 @@
     - [x] Stylelint
 - [x] Setup Storybook
     - [x] Input
-    - [ ] Card
+    - [x] Card
 - [ ] Application without input
+- [ ] Styling
 - [ ] Application with input
 - [ ] Error handling
 - [ ] Testing
@@ -19,6 +20,7 @@
 
 ## Additional features
 - [ ] Provide more details from API
+- [ ] Loading states
 - [ ] Deployment of Storybook
 - [ ] Responsive
 - [ ] Dark theme

@@ -1,0 +1,15 @@
+.day {
+	background: yellow;
+}
+
+.night {
+	background: blue;
+
+	.icon {
+		color: white;
+	}
+}
+
+.current {
+	border: 2px solid black;
+}
