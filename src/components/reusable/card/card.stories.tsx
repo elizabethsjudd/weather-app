@@ -19,7 +19,5 @@ export default meta;
 type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
-	render: (args) => <Card {...args} icon={<BsImage />} slotDetails={
-		<p>More details</p>
-	} />,
+	render: (args) => <Card {...args} slotDetails={<p>More details</p>} slotIcon={<BsImage />} />,
 };

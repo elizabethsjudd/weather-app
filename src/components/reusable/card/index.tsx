@@ -1,20 +1,20 @@
 import { IconContext } from "react-icons";
 import styles from "./styles.module.scss";
 import { CardConfig } from "./constants";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 
-export const Card = ({
-	attrs = {},
-	title,
-	icon,
-	slotDetails,
-}: CardConfig): JSX.Element => {
+export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): JSX.Element => {
+	const attributes = combineAttributes(attrs, {
+		className: styles.card,
+	});
+
 	return (
-		<div className={styles.card} {...attrs}>
+		<div {...attributes}>
 			{title && <h3>{title}</h3>}
 
-			{icon && (
+			{slotIcon && (
 				<IconContext.Provider value={{ className: styles.icon, size: "3rem" }}>
-					{icon}
+					{slotIcon}
 				</IconContext.Provider>
 			)}
 
