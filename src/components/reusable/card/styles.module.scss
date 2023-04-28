@@ -1,0 +1,7 @@
+.card {
+	border: var(--line-width-control) solid var(--color-line);
+	border-radius: var(--border-radius-content-large);
+	min-height: var(--size-large);
+	padding: var(--space-inset-control);
+	width: 100%;
+}
