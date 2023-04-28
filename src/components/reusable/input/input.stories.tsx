@@ -1,5 +1,3 @@
-// Button.stories.ts|tsx
-
 import type { Meta, StoryObj } from "@storybook/react";
 import { BsSearch } from "react-icons/bs";
 
@@ -21,7 +19,7 @@ const meta: Meta<typeof Input> = {
 		},
 	},
 	component: Input,
-	title: "Form elements/Input",
+	title: "Reusable/Input",
 };
 
 export default meta;

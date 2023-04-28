@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run app:dev && npm run components:dev",
     "build": "npm run app:build && npm run components:build",
     "start": "next start",
     "app:dev": "next dev",

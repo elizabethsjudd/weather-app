@@ -1,6 +1,6 @@
-@use '../foundations/normalizer.scss';
-@use '../foundations/tokens/global/' as *;
-@use '../foundations/tokens/contextual/' as *;
+@use '../foundations/styles/normalizer.scss';
+@use '../foundations/styles/tokens/global/' as *;
+@use '../foundations/styles/tokens/contextual/' as *;
 
 :root {
 	--max-width: 1100px;
