@@ -10,5 +10,5 @@ export default meta;
 type Story = StoryObj<typeof Forecast>;
 
 export const Default: Story = {
-	render: (args) => <Forecast {...args} />,
+	render: () => <Forecast />,
 };

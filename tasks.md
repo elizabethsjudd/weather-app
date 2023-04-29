@@ -9,21 +9,32 @@
     - [x] Input
     - [x] Card
 - [x] Application without input
+- [x] Application with input
 - [ ] Styling
-- [ ] Application with input
-- [ ] Error handling
+    - [ ] Basic desktop styles
+    - [ ] Reusable components
+    - [ ] Location form
+    - [ ] Forecast grid
+    - [ ] Home page layout
+- [ ] Error handling & form validation
 - [ ] Testing
     - [ ] HTML validation
     - [ ] Accessibility
     - [ ] testing-library
 - [x] Deployment of application
+- [ ] Clean up components for more consistency
+- [ ] Review documentation
+- [ ] Create index file for reusable components
 
 ## Additional features
-- [ ] Provide more details from API
+- [ ] Empty states
 - [ ] Loading states
+- [ ] Provide more details from API  (modal)
+- [ ] Dynamically open/close sections + focus management
+- [ ] Multiple address matches
 - [ ] Deployment of Storybook
 - [ ] Responsive
-- [ ] Dark theme
+- [ ] Dark theme/use isDaytime to change throughout the day
 - [ ] Additional linting
     - [ ] JSON
     - [ ] Markdown

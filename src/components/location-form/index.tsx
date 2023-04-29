@@ -1,30 +1,55 @@
-import React from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import { Button } from "../reusable/button";
 import { Label } from "../reusable/label";
 import { Input } from "../reusable/input";
 import { Select } from "../reusable/select";
 import { SelectOption } from "../reusable/select-option";
 
+import { LocationContext } from "@/context/location";
+
+
+interface LocationFormData {
+	street: string;
+	city: string;
+	state: string;
+	zip: string;
+}
+
 export const LocationForm = (): JSX.Element => {
+	const { setCoordinates } = useContext(LocationContext);
+
 	// @todo - add error handling
-	const onChange = (callback:(data: unknown) => void) => {
-		fetch("/api/geocoder/locations/address?street=4600+Silver+Hill+Rd&city=%20Washington&state=DC&zip=20233&benchmark=Public_AR_Census2020&format=json")
+	const getCoordinates = ({
+		street,
+		city,
+		state,
+		zip,
+	}: LocationFormData, callback:(data: unknown) => void) => {
+		fetch(`/api/geocoder/locations/address?street=${encodeURIComponent(street)}&city=${encodeURIComponent(city)}&state=${encodeURIComponent(state)}&zip=${encodeURIComponent(zip)}&benchmark=Public_AR_Census2020&format=json`)
 			.then((response) => response.json())
 			.then((data) => {
 				callback(data);
 			});
 	}
 
-	React.useEffect(() => {
-		onChange((data) => {
-			console.log(data);
+	const onSubmit = (event: FormEvent) => {
+		event.preventDefault();
+		// @todo - need to figure out the correct way to type a form
+		const form = event.target as any;
+		getCoordinates({
+			street: form.street.value,
+			city: form.city.value,
+			state: form.state.value,
+			zip: form.zip.value,
+		}, (data) => {
+			setCoordinates((data as any).result.addressMatches[0].coordinates);
 		})
-	}, [])
+	}
 
 	return (
-		<form>
+		<form onSubmit={onSubmit}>
 			<Label htmlFor="street">Street</Label>
-			<Input id="street" placeholder="123 Main St." />		
+			<Input id="street" attrs={{ name: "street"}} placeholder="123 Main St." />		
 			<Label htmlFor="city">City</Label>
 			<Input id="city" placeholder="Pleasantville" />		
 			<Label htmlFor="state">State</Label>
@@ -85,7 +110,7 @@ export const LocationForm = (): JSX.Element => {
 			</Select>
 			<Label htmlFor="zip">Zip code</Label>
 			<Input id="zip" placeholder="12345" />
-			<Button text="Get location" />
+			<Button text="Get location" type="submit" />
 		</form>
 	);
 };

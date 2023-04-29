@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Weather } from "../weather";
+import { DailyWeather } from "../daily-weather";
 import { BsGeoFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { WeatherDay, WeatherUnit } from "../weather/constants";
-import { isCurrentDay } from "../weather/utilities";
+import { DayOfTheWeek, TempUnit } from "../daily-weather/constants";
+import { isCurrentDay } from "../daily-weather/utilities";
+import { Heading } from "../reusable/heading";
+import { LocationContext } from "@/context/location";
 
 /**
  * weather.gov's APIs
@@ -11,10 +13,10 @@ import { isCurrentDay } from "../weather/utilities";
  */
 export interface WeatherInformation {
 	isDaytime: boolean;
-	name: WeatherDay;
+	name: DayOfTheWeek;
 	shortForecast: string;
 	temperature: number;
-	temperatureUnit: WeatherUnit;
+	temperatureUnit: TempUnit;
 }
 
 interface LocationInformation {
@@ -35,20 +37,27 @@ interface ForecastInformation {
 	};
 }
 
+interface foo {
+	day?: WeatherInformation;
+	night?: WeatherInformation;
+}
+
 /**
  * Component that uses the weather.gov API to pull the forecast for a given location
  * --------------------------------------------------
  */
 export const Forecast = (): JSX.Element => {
-	const weatherArray: Array<WeatherInformation> = [];
+	const { coordinates, setName } = React.useContext(LocationContext);
 
-	const [city, setCity] = React.useState("");
-	const [state, setState] = React.useState("");
+	const weatherArray: Array<foo> = [];
+
+	// const [city, setCity] = React.useState("");
+	// const [state, setState] = React.useState("");
 	const [futureForecast, setFutureForecast] = React.useState(weatherArray);
 	const [currentWeather, setCurrentWeather] = React.useState(weatherArray);
 
 	const getLocationData = async (callback: (data: LocationInformation) => void): Promise<void> => {
-		fetch("https://api.weather.gov/points/39.7456,-97.0892")
+		fetch(`https://api.weather.gov/points/${coordinates.y},${coordinates.x}`)
 			.then((response) => response.json())
 			.then((data) => {
 				callback(data);
@@ -68,17 +77,27 @@ export const Forecast = (): JSX.Element => {
 
 	const initApplication = async () => {
 		await getLocationData(async (data: LocationInformation) => {
-			setCity(data?.properties?.relativeLocation?.properties.city);
-			setState(data?.properties?.relativeLocation?.properties.state);
+			setName(`${data?.properties?.relativeLocation?.properties.city}, ${data?.properties?.relativeLocation?.properties.state}`);
 
 			await getForecast(data.properties.forecast, (foo) => {
 				setCurrentWeather([]);
 				setFutureForecast([]);
-				foo.properties.periods.forEach((period) => {
-					if (isCurrentDay(period.name)) {
-						setCurrentWeather((prevArray) => [...prevArray, period]);
-					} else {
-						setFutureForecast((prevArray) => [...prevArray, period]);
+
+				let dayObject: foo = new Object({});
+				foo.properties.periods.forEach((period, index) => {
+					const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
+					dayObject[currentPeriod] = period;
+
+					if (currentPeriod === "night") {
+						const currentDayObject = Object.assign({}, dayObject);
+
+						if (isCurrentDay(period.name)) {
+							setCurrentWeather((prevArray) => [...prevArray, Object.assign({}, currentDayObject)]);
+						} else {
+							setFutureForecast((prevArray) => [...prevArray, Object.assign({}, currentDayObject)]);
+						}
+
+						dayObject = new Object({});
 					}
 				});
 			});
@@ -86,27 +105,43 @@ export const Forecast = (): JSX.Element => {
 	};
 
 	React.useEffect(() => {
-		initApplication();
-	});
+		if (coordinates.x !== 0 && coordinates.y !== 0) {
+			initApplication();
+		}
+	}, [coordinates]);
+
+	const getWeatherCards = (weathrArray: Array<foo>) => {
+		return weathrArray.map((period, index) => (
+			// We re-map a few API props for clarity within the component
+			<DailyWeather
+				day={{
+					...period.day,
+					dayOfTheWeek: period.day?.name,
+					description: period.day?.shortForecast,
+				}}
+				key={index}
+				night={{
+					...period.night,
+					dayOfTheWeek: period.night?.name,
+					description: period.night?.shortForecast,
+				}}
+			/>
+		));
+	};
 
 	return (
-		<div>
+		<div style={{ width: "100%" }}>
 			<div>
-				<h2>Location</h2>
+				{/* <Heading>Location</Heading>
 				<IconContext.Provider value={{ size: "3rem" }}>
 					<BsGeoFill />
 				</IconContext.Provider>
-				{city}, {state}
+				{city}, {state} */}
 			</div>
-			<h2>Current</h2>
-			{currentWeather.map((period, index) => (
-				// We re-map a few API props for clarity within the component
-				<Weather day={period.name} description={period.shortForecast} {...period} key={index} />
-			))}
-			<h2>Future</h2>
-			{futureForecast.map((period, index) => (
-				<Weather day={period.name} description={period.shortForecast} {...period} key={index} />
-			))}
+			<Heading>Current weather</Heading>
+			{getWeatherCards(currentWeather)}
+			<Heading>Upcoming forecast</Heading>
+			{getWeatherCards(futureForecast)}
 		</div>
 	);
 };
