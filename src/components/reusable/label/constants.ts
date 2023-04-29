@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+import { AttrsObject } from "@/foundations/scripts/utilities";
 
 /** Expected attributes for the Label component */
 interface LabelAttrs extends AttrsObject {

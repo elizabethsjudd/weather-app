@@ -1,26 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { BsSearch } from "react-icons/bs";
-
-import { Button } from "./index";
 import { allowedValues, defaults } from "./constants";
+import { Button } from "./index";
 
 const meta: Meta<typeof Button> = {
 	args: {
-		text: "Button",
-		type: defaults.type,
 		kind: defaults.kind,
+		text: "Button",
 	},
 	argTypes: {
-		text: {
-			control: { type: "text" },
-		},
-		type: {
-			control: { type: "select" },
-			options: allowedValues.types,
-		},
 		kind: {
 			control: { type: "select" },
 			options: allowedValues.kinds,
+		},
+		text: {
+			control: { type: "text" },
 		},
 	},
 	component: Button,

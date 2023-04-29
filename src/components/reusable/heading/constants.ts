@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+import { AttrsObject } from "@/foundations/scripts/utilities";
 
 /**
  * Defines enum values for Heading props
@@ -18,16 +18,14 @@ export type HeadingSize = (typeof allowedValues.sizes)[number];
  */
 export interface HeadingConfig {
 	attrs?: AttrsObject;
-	children?: React.ReactNode;
+	children: React.ReactNode;
 	kind?: HeadingKind;
 	level?: HeadingLevel;
 	size?: HeadingSize;
 }
 
-/**
- * Default prop values
- */
-export const defaults: HeadingConfig = {
+/** Default values for Heading component */
+export const defaults: Omit<HeadingConfig, "children"> = {
 	kind: "title",
 	level: 2,
 	size: "medium",

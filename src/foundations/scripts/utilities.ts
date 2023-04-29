@@ -13,13 +13,18 @@ export type AttrsObject = Record<string, unknown>;
  */
 export const combineAttributes = (
 	attributes: AttrsObject,
-	defaults: AttrsObject = {}
+	defaults: AttrsObject = {},
+	// @todo - long-term I would expect to allow an object and use something like
+	// the classNames library to make this more robust
+	dynamicClass?: string
 ): AttrsObject => {
 	// For classes, we want to combine the two values
-	const className: boolean | string =
-		defaults.className && attributes.className
-			? `${defaults.className} ${attributes.className}`
-			: false;
+	let className = "";
+
+	// Ensure we don't have random "undefined" classes
+	className = defaults.className ? `${className} ${defaults.className}` : className;
+	className = attributes.className ? `${className} ${attributes.className}` : className;
+	className = dynamicClass ? `${className} ${dynamicClass}` : className;
 
 	/**
 	 * Assign the defaults and the passed attributes to a new object
@@ -27,6 +32,6 @@ export const combineAttributes = (
 	 * can be passed to the component.
 	 */
 	return Object.assign({}, defaults, attributes, {
-		...(className && { className }),
+		...(className !== "" && { className }),
 	});
 };

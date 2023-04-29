@@ -6,13 +6,11 @@
     - [x] ESLint
     - [x] Stylelint
 - [x] Setup Storybook
-    - [x] Input
-    - [x] Card
 - [x] Application without input
 - [x] Application with input
 - [ ] Styling
     - [ ] Basic desktop styles
-    - [ ] Reusable components
+    - [x] Reusable components
     - [ ] Location form
     - [ ] Forecast grid
     - [ ] Home page layout
@@ -22,9 +20,6 @@
     - [ ] Accessibility
     - [ ] testing-library
 - [x] Deployment of application
-- [ ] Clean up components for more consistency
-- [ ] Review documentation
-- [ ] Create index file for reusable components
 
 ## Additional features
 - [ ] Empty states
@@ -36,6 +31,7 @@
 - [ ] Responsive
 - [ ] Dark theme/use isDaytime to change throughout the day
 - [ ] Additional linting
+    - [ ] Import order rule
     - [ ] JSON
     - [ ] Markdown
     - [ ] Setup pre-commit hook

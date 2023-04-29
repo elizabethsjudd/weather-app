@@ -1,23 +1,20 @@
 import { IconContext } from "react-icons";
-import { combineAttributes } from "../_helpers/scripts/utilities";
-import styles from "./styles.module.scss";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { ButtonConfig, defaults } from "./constants";
+import styles from "./styles.module.scss";
 
 export const Button = ({
 	attrs = {},
 	text,
 	slotIcon,
-	type = defaults.type,
 	kind = defaults.kind,
 }: ButtonConfig): JSX.Element => {
-	const attributes = combineAttributes(attrs, {
-		className: `${styles.button} ${styles[`button--${kind}`]}`,
-	});
+	const attributes = combineAttributes(attrs, defaults.attrs, styles[`button--${kind}`]);
 
 	return (
-		<button type={type} {...attributes}>
+		<button {...attributes}>
 			{slotIcon && (
-				<IconContext.Provider value={{ className: styles.persistentIcon, size: "1rem" }}>
+				<IconContext.Provider value={{ className: styles.icon, size: "1rem" }}>
 					{slotIcon}
 				</IconContext.Provider>
 			)}

@@ -1,30 +1,38 @@
-import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+import { AttrsObject } from "@/foundations/scripts/utilities";
+import styles from "./styles.module.scss";
 
 /**
  * Defines enum values for Button props
  */
 export const allowedValues = {
-	kinds: ["primary"] as const,
+	kinds: ["secondary", "primary"] as const,
 	types: ["button", "submit", "reset"] as const,
 };
 
 export type ButtonType = (typeof allowedValues.types)[number];
 export type ButtonKind = (typeof allowedValues.kinds)[number];
 
+/** Expected attributes for the Button component */
+interface ButtonAttrs extends AttrsObject {
+	type?: ButtonType;
+}
+
 /**
  * Button component configuration options
  */
 export interface ButtonConfig {
-	attrs?: AttrsObject;
+	attrs?: ButtonAttrs;
 	kind?: ButtonKind;
-	slotIcon?: JSX.Element;
+	slotIcon?: React.ReactElement;
+	/** Restrict contents of a button to ensure valid HTML and accessibility */
 	text: string;
-	type?: ButtonType;
 }
 
+/** Default values for Button component */
 export const defaults: Omit<ButtonConfig, "text"> = {
-	type: "button",
-	// In the real-world this would likely be secondary
-	// but for the sake of time, I'm only creating the variants I need
-	kind: "primary",
+	attrs: {
+		className: styles.button,
+		type: "button",
+	},
+	kind: "secondary",
 };

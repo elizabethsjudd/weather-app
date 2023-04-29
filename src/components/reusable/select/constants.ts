@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+import { AttrsObject } from "@/foundations/scripts/utilities";
 import { SelectOption } from "../select-option";
 import styles from "./styles.module.scss";
 

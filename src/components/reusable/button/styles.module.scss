@@ -1,25 +1,30 @@
 @use '../../../foundations/styles/mixins' as *;
 
 .button {
-	@include focus();
+	@include focus($border-width: $control-border-width);
+	@include text($is-interactive: 'true');
+	@include common-control-styles;
 
-	border: var(--line-width-control) solid var(--color-line);
-	border-radius: var(--border-radius-control);
-	min-height: var(--size-large);
-	padding: 0 var(--space-inset-control);
+	&--primary {
+		background-color: var(--color-brand);
+		border-color: transparent;
 
-	&:hover {
-		border-color: var(--color-line-hover);
-		color: var(--color-text-hover);
-	}
+		&:hover {
+			background-color: var(--color-brand-hover);
+			border-color: transparent;
+		}
 
-	&:focus,
-	&:focus-visible {
-		border-color: var(--color-line-hover);
-		outline: none;
+		&:active {
+			background-color: var(--color-brand-active);
+			border-color: transparent;
+		}
+
+		&:focus {
+			border-color: transparent;
+		}
 	}
 }
 
 .icon {
-	color: var(--color-text);
+	margin-right: var(--space-inline-related);
 }

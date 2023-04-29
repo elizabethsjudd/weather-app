@@ -2,5 +2,5 @@
 
 Reusable button component supporting:
 
-* Primary kind variant
+* Primary and secondary kind variants
 * Static icon (optional)

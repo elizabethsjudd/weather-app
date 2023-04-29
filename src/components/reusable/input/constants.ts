@@ -1,4 +1,5 @@
-import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+import { AttrsObject } from "@/foundations/scripts/utilities";
+import styles from "./styles.module.scss";
 
 /**
  * Defines enum values for Input props
@@ -9,14 +10,29 @@ export const allowedValues = {
 
 export type InputType = (typeof allowedValues.types)[number];
 
+/** Expected attributes for the Input component */
+interface InputAttrs extends AttrsObject {
+	id: string;
+	name: string;
+	placeholder?: string;
+	type?: InputType;
+	value?: string;
+}
+
 /**
  * Input component configuration options
  */
 export interface InputConfig {
-	attrs?: AttrsObject;
-	id: string;
-	placeholder?: string;
+	attrs: InputAttrs;
 	slotPersistentIcon?: JSX.Element;
-	type?: InputType;
-	value?: string;
 }
+
+/** Default values for Input component */
+export const defaults: InputConfig = {
+	attrs: {
+		className: styles.input,
+		id: "",
+		name: "",
+		type: "text",
+	},
+};

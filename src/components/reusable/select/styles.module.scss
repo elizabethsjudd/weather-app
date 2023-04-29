@@ -1,5 +1,4 @@
 @use '../../../foundations/styles/mixins' as *;
-@use '../_helpers/styles/control-mixins.scss' as *;
 
 .select {
 	@include focus($is-inline-element: 'true');

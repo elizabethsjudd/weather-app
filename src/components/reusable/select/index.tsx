@@ -1,5 +1,5 @@
 import { BsCaretDownFill } from "react-icons/bs";
-import { combineAttributes } from "../_helpers/scripts/utilities";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { SelectConfig, defaults } from "./constants";
 import styles from "./styles.module.scss";
 

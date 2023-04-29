@@ -4,10 +4,10 @@ import { Card } from "./index";
 
 const meta: Meta<typeof Card> = {
 	args: {
-		title: "Optional title",
+		slotTitle: "Optional title",
 	},
 	argTypes: {
-		title: {
+		slotTitle: {
 			control: { type: "text" },
 		},
 	},

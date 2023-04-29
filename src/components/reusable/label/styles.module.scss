@@ -1,5 +1,4 @@
 @use '../../../foundations/styles/mixins' as *;
-@use '../_helpers/styles/text-mixins.scss' as *;
 
 .label {
 	@include text($size: 'xsmall', $is-interactive: 'true');

@@ -1,4 +1,4 @@
-import { combineAttributes } from "../_helpers/scripts/utilities";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 import styles from "./styles.module.scss";
 import { LabelConfig } from "./constants";
 

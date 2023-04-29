@@ -1,17 +1,13 @@
 import { IconContext } from "react-icons";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
+import { InputConfig, defaults } from "./constants";
 import styles from "./styles.module.scss";
-import { InputConfig } from "./constants";
 
-export const Input = ({
-	attrs = {},
-	id,
-	placeholder = "",
-	slotPersistentIcon,
-	type = "text",
-	value,
-}: InputConfig): JSX.Element => {
+export const Input = ({ attrs, slotPersistentIcon }: InputConfig): JSX.Element => {
 	const iconClass =
 		typeof slotPersistentIcon !== "undefined" ? styles["input--persistentIcon"] : "";
+
+	const attributes = combineAttributes(attrs, defaults.attrs, iconClass);
 
 	return (
 		<div className={styles["u-focus-wrapper"]}>
@@ -20,14 +16,7 @@ export const Input = ({
 					{slotPersistentIcon}
 				</IconContext.Provider>
 			)}
-			<input
-				{...attrs}
-				className={`${styles.input} ${iconClass}`}
-				id={id}
-				placeholder={placeholder}
-				type={type}
-				value={value}
-			/>
+			<input {...attributes} />
 			<div className={styles["u-focus-indicator"]} />
 		</div>
 	);

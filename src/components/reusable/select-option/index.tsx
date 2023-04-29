@@ -1,4 +1,4 @@
-import { combineAttributes } from "../_helpers/scripts/utilities";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { SelectOptionConfig, defaults } from "./constants";
 
 export const SelectOption = ({ attrs, children }: SelectOptionConfig): JSX.Element => {
