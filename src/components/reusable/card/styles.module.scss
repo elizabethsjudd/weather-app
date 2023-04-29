@@ -10,25 +10,18 @@
 	position: absolute;
 }
 
+// wrapper around all text content (title & details)
 .content {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	margin-top: auto;
-}
 
-.title,
-.details {
 	// React Icon's requires setting the size via JSX so we have a hard-coded 3rems here
 	padding-right: calc(3rem + var(--space-inline-related));
 }
 
-.title {
-	color: var(--color-text-heading);
-}
-
 .details {
-	font-size: smaller;
 	margin-top: auto;
 	padding-top: var(--space-stack-related);
 }

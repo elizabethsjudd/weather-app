@@ -11,24 +11,18 @@ import {
 	BsCloudsFill,
 } from "react-icons/bs";
 import { Card } from "../reusable/card";
-import { WeatherConfig } from "./constants";
+import { DailyWeatherConfig, WeatherInfo } from "./constants";
 import { isCurrentDay } from "./utilities";
 import { IconContext } from "react-icons";
 
 import cardStyles from "../reusable/card/styles.module.scss";
 
-export const Weather = ({
-	day = "Today",
-	isDaytime = false,
-	description = "",
-	temperature = 0,
-	temperatureUnit = "F",
-}: WeatherConfig): JSX.Element => {
+export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element => {
 	/**
 	 * Uses the shortForecast description to determine which icon should be rendered
 	 */
 	// @todo - expand to support more weather variety
-	const getIcon = (forecast: string): JSX.Element | null => {
+	const getIcon = (forecast: string, isDaytime = false): JSX.Element | null => {
 		// Want to test the most extreme weather first that could have the most unique wording
 		if (forecast.includes("snow")) {
 			return <BsCloudSnowFill />;
@@ -66,33 +60,50 @@ export const Weather = ({
 		return null;
 	};
 
-	const isCurrent = isCurrentDay(day);
-	const timeClass = isDaytime ? styles.day : styles.night;
-	const typeClass = isCurrent ? styles.current : "";
-	const svg = getIcon(description.toLowerCase());
+	const getCard = (
+		{ temperature, temperatureUnit, description, dayOfTheWeek }: WeatherInfo,
+		isNight = false
+	) => {
+		const icon = getIcon((description as string).toLowerCase());
+		const timeOfDayModifier = isNight ? styles["timeOfDay--night"] : styles["timeOfDay--day"];
+
+		return (
+			<Card
+				attrs={{
+					className: `${styles.timeOfDay} ${timeOfDayModifier}`,
+				}}
+				slotDetails={
+					<>
+						<span className={styles.temp}>
+							{temperature}°{temperatureUnit}
+						</span>
+						<span className={styles.desc}>{description}</span>
+					</>
+				}
+				slotIcon={
+					<IconContext.Provider
+						value={{ className: `${styles.icon} ${cardStyles.icon}`, size: "3rem" }}
+					>
+						{icon}
+					</IconContext.Provider>
+				}
+				title={dayOfTheWeek?.toLowerCase().includes(" night") ? "" : dayOfTheWeek}
+			/>
+		);
+	};
+
+	if (typeof day === "undefined" || typeof night === "undefined") {
+		// @todo - add error handling if a value is not passed in correctly
+		return <div>Error loading data</div>;
+	}
+
+	const isCurrent = isCurrentDay(day.dayOfTheWeek);
+	const kindClass = isCurrent ? styles.current : "";
 
 	return (
-		// @todo - add error handling if a value is not passed in correctly
-		<Card
-			attrs={{
-				className: `${timeClass} ${typeClass}`,
-			}}
-			slotDetails={
-				<>
-					<span>
-						{temperature}°{temperatureUnit}
-					</span>
-					<span>{description}</span>
-				</>
-			}
-			slotIcon={
-				<IconContext.Provider
-					value={{ className: `${styles.icon} ${cardStyles.icon}`, size: "3rem" }}
-				>
-					{svg}
-				</IconContext.Provider>
-			}
-			title={!isCurrent ? day : ""}
-		/>
+		<div className={`${styles.dailyWeather} ${kindClass}`}>
+			{getCard(day)}
+			{getCard(night, true)}
+		</div>
 	);
 };
