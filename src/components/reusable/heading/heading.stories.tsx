@@ -4,26 +4,26 @@ import { allowedValues, defaults } from "./constants";
 
 const meta: Meta<typeof Heading> = {
 	args: {
-		level: defaults.level,
+		children: "Hello world",
 		kind: defaults.kind,
+		level: defaults.level,
 		size: defaults.size,
-		children: <>Hello world</>,
 	},
 	argTypes: {
-		level: {
-			control: { type: 'select' },
-			options: allowedValues.levels
+		children: {
+			control: { type: "text" },
 		},
 		kind: {
-			control: { type: 'select' },
-			options: allowedValues.kinds
+			control: { type: "select" },
+			options: allowedValues.kinds,
+		},
+		level: {
+			control: { type: "select" },
+			options: allowedValues.levels,
 		},
 		size: {
-			control: { type: 'select' },
-			options: allowedValues.sizes
-		},
-		children: {
-			control: { type: 'text' },
+			control: { type: "select" },
+			options: allowedValues.sizes,
 		},
 	},
 	component: Heading,
@@ -34,7 +34,9 @@ export default meta;
 type Story = StoryObj<typeof Heading>;
 
 export const Default: Story = {
-	render: (args) => <>
-		<Heading {...args}><>{args.children}</></Heading>
-	</>,
+	render: (args) => (
+		<>
+			<Heading {...args}>{args.children}</Heading>
+		</>
+	),
 };
