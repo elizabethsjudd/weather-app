@@ -1,0 +1,22 @@
+@use '../../../foundations/styles/mixins' as *;
+
+.select {
+	@include focus();
+
+	border: var(--line-width-control) solid var(--color-line);
+	border-radius: var(--border-radius-control);
+	min-height: var(--size-large);
+	padding: 0 var(--space-inset-control);
+	width: 100%;
+
+	&:hover {
+		border-color: var(--color-line-hover);
+		color: var(--color-text-hover);
+	}
+
+	&:focus,
+	&:focus-visible {
+		border-color: var(--color-line-hover);
+		outline: none;
+	}
+}
