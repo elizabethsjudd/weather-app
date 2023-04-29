@@ -2,6 +2,7 @@ import { IconContext } from "react-icons";
 import styles from "./styles.module.scss";
 import { CardConfig } from "./constants";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
+import { Heading } from "../heading";
 
 export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, {
@@ -10,15 +11,27 @@ export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): 
 
 	return (
 		<div {...attributes}>
-			{title && <h3 className={styles.title}>{title}</h3>}
+			<div className={styles.content}>
+				{title && (
+					<Heading
+						attrs={{
+							className: styles.title,
+						}}
+						kind="title"
+						level={3}
+						size="small"
+					>
+						{title}
+					</Heading>
+				)}
+				<span className={styles.details}>{slotDetails}</span>
+			</div>
 
 			{slotIcon && (
 				<IconContext.Provider value={{ className: styles.icon, size: "3rem" }}>
 					{slotIcon}
 				</IconContext.Provider>
 			)}
-
-			<span className={styles.details}>{slotDetails}</span>
 		</div>
 	);
 };

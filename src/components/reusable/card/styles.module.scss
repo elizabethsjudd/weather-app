@@ -1,9 +1,6 @@
 .card {
-	border: var(--line-width-control) solid var(--color-line);
-	border-radius: var(--border-radius-content-large);
 	display: flex;
 	flex-direction: column;
-	min-height: 6rem;
 	padding: var(--space-inset-control);
 	width: 100%;
 }
@@ -13,7 +10,25 @@
 	position: absolute;
 }
 
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: auto;
+}
+
 .title,
 .details {
-	padding-right: 80px;
+	// React Icon's requires setting the size via JSX so we have a hard-coded 3rems here
+	padding-right: calc(3rem + var(--space-inline-related));
+}
+
+.title {
+	color: var(--color-text-heading);
+}
+
+.details {
+	font-size: smaller;
+	margin-top: auto;
+	padding-top: var(--space-stack-related);
 }
