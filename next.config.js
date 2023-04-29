@@ -4,12 +4,12 @@ const nextConfig = {
 	reactStrictMode: true,
 	async rewrites() {
 		return [
-		  	{
-				source: '/api/geocoder/:path*',
-				destination: 'https://geocoding.geo.census.gov/geocoder/:path*'
-		  	}
-		]
-	}
+			{
+				destination: "https://geocoding.geo.census.gov/geocoder/:path*",
+				source: "/api/geocoder/:path*",
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;

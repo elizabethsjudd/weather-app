@@ -5,7 +5,6 @@ import { LocationForm } from "@/components/location-form";
 import { BsPinMapFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
-
 import { LocationContext } from "@/context/location";
 import { useMemo, useState } from "react";
 
@@ -14,10 +13,10 @@ export default function Home() {
 		x: 0,
 		y: 0,
 	});
-	const [name, setName] = useState('Nowhere');
+	const [name, setName] = useState("Nowhere");
 	const value = useMemo(
-	  () => ({ coordinates, setCoordinates, name, setName }), 
-	  [coordinates, name]
+		() => ({ coordinates, name, setCoordinates, setName }),
+		[coordinates, name]
 	);
 
 	return (
@@ -33,7 +32,7 @@ export default function Home() {
 			</header>
 			<main className={styles.main}>
 				<LocationContext.Provider value={value}>
-					<details open className={styles.section}>
+					<details className={styles.section} open>
 						<summary>Change your location</summary>
 						<LocationForm />
 					</details>
@@ -45,7 +44,7 @@ export default function Home() {
 							</IconContext.Provider>
 							Forecast for {name}
 						</summary>
-							<Forecast />
+						<Forecast />
 					</details>
 				</LocationContext.Provider>
 			</main>

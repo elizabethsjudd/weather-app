@@ -1,25 +1,30 @@
-import { createContext } from 'react';
+import { Dispatch, SetStateAction, createContext } from "react";
 
 interface LocationContextType {
-    coordinates: {
-        x: number,
-        y: number,
-    },
-    setCoordinates: Function,
-    name: string,
-    setName: Function
+	coordinates: {
+		x: number;
+		y: number;
+	};
+	name: string;
+	setCoordinates: Dispatch<
+		SetStateAction<{
+			x: number;
+			y: number;
+		}>
+	>;
+	setName: Dispatch<SetStateAction<string>>;
 }
 
 export const LocationContext = createContext({
-    coordinates: {
-        x: 0,
-        y: 0,
-    },
-    setCoordinates: (x: LocationContextType["coordinates"]) => {
-        console.log(x);
-    },
-    name: '',
-    setName: (x: LocationContextType["name"]) => {
-        console.log(x);
-    },
+	coordinates: {
+		x: 0,
+		y: 0,
+	},
+	name: "",
+	setCoordinates: (x: LocationContextType["coordinates"]) => {
+		console.log(x);
+	},
+	setName: (x: LocationContextType["name"]) => {
+		console.log(x);
+	},
 });
