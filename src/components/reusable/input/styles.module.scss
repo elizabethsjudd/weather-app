@@ -1,16 +1,19 @@
 @use '../../../foundations/styles/mixins' as *;
 
+$input-padding: var(--space-inset-control);
+
 .input {
 	@include focus($is-inline-element: 'true');
 
 	border: var(--line-width-control) solid var(--color-line);
 	border-radius: var(--border-radius-control);
 	min-height: var(--size-large);
-	padding: 0 var(--space-inset-control);
+	padding: 0 $input-padding;
+	box-sizing: border-box;
 	width: 100%;
 
 	&--persistentIcon {
-		padding-left: calc(var(--size-medium) + var(--space-inset-control) + var(--space-inline-related));
+		padding-left: calc(var(--size-medium) + $input-padding + var(--space-inline-related));
 	}
 
 	&:hover {
@@ -31,7 +34,7 @@
 
 .persistentIcon {
 	color: var(--color-text);
-	left: var(--space-inset-control);
+	left: $input-padding;
 	position: absolute; 
 	top: 50%;
 	transform: translateY(-50%);
