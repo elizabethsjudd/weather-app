@@ -3,6 +3,7 @@ import { BsSearch } from "react-icons/bs";
 
 import { Input } from "./index";
 import { allowedValues } from "./constants";
+import { Label } from "../label";
 
 const meta: Meta<typeof Input> = {
 	args: {
@@ -26,5 +27,10 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
-	render: (args) => <Input {...args} slotPersistentIcon={<BsSearch />} />,
+	render: (args) => (
+		<>
+			<Label htmlFor="meow">Label</Label>
+			<Input {...args} slotPersistentIcon={<BsSearch />} id="meow" />
+		</>
+	),
 };
