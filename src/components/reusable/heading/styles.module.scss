@@ -1,0 +1,64 @@
+* + .heading {
+	margin-top: 2rem;
+}
+
+.heading {
+	--heading-family: var(--font-family-01);
+	--heading-size: var(--type-size-headline);
+	--heading-weight: var(--type-weight-headline);
+	--heading-height: var(--type-line-height-headline);
+
+	display: block;
+	font-family: var(--heading-family);
+	font-size: var(--heading-size);
+	font-weight: var(--heading-weight);
+	line-height: var(--heading-height);
+}
+
+.heading--headline {
+	--heading-family: var(--font-family-01);
+	--heading-size: var(--type-size-headline);
+	--heading-weight: var(--type-weight-headline);
+	--heading-height: var(--type-line-height-headline);
+}
+
+.heading--title {
+	--heading-size: var(--type-size-text);
+	--heading-weight: var(--type-weight-title);
+	--heading-height: var(--type-line-height-text);
+}
+
+.heading--title--secondary {
+	--heading-weight: var(--type-weight-title-secondary);
+}
+
+// ---- Size modifier ----
+// There are also title use-cases but they follow a different scale/structure
+$heading-use-cases: 'headline', 'title';
+// There are 3 sizes: small, medium, and large.
+// Medium is the default
+$heading-sizes: 'large', 'small';
+// There are 4 sizes: xsmall, small, medium, and large.
+// Medium is the default
+$title-sizes: 'large', 'small', 'xsmall';
+
+@each $use-case in $heading-use-cases {
+	$sizes: $heading-sizes;
+	$contextual-token: $use-case;
+
+	@if $use-case == 'title' {
+		$sizes: $title-sizes;
+		$contextual-token: 'text'
+	}
+
+	@each $size in $sizes {
+		.heading--#{$use-case}--#{$size} {
+			--heading-size: var(--type-size-#{$contextual-token}-#{$size});
+			--heading-height:  var(--type-line-height-#{$contextual-token}-#{$size});
+		}
+	}
+}
+
+
+
+
