@@ -92,18 +92,23 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 		);
 	};
 
-	if (typeof day === "undefined" || typeof night === "undefined") {
+	if (typeof night === "undefined") {
 		// @todo - add error handling if a value is not passed in correctly
 		return <div>Error loading data</div>;
 	}
 
-	const isCurrent = isCurrentDay(day.dayOfTheWeek);
-	const kindClass = isCurrent ? styles.current : "";
+	// Have to use the night object as later in the day, the "day" value does not exist
+	const isCurrent = isCurrentDay(night.dayOfTheWeek);
+	const kindClass = isCurrent ? styles["dailyWeather--current"] : "";
 
 	return (
-		<div className={`${styles.dailyWeather} ${kindClass}`}>
-			{getCard(day)}
-			{getCard(night, true)}
+		<div
+			className={`${styles.dailyWeather} ${kindClass} ${
+				!day.description ? styles["dailyWeather--nightOnly"] : ""
+			}`}
+		>
+			{day.description && getCard(day)}
+			{night.description && getCard(night, true)}
 		</div>
 	);
 };

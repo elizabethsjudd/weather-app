@@ -47,3 +47,11 @@
 		font-weight: bold;
 	}
 }
+
+.dailyWeather--nightOnly {
+	background: rgb(12 45 84 / 80%);
+
+	.timeOfDay {
+		max-width: 100%;
+	}
+}
