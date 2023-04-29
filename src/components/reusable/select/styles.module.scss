@@ -1,23 +1,22 @@
 @use '../../../foundations/styles/mixins' as *;
+@use '../_helpers/styles/control-mixins.scss' as *;
 
 .select {
-	@include focus();
+	@include focus($is-inline-element: 'true');
+	@include common-control-styles;
 
-	border: var(--line-width-control) solid var(--color-line);
-	border-radius: var(--border-radius-control);
-	min-height: var(--size-large);
-	padding: 0 var(--space-inset-control);
-	box-sizing: border-box;
+	appearance: none;
+
+	// Icon size is set via JSX with React Icons
+	padding-right: calc($control-padding * 2 + 1rem);
 	width: 100%;
+}
 
-	&:hover {
-		border-color: var(--color-line-hover);
-		color: var(--color-text-hover);
-	}
-
-	&:focus,
-	&:focus-visible {
-		border-color: var(--color-line-hover);
-		outline: none;
-	}
+.chevron {
+	color: $control-border-color;
+	height: 1rem;
+	position: absolute;
+	right: $control-padding;
+	top: 50%;
+	transform: translateY(-50%);
 }

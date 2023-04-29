@@ -1,10 +1,14 @@
-import { AttrsObject } from "@/foundations/scripts/utilities";
+import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+
+/** Expected attributes for the Label component */
+interface LabelAttrs extends AttrsObject {
+	htmlFor: string;
+}
 
 /**
  * Label component configuration options
  */
 export interface LabelConfig {
-	attrs?: AttrsObject;
-	htmlFor: string;
+	attrs: LabelAttrs;
 	children: React.ReactNode;
 }

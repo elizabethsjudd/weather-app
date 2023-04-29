@@ -1,17 +1,11 @@
-import { combineAttributes } from "../../../foundations/scripts/utilities";
+import { combineAttributes } from "../_helpers/scripts/utilities";
 import styles from "./styles.module.scss";
 import { LabelConfig } from "./constants";
 
-export const Label = ({
-	attrs = {},
-	htmlFor,
-	children,
-}: LabelConfig): JSX.Element => {
+export const Label = ({ attrs, children }: LabelConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, {
 		className: styles.label,
 	});
 
-	return (
-		<label {...attributes} htmlFor={htmlFor}>{children}</label>
-	);
+	return <label {...attributes}>{children}</label>;
 };

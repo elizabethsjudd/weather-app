@@ -1,19 +1,26 @@
-import { AttrsObject } from "@/foundations/scripts/utilities";
+import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
 import { SelectOption } from "../select-option";
 import styles from "./styles.module.scss";
+
+/** Expected attributes for the Select component */
+interface SelectAttrs extends AttrsObject {
+	id: string;
+	name: string;
+}
 
 /**
  * Select component configuration options
  */
 export interface SelectConfig {
-	attrs?: AttrsObject;
-	children: React.ReactElement<typeof SelectOption>
+	attrs: SelectAttrs;
+	children: React.ReactElement<typeof SelectOption>;
 }
 
-export const defaults: Omit<SelectConfig, 'children'> = {
+/** Default values for Select component */
+export const defaults: Omit<SelectConfig, "children"> = {
 	attrs: {
-		name: '',
-		id: '',
-		className: styles.select
-	}
-}
+		className: styles.select,
+		id: "",
+		name: "",
+	},
+};

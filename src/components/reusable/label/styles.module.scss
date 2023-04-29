@@ -1,6 +1,10 @@
 @use '../../../foundations/styles/mixins' as *;
+@use '../_helpers/styles/text-mixins.scss' as *;
 
 .label {
+	@include text($size: 'xsmall', $is-interactive: 'true');
+
 	display: block;
-	margin-bottom: .125rem;
+	margin-bottom: var(--space-stack-tight);
+	margin-top: var(--space-stack)
 }

@@ -1,15 +1,21 @@
-import { AttrsObject } from "@/foundations/scripts/utilities";
+import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
+
+/** Expected attributes for the SelectOption component */
+interface SelectOptionAttrs extends AttrsObject {
+	value: string;
+}
 
 /**
  * SelectOption component configuration options
  */
 export interface SelectOptionConfig {
-	attrs?: AttrsObject;
-	children: React.ReactNode
+	attrs: SelectOptionAttrs;
+	children: React.ReactNode;
 }
 
-export const defaults: Omit<SelectOptionConfig, 'children'> = {
+/** Default values for SelectOption component */
+export const defaults: Omit<SelectOptionConfig, "children"> = {
 	attrs: {
-		value: '',
-	}
-}
+		value: "",
+	},
+};

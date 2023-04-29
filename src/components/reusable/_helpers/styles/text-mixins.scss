@@ -1,0 +1,29 @@
+////
+/// Helper mixins related to typography
+/// @group helper-mixins
+////
+
+/// Used to create a consistent text styles across components
+/// @param {String} $size - Sets the size modifier for the font and line-height
+/// 	Available options are "xsmall", "small", "medium" (default), "large".
+/// @param {String} $is-interactive - Use when the text is within (e.g., button)
+///     or associated to an interactive element (e.g., label). Available options
+///     are "true", "false" (default)
+/// 
+/// @example @include text($size: 'xsmall', $is-interactive: 'true');
+@mixin text($size: 'medium', $is-interactive: 'false') {
+	$size-modifier: -#{$size};
+	$token: 'text';
+
+	@if $size == 'medium' {
+		$size-modifier: ''
+	}
+
+	@if $is-interactive == 'true' {
+		$token: 'interactive'
+	}
+
+	font-size: var(--type-size-text#{$size-modifier});
+	font-weight: var(--type-weight-#{$token});
+	line-height: var(--type-line-height-text#{$size-modifier});
+}

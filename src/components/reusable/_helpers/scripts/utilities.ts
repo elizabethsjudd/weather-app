@@ -16,7 +16,10 @@ export const combineAttributes = (
 	defaults: AttrsObject = {}
 ): AttrsObject => {
 	// For classes, we want to combine the two values
-	let className: boolean | string = defaults.className && attributes.className ? `${defaults.className} ${attributes.className}` : false;
+	const className: boolean | string =
+		defaults.className && attributes.className
+			? `${defaults.className} ${attributes.className}`
+			: false;
 
 	/**
 	 * Assign the defaults and the passed attributes to a new object
