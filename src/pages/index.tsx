@@ -2,11 +2,12 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
 import { Forecast } from "@/components/forecast";
 import { LocationForm } from "@/components/location-form";
-import { BsPinMapFill } from "react-icons/bs";
+import { BsPencilFill, BsPinMapFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
-import { LocationContext } from "@/context/location";
+import { LocationContext, LocationContextType } from "@/context/location";
 import { useMemo, useState } from "react";
+import { Heading } from "@/components/reusable";
 
 export default function Home() {
 	const [coordinates, setCoordinates] = useState({
@@ -18,6 +19,10 @@ export default function Home() {
 		() => ({ coordinates, name, setCoordinates, setName }),
 		[coordinates, name]
 	);
+
+	const getForecast = (coordinates: LocationContextType["coordinates"]) => {
+		setCoordinates(coordinates);
+	};
 
 	return (
 		<>
@@ -33,16 +38,25 @@ export default function Home() {
 			<main className={styles.main}>
 				<LocationContext.Provider value={value}>
 					<details className={styles.section} open>
-						<summary>Change your location</summary>
-						<LocationForm />
+						<summary>
+							<Heading kind="headline" level={2} size="large">
+								<IconContext.Provider value={{ size: "2rem" }}>
+									<BsPencilFill />
+								</IconContext.Provider>
+								Set your location
+							</Heading>
+						</summary>
+						<LocationForm hookChange={getForecast} />
 					</details>
 
 					<details className={styles.section}>
 						<summary>
-							<IconContext.Provider value={{ size: "3rem" }}>
-								<BsPinMapFill />
-							</IconContext.Provider>
-							Forecast for {name}
+							<Heading kind="headline" level={2} size="large">
+								<IconContext.Provider value={{ size: "2rem" }}>
+									<BsPinMapFill />
+								</IconContext.Provider>
+								Forecast for {name}
+							</Heading>
 						</summary>
 						<Forecast />
 					</details>

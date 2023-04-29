@@ -9,9 +9,6 @@
 - [x] Application without input
 - [x] Application with input
 - [ ] Styling
-    - [ ] Basic desktop styles
-    - [x] Reusable components
-    - [ ] Location form
     - [ ] Forecast grid
     - [ ] Home page layout
 - [ ] Error handling & form validation
@@ -20,8 +17,10 @@
     - [ ] Accessibility
     - [ ] testing-library
 - [x] Deployment of application
+- [ ] Forecast is broken in SB
 
 ## Additional features
+- [ ] API working in SB
 - [ ] Empty states
 - [ ] Loading states
 - [ ] Provide more details from API  (modal)

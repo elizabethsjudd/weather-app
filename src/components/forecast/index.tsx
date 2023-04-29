@@ -1,11 +1,9 @@
 import * as React from "react";
 import { DailyWeather } from "../daily-weather";
-import { BsGeoFill } from "react-icons/bs";
-import { IconContext } from "react-icons";
 import { DayOfTheWeek, TempUnit } from "../daily-weather/constants";
 import { isCurrentDay } from "../daily-weather/utilities";
 import { Heading } from "../reusable/heading";
-import { LocationContext } from "@/context/location";
+import { LocationContext } from "../../context/location";
 
 /**
  * weather.gov's APIs
@@ -51,8 +49,6 @@ export const Forecast = (): JSX.Element => {
 
 	const weatherArray: Array<foo> = [];
 
-	// const [city, setCity] = React.useState("");
-	// const [state, setState] = React.useState("");
 	const [futureForecast, setFutureForecast] = React.useState(weatherArray);
 	const [currentWeather, setCurrentWeather] = React.useState(weatherArray);
 
@@ -77,7 +73,9 @@ export const Forecast = (): JSX.Element => {
 
 	const initApplication = async () => {
 		await getLocationData(async (data: LocationInformation) => {
-			setName(`${data?.properties?.relativeLocation?.properties.city}, ${data?.properties?.relativeLocation?.properties.state}`);
+			setName(
+				`${data?.properties?.relativeLocation?.properties.city}, ${data?.properties?.relativeLocation?.properties.state}`
+			);
 
 			await getForecast(data.properties.forecast, (foo) => {
 				setCurrentWeather([]);
@@ -131,14 +129,6 @@ export const Forecast = (): JSX.Element => {
 
 	return (
 		<div style={{ width: "100%" }}>
-			<div>
-				{/* <Heading>Location</Heading>
-				<IconContext.Provider value={{ size: "3rem" }}>
-					<BsGeoFill />
-				</IconContext.Provider>
-				{city}, {state} */}
-			</div>
-			<Heading>Current weather</Heading>
 			{getWeatherCards(currentWeather)}
 			<Heading>Upcoming forecast</Heading>
 			{getWeatherCards(futureForecast)}

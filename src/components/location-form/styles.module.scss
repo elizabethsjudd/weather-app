@@ -1,0 +1,25 @@
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.button {
+	align-self: flex-end;
+	margin-top: var(--space-stack);
+}
+
+@media (width >= 700px) {
+	.form {
+		max-width: 45rem;
+	}
+
+    
+	.addressRow {
+		display: flex;
+		gap: 1rem;
+	}
+
+	.city {
+		flex-grow: 100;
+	}
+}

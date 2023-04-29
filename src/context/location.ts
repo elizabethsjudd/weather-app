@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, createContext } from "react";
 
-interface LocationContextType {
+export interface LocationContextType {
 	coordinates: {
 		x: number;
 		y: number;
