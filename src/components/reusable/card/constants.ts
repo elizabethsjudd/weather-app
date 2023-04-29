@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/foundations/scripts/utilities";
+import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
 
 /**
  * Card component configuration options

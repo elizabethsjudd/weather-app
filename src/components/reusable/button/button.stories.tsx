@@ -6,7 +6,7 @@ import { allowedValues, defaults } from "./constants";
 
 const meta: Meta<typeof Button> = {
 	args: {
-		text: 'Button',
+		text: "Button",
 		type: defaults.type,
 		kind: defaults.kind,
 	},

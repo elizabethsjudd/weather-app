@@ -1,7 +1,7 @@
 import { IconContext } from "react-icons";
 import styles from "./styles.module.scss";
 import { CardConfig } from "./constants";
-import { combineAttributes } from "../../../foundations/scripts/utilities";
+import { combineAttributes } from "../_helpers/scripts/utilities";
 import { Heading } from "../heading";
 
 export const Card = ({ attrs = {}, title, slotIcon, slotDetails }: CardConfig): JSX.Element => {

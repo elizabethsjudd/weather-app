@@ -1,4 +1,4 @@
-import { AttrsObject } from "@/foundations/scripts/utilities";
+import { AttrsObject } from "@/components/reusable/_helpers/scripts/utilities";
 
 /**
  * Defines enum values for Button props
@@ -16,15 +16,15 @@ export type ButtonKind = (typeof allowedValues.kinds)[number];
  */
 export interface ButtonConfig {
 	attrs?: AttrsObject;
+	kind?: ButtonKind;
 	slotIcon?: JSX.Element;
 	text: string;
 	type?: ButtonType;
-	kind?: ButtonKind;
 }
 
-export const defaults: Omit<ButtonConfig, 'text'> = {
-	type: 'button',
+export const defaults: Omit<ButtonConfig, "text"> = {
+	type: "button",
 	// In the real-world this would likely be secondary
 	// but for the sake of time, I'm only creating the variants I need
-	kind: 'primary'
-}
+	kind: "primary",
+};
