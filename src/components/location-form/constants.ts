@@ -13,7 +13,7 @@ export interface AddressCoordinates {
 }
 
 export interface LocationFormConfig {
-	hookChange: (arg0: AddressCoordinates) => void;
+	hookChange?: (arg0: AddressCoordinates) => void;
 }
 
 interface GeocoderAddress {

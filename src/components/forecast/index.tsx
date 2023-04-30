@@ -1,137 +1,87 @@
 import * as React from "react";
 import { DailyWeather } from "../daily-weather";
-import { DayOfTheWeek, TempUnit } from "../daily-weather/constants";
+import { DailyWeatherConfig } from "../daily-weather/constants";
 import { isCurrentDay } from "../daily-weather/utilities";
 import { Heading } from "../reusable/heading";
-import { LocationContext } from "../../context/location";
-
-/**
- * weather.gov's APIs
- * --------------------------------------------------
- */
-export interface WeatherInformation {
-	isDaytime: boolean;
-	name: DayOfTheWeek;
-	shortForecast: string;
-	temperature: number;
-	temperatureUnit: TempUnit;
-}
-
-interface LocationInformation {
-	properties: {
-		forecast: string;
-		relativeLocation: {
-			properties: {
-				city: string;
-				state: string;
-			};
-		};
-	};
-}
-
-interface ForecastInformation {
-	properties: {
-		periods: Array<WeatherInformation>;
-	};
-}
-
-interface foo {
-	day?: WeatherInformation;
-	night?: WeatherInformation;
-}
+import {
+	DailyWeatherConfigConstructor,
+	ForecastConfig,
+	WeatherGovForecastInfo,
+	WeatherGovLocationInfo,
+} from "./constants";
+import { getLocationData, getForecast } from "./utilities";
+import styles from "./styles.module.scss";
 
 /**
  * Component that uses the weather.gov API to pull the forecast for a given location
  * --------------------------------------------------
  */
-export const Forecast = (): JSX.Element => {
-	const { coordinates, setName } = React.useContext(LocationContext);
+export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Element => {
+	const defaultWeatherArray: Array<DailyWeatherConfigConstructor> = [];
 
-	const weatherArray: Array<foo> = [];
-
-	const [futureForecast, setFutureForecast] = React.useState(weatherArray);
-	const [currentWeather, setCurrentWeather] = React.useState(weatherArray);
-
-	const getLocationData = async (callback: (data: LocationInformation) => void): Promise<void> => {
-		fetch(`https://api.weather.gov/points/${coordinates.y},${coordinates.x}`)
-			.then((response) => response.json())
-			.then((data) => {
-				callback(data);
-			});
-	};
-
-	const getForecast = async (
-		forecastAPI: string,
-		callback: (data: ForecastInformation) => void
-	): Promise<void> => {
-		fetch(forecastAPI)
-			.then((response) => response.json())
-			.then((data) => {
-				callback(data);
-			});
-	};
-
-	const initApplication = async () => {
-		await getLocationData(async (data: LocationInformation) => {
-			setName(
-				`${data?.properties?.relativeLocation?.properties.city}, ${data?.properties?.relativeLocation?.properties.state}`
-			);
-
-			await getForecast(data.properties.forecast, (foo) => {
-				setCurrentWeather([]);
-				setFutureForecast([]);
-
-				let dayObject: foo = new Object({});
-				foo.properties.periods.forEach((period, index) => {
-					const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
-					dayObject[currentPeriod] = period;
-
-					if (currentPeriod === "night") {
-						const currentDayObject = Object.assign({}, dayObject);
-
-						if (isCurrentDay(period.name)) {
-							setCurrentWeather((prevArray) => [...prevArray, Object.assign({}, currentDayObject)]);
-						} else {
-							setFutureForecast((prevArray) => [...prevArray, Object.assign({}, currentDayObject)]);
-						}
-
-						dayObject = new Object({});
-					}
-				});
-			});
-		});
-	};
+	const [futureForecast, setFutureForecast] = React.useState(defaultWeatherArray);
+	const [currentWeather, setCurrentWeather] = React.useState(defaultWeatherArray);
 
 	React.useEffect(() => {
-		if (coordinates.x !== 0 && coordinates.y !== 0) {
-			initApplication();
-		}
-	}, [coordinates]);
+		console.log(coordinates);
+		if (coordinates) {
+			getLocationData(coordinates, async (locData: WeatherGovLocationInfo) => {
+				hookUpdate &&
+					hookUpdate({
+						location: `${locData.properties.relativeLocation.properties.city}, ${locData.properties.relativeLocation.properties.state}`,
+					});
 
-	const getWeatherCards = (weathrArray: Array<foo>) => {
-		return weathrArray.map((period, index) => (
-			// We re-map a few API props for clarity within the component
-			<DailyWeather
-				day={{
-					...period.day,
-					dayOfTheWeek: period.day?.name,
-					description: period.day?.shortForecast,
-				}}
-				key={index}
-				night={{
-					...period.night,
-					dayOfTheWeek: period.night?.name,
-					description: period.night?.shortForecast,
-				}}
-			/>
-		));
+				getForecast(locData.properties.forecast, (forecastData: WeatherGovForecastInfo) => {
+					setCurrentWeather([]);
+					setFutureForecast([]);
+
+					let dayObject = new Object({}) as DailyWeatherConfigConstructor;
+					forecastData.properties.periods.forEach((period) => {
+						const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
+
+						dayObject[currentPeriod] = {
+							dayOfTheWeek: period.name,
+							description: period.shortForecast,
+							temperature: period.temperature,
+							temperatureUnit: period.temperatureUnit,
+						};
+
+						if (currentPeriod === "night") {
+							const currentDayObject = Object.assign({}, dayObject);
+
+							if (isCurrentDay(period.name)) {
+								setCurrentWeather((prevArray) => [
+									...prevArray,
+									Object.assign({}, currentDayObject),
+								]);
+							} else {
+								setFutureForecast((prevArray) => [
+									...prevArray,
+									Object.assign({}, currentDayObject),
+								]);
+							}
+
+							dayObject = new Object({});
+						}
+					});
+				});
+			});
+		}
+	}, [coordinates, hookUpdate]);
+
+	const getWeatherCards = (weatherArray: Array<DailyWeatherConfig>) => {
+		return weatherArray.map((period, index) => <DailyWeather key={index} {...period} />);
 	};
 
 	return (
 		<div style={{ width: "100%" }}>
-			{getWeatherCards(currentWeather)}
-			<Heading>Upcoming forecast</Heading>
-			{getWeatherCards(futureForecast)}
+			{getWeatherCards(currentWeather as DailyWeatherConfig[])}
+			<Heading kind="headline" size="large">
+				Upcoming forecast
+			</Heading>
+			<div className={styles.futureForecast}>
+				{getWeatherCards(futureForecast as DailyWeatherConfig[])}
+			</div>
 		</div>
 	);
 };

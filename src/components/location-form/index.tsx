@@ -17,9 +17,7 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 				zip: form.zip.value,
 			},
 			(data: GeocoderData) => {
-				if (hookChange) {
-					hookChange(data.result.addressMatches[0].coordinates);
-				}
+				hookChange && hookChange(data.result.addressMatches[0].coordinates);
 			}
 		);
 	};

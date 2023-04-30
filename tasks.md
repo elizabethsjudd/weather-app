@@ -9,7 +9,6 @@
 - [x] Application without input
 - [x] Application with input
 - [ ] Styling
-    - [ ] Forecast grid
     - [ ] Home page layout
 - [ ] Error handling & form validation
 - [ ] Testing
@@ -17,7 +16,8 @@
     - [ ] Accessibility
     - [ ] testing-library
 - [x] Deployment of application
-- [ ] Forecast is broken in SB
+- [ ] Reconnect location and forecast in app
+- [ ] Deployment failing
 
 ## Additional features
 - [ ] API working in SB

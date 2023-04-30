@@ -58,7 +58,7 @@ export default function Home() {
 								Forecast for {name}
 							</Heading>
 						</summary>
-						<Forecast />
+						<Forecast {...coordinates} />
 					</details>
 				</LocationContext.Provider>
 			</main>

@@ -1,0 +1,6 @@
+.futureForecast {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-inline-related);
+	margin-top: var(--space-stack-related);
+}
