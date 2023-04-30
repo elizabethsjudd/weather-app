@@ -1,4 +1,4 @@
-@use '../../../foundations/styles/mixins' as *;
+@use '../../../foundations/styles/utilities' as *;
 
 .button {
 	@include focus($border-width: $control-border-width);

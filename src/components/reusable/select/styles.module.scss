@@ -1,4 +1,4 @@
-@use '../../../foundations/styles/mixins' as *;
+@use '../../../foundations/styles/utilities' as *;
 
 .select {
 	@include focus($is-inline-element: 'true');

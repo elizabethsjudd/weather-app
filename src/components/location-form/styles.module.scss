@@ -1,3 +1,6 @@
+@use '../../foundations/styles/tokens/global/breakpoints.scss' as *;
+@use '../../foundations/styles/utilities' as *;
+
 .form {
 	display: flex;
 	flex-direction: column;
@@ -8,9 +11,9 @@
 	margin-top: var(--space-stack);
 }
 
-@media (width >= 700px) {
+@media (width >= $breakpoint-01) {
 	.form {
-		max-width: 45rem;
+		max-width: $max-full-width-content;
 	}
 
     
