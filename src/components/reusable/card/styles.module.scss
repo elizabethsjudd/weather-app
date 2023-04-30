@@ -1,13 +1,13 @@
 .card {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
 	padding: var(--space-inset-control);
 	width: 100%;
 }
 
 .icon {
-	align-self: end;
-	position: absolute;
+	align-self: flex-start;
 }
 
 // wrapper around all text content (title & details)
@@ -15,10 +15,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-top: auto;
-
-	// React Icon's requires setting the size via JSX so we have a hard-coded 3rems here
-	padding-right: calc(3rem + var(--space-inline-related));
 }
 
 .details {

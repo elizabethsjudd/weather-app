@@ -19,10 +19,11 @@ import cardStyles from "../reusable/card/styles.module.scss";
 
 export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element => {
 	/**
-	 * Uses the shortForecast description to determine which icon should be rendered
+	 * Uses the description to determine which icon to render
 	 */
-	// @todo - expand to support more weather variety
-	const getIcon = (forecast: string, isDaytime = false): JSX.Element | null => {
+	const getIcon = (forecast: string, isNight = false): React.ReactNode => {
+		// @todo - long-term we'd want to support more weather variety
+
 		// Want to test the most extreme weather first that could have the most unique wording
 		if (forecast.includes("snow")) {
 			return <BsCloudSnowFill />;
@@ -38,7 +39,7 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 		}
 
 		// Test for night specific icons
-		if (!isDaytime) {
+		if (isNight) {
 			if (forecast.includes("clear")) {
 				return forecast.includes("mostly") ? <BsFillCloudMoonFill /> : <BsFillMoonStarsFill />;
 			}
@@ -60,12 +61,20 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 		return null;
 	};
 
+	/** Creates a card to display the correct information for each time period during the day */
 	const getCard = (
 		{ temperature, temperatureUnit, description, dayOfTheWeek }: WeatherInfo,
 		isNight = false
 	) => {
-		const icon = getIcon((description as string).toLowerCase());
+		const icon = getIcon((description as string).toLowerCase(), isNight);
 		const timeOfDayModifier = isNight ? styles["timeOfDay--night"] : styles["timeOfDay--day"];
+		// We don't want to display the heading for night as it's duplicate visually but we still want to
+		// provide that information for screen reader users.
+		const title = dayOfTheWeek?.includes(" Night") ? (
+			<span className={styles["u-visuallyHidden"]}>{dayOfTheWeek}</span>
+		) : (
+			dayOfTheWeek
+		);
 
 		return (
 			<Card
@@ -81,34 +90,30 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 					</>
 				}
 				slotIcon={
-					<IconContext.Provider
-						value={{ className: `${styles.icon} ${cardStyles.icon}`, size: "3rem" }}
-					>
-						{icon}
-					</IconContext.Provider>
+					<span className={`${cardStyles.icon} ${styles.icon}`}>
+						<IconContext.Provider value={{ className: `${cardStyles.icon}`, size: "100%" }}>
+							{icon}
+						</IconContext.Provider>
+					</span>
 				}
-				title={dayOfTheWeek?.toLowerCase().includes(" night") ? "" : dayOfTheWeek}
+				slotTitle={title}
 			/>
 		);
 	};
 
-	if (typeof night === "undefined") {
-		// @todo - add error handling if a value is not passed in correctly
-		return <div>Error loading data</div>;
-	}
-
-	// Have to use the night object as later in the day, the "day" value does not exist
-	const isCurrent = isCurrentDay(night.dayOfTheWeek);
-	const kindClass = isCurrent ? styles["dailyWeather--current"] : "";
+	// Have to use the night object because in the evening, the "day" value does not exist
+	const kindClass = isCurrentDay(night.dayOfTheWeek)
+		? styles["dailyWeather--current"]
+		: styles["dailyWeather--future"];
 
 	return (
 		<div
 			className={`${styles.dailyWeather} ${kindClass} ${
-				!day.description ? styles["dailyWeather--nightOnly"] : ""
+				!day ? styles["dailyWeather--nightOnly"] : ""
 			}`}
 		>
-			{day.description && getCard(day)}
-			{night.description && getCard(night, true)}
+			{day && getCard(day)}
+			{getCard(night, true)}
 		</div>
 	);
 };

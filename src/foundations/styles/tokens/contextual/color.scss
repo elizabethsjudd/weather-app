@@ -35,7 +35,7 @@ $contextual-color-vars: (
 	"line-disabled": "gray-40",
 
 	// Design calls this "Light" but it's semantically used for dividers
-	"line-divider": "gray-20",
+	"line-divider": "gray-30",
 
 	// --------- Text --------------
 	"text": "gray-80",
@@ -45,6 +45,7 @@ $contextual-color-vars: (
 	"text-disabled": "gray-40",
 
 	// Static text color options
+	"text-inverse": "white",
 	"text-secondary": "gray-70",
 	"text-label": "gray-90",
 	"text-heading": "gray-100",

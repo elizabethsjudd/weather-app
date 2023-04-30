@@ -1,57 +1,81 @@
+@use '../../foundations/styles/utilities' as *;
+@use '../../foundations/styles/tokens/global/breakpoints.scss' as *;
+
+$night-color: var(--blue-100);
+$night-background: rgb($night-color / 80%);
+
 .dailyWeather {
-	background: linear-gradient(105deg, rgb(255 241 188 / 10%) 50%, rgb(12 45 84 / 80%) 50%);
-	background-color: white;
-	border: 1px solid lightgray;
-	border-radius: 1rem;
+	background: linear-gradient(105deg, rgb(255 241 188 / 10%) 50%, $night-background 50%);
+	background-color: var(--color-background);
+	border: var(--line-width-divider) solid var(--color-line-divider);
+	border-radius: var(--radii-03);
 	box-shadow: var(--shadow-01);
 	display: flex;
 	flex-direction: row;
+	gap: var(--spacing-10);
 	justify-content: space-between;
-	margin-bottom: .5rem;
-	width: calc(50% - 1rem);
 }
 
 .timeOfDay {
-	max-width: 48%;
-
 	&--day {
-		color: rgb(12 45 84 / 100%);
+		color: rgb($night-color);
 		padding-right: 0;
 	}
 
 	&--night {
-		color: white;
+		color: var(--color-text-inverse);
+		padding-left: var(--space-inset);
 	}
+}
+
+.icon {
+	display: block;
+	flex-shrink: 0;
+	height: var(--size-medium);
+	width: var(--size-medium);
+}
+
+.desc {
+	font-size: var(--type-size-text-xxsmall);
 }
 
 .temp {
 	display: block;
-	font-size: 1.5rem;
+	font-size: var(--type-size-text);
 	font-weight: bold;
 }
 
-.desc {
-	font-size: smaller;
+// Kind modifier
+.dailyWeather--future {
+	margin-bottom: var(--space-stack-related);
 }
 
-// Kind modifier
 .dailyWeather--current {
-	width: 100%;
-
-	.timeOfDay {
-		max-width: 45%;
-	}
+	border-radius: var(--border-radius-container-large);
+	max-width: $max-full-width-content;
 
 	.temp {
-		font-size: 3rem;
-		font-weight: bold;
+		font-size: var(--font-size-10);
+	}
+
+	.icon {
+		height: var(--size-large);
+		width: var(--size-large);
 	}
 }
 
+// Time of day modifier
 .dailyWeather--nightOnly {
-	background: rgb(12 45 84 / 80%);
+	background: $night-background;
 
 	.timeOfDay {
 		max-width: 100%;
+	}
+}
+
+@media (width >= $breakpoint-01) {
+	.dailyWeather--future {
+		gap: 0;
+		width: calc(50% - var(--space-inline-related));
 	}
 }
