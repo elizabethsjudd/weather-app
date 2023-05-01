@@ -75,7 +75,7 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 					attrs={{
 						"aria-required": true,
 						id: "street",
-						maxlength: 100,
+						maxLength: 100,
 						name: "street",
 						onBlur: validateStreet,
 						placeholder: "123 Main St.",
