@@ -42,11 +42,11 @@ export const combineAttributes = (
 // ------------------------------------------------------------------
 
 export interface APIError {
-	error: string,
-	details: Error
+	details: Error;
+	error: string;
 }
 
-export type GenericCallbackFunction = (data: unknown) => void
+export type GenericCallbackFunction = (data: unknown) => void;
 
 export const fetchAPIRequest = async (
 	requestURL: string,
@@ -61,13 +61,13 @@ export const fetchAPIRequest = async (
 	} catch (error) {
 		if (error instanceof SyntaxError) {
 			// Unexpected token < in JSON
-			callback({ error: 'SyntaxError', details: error });
+			callback({ details: error, error: "SyntaxError" });
 		} else {
-			callback({ error: 'General error', details: error });
+			callback({ details: error, error: "General error" });
 		}
 	}
 
 	if (json) {
 		callback(json);
 	}
-}
+};

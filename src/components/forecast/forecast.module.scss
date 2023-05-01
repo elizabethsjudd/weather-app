@@ -1,16 +1,17 @@
 @use '../../foundations/styles/tokens/global/breakpoints.scss' as *;
 
-.futureForecast { 
+.futureForecast {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-template-rows: auto; 
 	margin-top: var(--space-stack-related);
+	row-gap: var(--space-inline-related);
 }
 
 @media (width >= $breakpoint-01) {
 	.futureForecast { 
 		column-gap: var(--space-inline-related);
-		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: auto;
-		row-gap: var(--space-inline-related);
 	}
 }
 

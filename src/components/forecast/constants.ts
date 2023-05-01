@@ -2,7 +2,7 @@ import { DayOfTheWeek, TempUnit, WeatherInfo } from "../daily-weather/constants"
 import { AddressCoordinates } from "../location-form/constants";
 
 export interface hookUpdateConfig {
-	location: `${string}, ${string}`;
+	location: `${string}, ${string}` | "";
 }
 
 export interface ForecastConfig {

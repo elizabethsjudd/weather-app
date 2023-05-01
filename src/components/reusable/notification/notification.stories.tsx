@@ -5,19 +5,19 @@ import { allowedValues, defaults } from "./constants";
 const meta: Meta<typeof Notification> = {
 	args: {
 		children: "Notification message",
-		title: "Hello",
 		kind: defaults.kind,
+		title: "Hello",
 	},
 	argTypes: {
 		children: {
 			control: { type: "text" },
 		},
-		title: {
-			control: { type: "text" },
-		},
 		kind: {
 			control: { type: "select" },
 			options: allowedValues.kinds,
+		},
+		title: {
+			control: { type: "text" },
 		},
 	},
 	component: Notification,

@@ -9,13 +9,12 @@
 - [x] Application without input
 - [x] Application with input
 - [x] Styling + Responsive
-- [ ] Error handling & form validation
+- [x] Error handling & form validation
 - [ ] Testing
     - [ ] HTML validation
     - [ ] Accessibility
     - [ ] testing-library
 - [x] Deployment of application
-- [ ] Deployment failing
 
 ## Additional features
 - [ ] Dark theme

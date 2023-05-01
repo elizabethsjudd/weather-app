@@ -1,12 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import { BsPinMapFill, BsThermometerHalf } from "react-icons/bs";
-import { IconContext } from "react-icons";
 import { Forecast } from "@/components/forecast";
-import { LocationForm } from "@/components/location-form";
-import { Heading } from "@/components/reusable";
-import { AddressCoordinates } from "@/components/location-form/constants";
 import { hookUpdateConfig } from "@/components/forecast/constants";
+import { LocationForm } from "@/components/location-form";
+import { AddressCoordinates } from "@/components/location-form/constants";
+import { CollapsibleSection } from "@/components/reusable/collapsible-section";
 import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
 		x: 0,
 		y: 0,
 	});
-	const [name, setName] = useState("Nowhere");
+	const [name, setName] = useState("");
 
 	const getForecast = (coordinates: AddressCoordinates) => {
 		setCoordinates(coordinates);
@@ -23,6 +22,8 @@ export default function Home() {
 	const updateHeaders = ({ location }: hookUpdateConfig) => {
 		setName(location);
 	};
+
+	const didFindLocation = coordinates.x !== 0 && coordinates.y !== 0;
 
 	return (
 		<>
@@ -36,29 +37,19 @@ export default function Home() {
 				<h1>What&apos;s my weather?</h1>
 			</header>
 			<main className={styles.main}>
-				<details className={styles.section} open>
-					<summary className={styles.heading}>
-						<Heading kind="headline" level={2} size="large">
-							<IconContext.Provider value={{ className: styles.icon, size: "100%" }}>
-								<BsPinMapFill />
-							</IconContext.Provider>
-							Set your location
-						</Heading>
-					</summary>
+				<CollapsibleSection slotIcon={<BsPinMapFill />} slotTitle="Set your location" state="open">
 					<LocationForm hookChange={getForecast} />
-				</details>
+				</CollapsibleSection>
 
-				<details className={styles.section} open>
-					<summary className={styles.heading}>
-						<Heading kind="headline" level={2} size="large">
-							<IconContext.Provider value={{ className: styles.icon, size: "100%" }}>
-								<BsThermometerHalf />
-							</IconContext.Provider>
-							Forecast for {name}
-						</Heading>
-					</summary>
-					<Forecast coordinates={coordinates} hookUpdate={updateHeaders} />
-				</details>
+				{didFindLocation && (
+					<CollapsibleSection
+						slotIcon={<BsThermometerHalf />}
+						slotTitle={`Forecast for ${name}`}
+						state="open"
+					>
+						<Forecast coordinates={coordinates} hookUpdate={updateHeaders} />
+					</CollapsibleSection>
+				)}
 			</main>
 		</>
 	);

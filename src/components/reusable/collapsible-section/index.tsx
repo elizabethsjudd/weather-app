@@ -4,14 +4,20 @@ import { Heading } from "../heading";
 import { CollapsibleSectionConfig } from "./constants";
 import styles from "./collapsible-section.module.scss";
 
-export const CollapsibleSection = ({ attrs = {}, slotTitle, slotIcon, children, state }: CollapsibleSectionConfig): JSX.Element => {
+export const CollapsibleSection = ({
+	attrs = {},
+	slotTitle,
+	slotIcon,
+	children,
+	state,
+}: CollapsibleSectionConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, {
 		className: styles.section,
 	});
 
-	var opts: { open?: boolean } = {};
-	if (state === 'open') {
-		opts['open'] = true;
+	const opts: { open?: boolean } = {};
+	if (state === "open") {
+		opts["open"] = true;
 	}
 
 	return (

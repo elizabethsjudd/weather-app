@@ -18,16 +18,14 @@ export interface NotificationConfig {
 	children: React.ReactNode;
 	kind: NotificationKind;
 	title: string;
-
 }
-
 
 /** Default values for Notification component */
 export const defaults: Omit<NotificationConfig, "children"> = {
+	attrs: {
+		"aria-live": "polite",
+		className: styles.notification,
+	},
 	kind: "info",
 	title: "Hello",
-	attrs: {
-		'aria-live': 'polite',
-		className: styles.notification
-	}
 };

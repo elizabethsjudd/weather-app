@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { FormEvent } from "react";
 import { Button, Label, Input, Select, SelectOption, Notification } from "../reusable/";
 import { GeocoderData, LocationFormConfig, USStateValues } from "./constants";
 import { getCoordinatesFromAddress } from "./utilities";
 import styles from "./location-form.module.scss";
 
 export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element => {
-	const [formValidation, setFormValidation] = React.useState('');
+	const [formValidation, setFormValidation] = React.useState("");
 
 	const onSubmit = (event: FormEvent) => {
 		event.preventDefault();
@@ -19,27 +19,26 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 				zip: form.zip.value,
 			},
 			(data) => {
-				const locationData = data as GeocoderData
+				const locationData = data as GeocoderData;
 
 				try {
 					if (locationData.errors && locationData.errors.length > 0) {
 						// Handle defined errors from API
-						hookChange && hookChange({x: 0, y: 0});
-						setFormValidation(locationData.errors?.join('; '))
-					
+						hookChange && hookChange({ x: 0, y: 0 });
+						setFormValidation(locationData.errors?.join("; "));
 					} else if (locationData.result.addressMatches.length === 0) {
 						// No address found
-						hookChange && hookChange({x: 0, y: 0});
-						setFormValidation('Invalid address/ Address not found in database, try a new address')
+						hookChange && hookChange({ x: 0, y: 0 });
+						setFormValidation("Invalid address/ Address not found in database, try a new address");
 					} else {
 						// Address found
 						hookChange && hookChange(locationData.result.addressMatches[0].coordinates);
-						setFormValidation('');
+						setFormValidation("");
 					}
 				} catch {
 					// Had issues even reaching the database
-					hookChange && hookChange({x: 0, y: 0});
-					setFormValidation('There was an issue contacting the database')
+					hookChange && hookChange({ x: 0, y: 0 });
+					setFormValidation("There was an issue contacting the database");
 				}
 			}
 		);
@@ -47,30 +46,42 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 
 	const validateZip = (event: InputEvent) => {
 		if (!(event.target as HTMLInputElement).value.match(/^[0-9]{5}(?:-[0-9]{4})?$/)) {
-			setFormValidation('Invalid zip code, enter a 5-digit number');
+			setFormValidation("Invalid zip code, enter a 5-digit number");
 		} else {
-			setFormValidation('')
+			setFormValidation("");
 		}
-	}
+	};
 
 	const validateStreet = (event: InputEvent) => {
 		event.preventDefault();
-		if ((event.target as HTMLInputElement).value.trim() === '') {
-			setFormValidation('A street address is required')
+		if ((event.target as HTMLInputElement).value.trim() === "") {
+			setFormValidation("A street address is required");
 		} else {
-			setFormValidation('')
+			setFormValidation("");
 		}
-	}
+	};
 
 	return (
 		<>
-			{formValidation !== '' && 
-				<Notification attrs={{className: styles.notification }} title="Error" kind="error" >{formValidation}</Notification>
-			}
+			{formValidation !== "" && (
+				<Notification attrs={{ className: styles.notification }} kind="error" title="Error">
+					{formValidation}
+				</Notification>
+			)}
 			<form className={styles.form} onSubmit={onSubmit}>
 				<p className={styles.helperText}>* Denotes required fields</p>
 				<Label attrs={{ htmlFor: "street" }}>Street*</Label>
-				<Input attrs={{ id: "street", name: "street", placeholder: "123 Main St.", required: true, 'aria-required': true, onBlur: validateStreet, maxlength: 100 }} />
+				<Input
+					attrs={{
+						"aria-required": true,
+						id: "street",
+						maxlength: 100,
+						name: "street",
+						onBlur: validateStreet,
+						placeholder: "123 Main St.",
+						required: true,
+					}}
+				/>
 				<div className={styles.addressRow}>
 					<div className={styles.city}>
 						<Label attrs={{ htmlFor: "city" }}>City</Label>
@@ -94,7 +105,7 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 					</div>
 					<div>
 						<Label attrs={{ htmlFor: "zip" }}>Zip code</Label>
-						<Input attrs={{ id: "zip", name: "zip", placeholder: "12345", onBlur: validateZip }} />
+						<Input attrs={{ id: "zip", name: "zip", onBlur: validateZip, placeholder: "12345" }} />
 					</div>
 				</div>
 

@@ -5,7 +5,7 @@ import { HeadingConfig } from "../heading/constants";
  * Defines enum values for CollapsibleSection props
  */
 export const allowedValues = {
-	states: ['open', 'close'] as const,
+	states: ["open", "close"] as const,
 };
 
 export type CollapsibleSectionState = (typeof allowedValues.states)[number];

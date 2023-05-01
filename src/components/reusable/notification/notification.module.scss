@@ -1,7 +1,7 @@
 .notification {
-	display: flex;
 	align-items: center;
 	border-radius: var(--border-radius-content);
+	display: flex;
 	padding: var(--space-inset);
 
 	&--error {
@@ -20,6 +20,6 @@
 }
 
 .icon {
-	width: var(--size-medium);
 	margin-right: var(--space-inline-related);
+	width: var(--size-medium);
 }
