@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./styles.module.scss";
+import styles from "./daily-weather.module.scss";
 import {
 	BsCloudSnowFill,
 	BsFillCloudMoonFill,
@@ -15,7 +15,7 @@ import { DailyWeatherConfig, WeatherInfo } from "./constants";
 import { isCurrentDay } from "./utilities";
 import { IconContext } from "react-icons";
 
-import cardStyles from "../reusable/card/styles.module.scss";
+import cardStyles from "../reusable/card/card.module.scss";
 
 export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element => {
 	/**

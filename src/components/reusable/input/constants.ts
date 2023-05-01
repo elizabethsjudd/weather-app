@@ -1,5 +1,5 @@
 import { AttrsObject } from "@/foundations/scripts/utilities";
-import styles from "./styles.module.scss";
+import styles from "./input.module.scss";
 
 /**
  * Defines enum values for Input props

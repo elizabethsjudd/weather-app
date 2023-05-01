@@ -46,10 +46,6 @@ $night-background: rgb($night-color / 80%);
 }
 
 // Kind modifier
-.dailyWeather--future {
-	margin-bottom: var(--space-inline-related);
-}
-
 .dailyWeather--current {
 	border-radius: var(--border-radius-container-large);
 	max-width: $max-full-width-content;
@@ -76,12 +72,5 @@ $night-background: rgb($night-color / 80%);
 @media (width >= $breakpoint-01) {
 	.dailyWeather--future {
 		gap: 0;
-		width: calc(50% - var(--space-inline-related));
-	}
-}
-
-@media (width >= $breakpoint-02) {
-	.dailyWeather--future {
-		width: calc(33% - var(--space-inline-related));
 	}
 }

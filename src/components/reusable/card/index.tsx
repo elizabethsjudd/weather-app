@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import styles from "./styles.module.scss";
+import styles from "./card.module.scss";
 import { CardConfig } from "./constants";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { Heading } from "../heading";
@@ -18,7 +18,8 @@ export const Card = ({ attrs = {}, slotTitle, slotIcon, slotDetails }: CardConfi
 							className: styles.title,
 						}}
 						kind="title"
-						level={3}
+						// Long-term we'd want to make this configurable
+						level={4}
 						size="small"
 					>
 						{slotTitle}

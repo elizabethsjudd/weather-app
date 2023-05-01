@@ -10,7 +10,7 @@ import {
 	WeatherGovLocationInfo,
 } from "./constants";
 import { getLocationData, getForecast } from "./utilities";
-import styles from "./styles.module.scss";
+import styles from "./forecast.module.scss";
 
 /**
  * Component that uses the weather.gov API to pull the forecast for a given location

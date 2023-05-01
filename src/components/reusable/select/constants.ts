@@ -1,6 +1,6 @@
 import { AttrsObject } from "@/foundations/scripts/utilities";
 import { SelectOption } from "../select-option";
-import styles from "./styles.module.scss";
+import styles from "./select.module.scss";
 
 /** Expected attributes for the Select component */
 interface SelectAttrs extends AttrsObject {

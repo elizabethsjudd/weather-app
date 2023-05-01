@@ -1,7 +1,7 @@
 import { IconContext } from "react-icons";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { ButtonConfig, defaults } from "./constants";
-import styles from "./styles.module.scss";
+import styles from "./button.module.scss";
 
 export const Button = ({
 	attrs = {},

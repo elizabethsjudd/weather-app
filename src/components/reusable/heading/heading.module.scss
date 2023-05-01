@@ -8,7 +8,7 @@
 	--heading-weight: var(--type-weight-headline);
 	--heading-height: var(--type-line-height-headline);
 
-	display: block;
+	display: flex;
 	font-family: var(--heading-family);
 	font-size: var(--heading-size);
 	font-weight: var(--heading-weight);

@@ -19,7 +19,7 @@
     
 	.addressRow {
 		display: flex;
-		gap: 1rem;
+		gap: var(--space-inline-related);
 	}
 
 	.city {

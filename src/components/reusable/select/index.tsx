@@ -1,7 +1,7 @@
 import { BsCaretDownFill } from "react-icons/bs";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { SelectConfig, defaults } from "./constants";
-import styles from "./styles.module.scss";
+import styles from "./select.module.scss";
 
 export const Select = ({ attrs, children }: SelectConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, defaults.attrs);
