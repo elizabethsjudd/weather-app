@@ -1,0 +1,34 @@
+.section + .section {
+	margin-top: var(--space-stack-section);
+}
+
+.heading {
+	display: flex;
+	gap: var(--space-stack);
+	margin-bottom: var(--space-stack);
+}
+
+.icon {
+	margin-right: var(--space-inline-related);
+	width: var(--size-medium);
+}
+
+.heading::marker {
+	// display none didn't actually hide the element
+	color: transparent;
+}
+
+.heading::after {
+	background: var(--color-brand);
+	border-radius: var(--border-radius-control);
+	content: '\002B';
+	font-size: var(--font-size-06);
+	font-weight: var(--font-weight-05);
+	line-height: var(--line-height-09);
+	padding: 0 var(--space-inset);
+	text-align: center;
+}
+
+.section[open] .heading::after {
+	content: '\2212';
+}
