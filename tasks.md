@@ -11,9 +11,8 @@
 - [x] Styling + Responsive
 - [x] Error handling & form validation
 - [ ] Testing
-    - [ ] HTML validation
-    - [ ] Accessibility
-    - [ ] testing-library
+    - [x] Accessibility
+    - [ ] Functional
 - [x] Deployment of application
 
 ## Additional features
@@ -29,6 +28,7 @@
     - [ ] Setup pre-commit hook
     - [ ] Import order rule
 - [ ] Additional testing
+    - [ ] HTML validation - The new Storybook env doesn't support the addon and there isn't a Playwright option so this became more intensive to set up
     - [ ] VRT
 - [ ] Location API working in SB
 - [ ] Play around with design more
