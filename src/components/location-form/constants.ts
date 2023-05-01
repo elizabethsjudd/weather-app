@@ -21,6 +21,7 @@ interface GeocoderAddress {
 }
 
 export interface GeocoderData {
+	errors?: Array<string>;
 	result: {
 		addressMatches: Array<GeocoderAddress>;
 	};

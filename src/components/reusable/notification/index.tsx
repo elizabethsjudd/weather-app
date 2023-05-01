@@ -18,14 +18,9 @@ export const Notification = ({ attrs = {}, title, children, kind }: Notification
 				{getIcon(kind)}
 			</IconContext.Provider>
 			<div className={styles.content}>
-				<Heading
-					attrs={{className: styles.title }}
-					kind="title"
-					// Long-term we'd want to make this configurable
-					level={3}
-				>
-					{title}
-				</Heading>
+				<strong className={styles.title}>
+					{title}:
+				</strong>{' '}
 				{children}
 			</div>
 		</div>

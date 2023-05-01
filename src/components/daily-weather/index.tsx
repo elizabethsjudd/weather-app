@@ -22,7 +22,7 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 	 * Uses the description to determine which icon to render
 	 */
 	const getIcon = (forecast: string, isNight = false): React.ReactNode => {
-		// @todo - long-term we'd want to support more weather variety
+		// @todo - Long-term we'd want to support more weather variety
 
 		// Want to test the most extreme weather first that could have the most unique wording
 		if (forecast.includes("snow")) {

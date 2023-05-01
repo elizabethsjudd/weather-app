@@ -6,6 +6,10 @@
 	flex-direction: column;
 }
 
+.helperText {
+	font-size: var(--type-size-text-xsmall);
+}
+
 .button {
 	align-self: flex-end;
 	margin-top: var(--space-stack);

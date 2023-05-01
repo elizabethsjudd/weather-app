@@ -12,7 +12,7 @@ export const Heading = ({
 }: HeadingConfig): JSX.Element => {
 	const customTag = `h${level}`;
 	const attributes = combineAttributes(attrs, {
-		// @todo - long term using something like classNames library would allow for more robust and accurate HTML
+		// @todo - Long-term using something like classNames library would allow for more robust and accurate HTML
 		className: `${styles.heading} ${styles[`heading--${kind}--${size}`]} ${
 			styles[`heading--${kind}`]
 		}`,

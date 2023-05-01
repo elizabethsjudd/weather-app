@@ -1,7 +1,3 @@
-.icon {
-	width: var(--size-medium);
-	margin-right: var(--space-inline-related);
-}
 .notification {
 	display: flex;
 	align-items: center;
@@ -17,9 +13,13 @@
 		background: var(--color-background-info);
 		color: var(--color-text-inverse);
 	}
+
+	+ * {
+		margin-top: 1rem;
+	}
 }
 
-.title {
-	display: inline-flex;
-	margin-right: var(--spacing-01);
+.icon {
+	width: var(--size-medium);
+	margin-right: var(--space-inline-related);
 }

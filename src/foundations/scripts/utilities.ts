@@ -1,3 +1,5 @@
+// UI Component related utilities
+// ------------------------------------------------------------------
 /**
  * Allows developers to pass custom attributes without requiring it to be a specified prop
  * most commonly used to support various accessibility use cases and/or testing setups (e.g. data-qa)
@@ -14,7 +16,7 @@ export type AttrsObject = Record<string, unknown>;
 export const combineAttributes = (
 	attributes: AttrsObject,
 	defaults: AttrsObject = {},
-	// @todo - long-term I would expect to allow an object and use something like
+	// @todo - Long-term I would expect to allow an object and use something like
 	// the classNames library to make this more robust
 	dynamicClass?: string
 ): AttrsObject => {
@@ -35,3 +37,37 @@ export const combineAttributes = (
 		...(className !== "" && { className }),
 	});
 };
+
+// API related utilities
+// ------------------------------------------------------------------
+
+export interface APIError {
+	error: string,
+	details: Error
+}
+
+export type GenericCallbackFunction = (data: unknown) => void
+
+export const fetchAPIRequest = async (
+	requestURL: string,
+	callback: GenericCallbackFunction
+): Promise<void> => {
+	let json;
+
+	try {
+		const response = await fetch(requestURL);
+
+		json = await response.json();
+	} catch (error) {
+		if (error instanceof SyntaxError) {
+			// Unexpected token < in JSON
+			callback({ error: 'SyntaxError', details: error });
+		} else {
+			callback({ error: 'General error', details: error });
+		}
+	}
+
+	if (json) {
+		callback(json);
+	}
+}
