@@ -1,0 +1,25 @@
+.icon {
+	width: var(--size-medium);
+	margin-right: var(--space-inline-related);
+}
+.notification {
+	display: flex;
+	align-items: center;
+	border-radius: var(--border-radius-content);
+	padding: var(--space-inset);
+
+	&--error {
+		background: var(--color-background-error);
+		color: var(--color-text-inverse);
+	}
+
+	&--info {
+		background: var(--color-background-info);
+		color: var(--color-text-inverse);
+	}
+}
+
+.title {
+	display: inline-flex;
+	margin-right: var(--spacing-01);
+}
