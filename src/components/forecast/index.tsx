@@ -23,48 +23,49 @@ export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Eleme
 	const [currentWeather, setCurrentWeather] = React.useState(defaultWeatherArray);
 
 	React.useEffect(() => {
-		console.log(coordinates);
-		if (coordinates) {
+		if (coordinates.y !== 0 && coordinates.x !== 0) {
 			getLocationData(coordinates, async (locData: WeatherGovLocationInfo) => {
-				hookUpdate &&
-					hookUpdate({
-						location: `${locData.properties.relativeLocation.properties.city}, ${locData.properties.relativeLocation.properties.state}`,
-					});
+				if (locData.status !== 404) {
+					hookUpdate &&
+						hookUpdate({
+							location: `${locData.properties.relativeLocation.properties.city}, ${locData.properties.relativeLocation.properties.state}`,
+						});
 
-				getForecast(locData.properties.forecast, (forecastData: WeatherGovForecastInfo) => {
-					setCurrentWeather([]);
-					setFutureForecast([]);
+					getForecast(locData.properties.forecast, (forecastData: WeatherGovForecastInfo) => {
+						setCurrentWeather([]);
+						setFutureForecast([]);
 
-					let dayObject = new Object({}) as DailyWeatherConfigConstructor;
-					forecastData.properties.periods.forEach((period) => {
-						const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
+						let dayObject = new Object({}) as DailyWeatherConfigConstructor;
+						forecastData.properties.periods.forEach((period) => {
+							const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
 
-						dayObject[currentPeriod] = {
-							dayOfTheWeek: period.name,
-							description: period.shortForecast,
-							temperature: period.temperature,
-							temperatureUnit: period.temperatureUnit,
-						};
+							dayObject[currentPeriod] = {
+								dayOfTheWeek: period.name,
+								description: period.shortForecast,
+								temperature: period.temperature,
+								temperatureUnit: period.temperatureUnit,
+							};
 
-						if (currentPeriod === "night") {
-							const currentDayObject = Object.assign({}, dayObject);
+							if (currentPeriod === "night") {
+								const currentDayObject = Object.assign({}, dayObject);
 
-							if (isCurrentDay(period.name)) {
-								setCurrentWeather((prevArray) => [
-									...prevArray,
-									Object.assign({}, currentDayObject),
-								]);
-							} else {
-								setFutureForecast((prevArray) => [
-									...prevArray,
-									Object.assign({}, currentDayObject),
-								]);
+								if (isCurrentDay(period.name)) {
+									setCurrentWeather((prevArray) => [
+										...prevArray,
+										Object.assign({}, currentDayObject),
+									]);
+								} else {
+									setFutureForecast((prevArray) => [
+										...prevArray,
+										Object.assign({}, currentDayObject),
+									]);
+								}
+
+								dayObject = new Object({});
 							}
-
-							dayObject = new Object({});
-						}
+						});
 					});
-				});
+				}
 			});
 		}
 	}, [coordinates, hookUpdate]);
@@ -76,9 +77,11 @@ export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Eleme
 	return (
 		<div style={{ width: "100%" }}>
 			{getWeatherCards(currentWeather as DailyWeatherConfig[])}
-			<Heading kind="headline" size="large">
-				Upcoming forecast
-			</Heading>
+			{futureForecast.length > 0 && (
+				<Heading kind="headline" level={3}>
+					Upcoming forecast
+				</Heading>
+			)}
 			<div className={styles.futureForecast}>
 				{getWeatherCards(futureForecast as DailyWeatherConfig[])}
 			</div>

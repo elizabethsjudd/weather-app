@@ -1,22 +1,47 @@
-.header {
-	display: flex;
-	justify-content: space-between;
-	padding: 1rem 6rem;
+@use '../foundations/styles/utilities' as *;
+
+.header,
+.main {
+	padding: 1rem 2rem;
 }
 
-.main {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-}
+// @todo - Long-term I'd move the details/summary to be their own component
 
 .section {
-	width: 100%;
+	// width: 100%;
 
 	+ .section {
 		margin-top: 2rem;
 	}
 }
 
+.icon {
+	margin-right: .5rem;
+	width: 1.5rem;
+}
 
+.heading {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.heading::marker {
+	// display none didn't actually hide the element
+	color: transparent;
+}
+
+.heading::after {
+	background: var(--color-brand);
+	border-radius: var(--border-radius-control);
+	content: '\002B';
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 1.5;
+	padding: 0 0.5rem;
+	text-align: center;
+}
+
+.section[open] .heading::after {
+	content: '\2212';
+}

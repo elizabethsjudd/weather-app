@@ -1,10 +1,9 @@
-import { LatLongCoordinates, WeatherGovForecastInfo, WeatherGovLocationInfo } from "./constants";
+import { ForecastConfig, WeatherGovForecastInfo, WeatherGovLocationInfo } from "./constants";
 
 export const getLocationData = async (
-	{ y, x }: LatLongCoordinates,
+	{ y, x }: ForecastConfig["coordinates"],
 	callback: (data: WeatherGovLocationInfo) => void
 ): Promise<void> => {
-	console.log("coordinates", { x, y });
 	fetch(`https://api.weather.gov/points/${y},${x}`)
 		.then((response) => response.json())
 		.then((data) => {

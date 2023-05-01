@@ -6,12 +6,12 @@
 /* Shadow/Elevation Tokens */
 $global-shadow-vars: (
 	/* Base */
-	"01": "0 0 0 1px rgba(var(--black), 0.08), 0 3px 4px rgba(var(--black), 0.08)",
-	"02": "0 0 0 1px rgba(var(--black), 0.08), 0 5px 8px rgba(var(--black), 0.08)",
-	"03": "0 0 0 1px rgba(var(--black), 0.08), 0 25px 20px rgba(var(--black), 0.12)",
+	"01": "0 0 0 1px var(--black-opacity-00), 0 3px 4px var(--black-opacity-00)",
+	"02": "0 0 0 1px var(--black-opacity-00), 0 5px 8px var(--black-opacity-00)",
+	"03": "0 0 0 1px var(--black-opacity-00), 0 25px 20px var(--black-opacity-01)",
 	/* Interactive */
-	"interactive-01": "0 4px 4px rgba(var(--black), 0.08)",
-	"interactive-02": "0 20px 12px rgba(var(--black), 0.12)"
+	"interactive-01": "0 4px 4px var(--black-opacity-00)",
+	"interactive-02": "0 20px 12px var(--black-opacity-01)"
 );
 
 :root {

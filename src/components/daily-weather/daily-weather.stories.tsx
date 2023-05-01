@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DailyWeather } from "./index";
-import { DailyWeatherConfig, DayOfTheWeek, WeatherInfo, allowedValues } from "./constants";
+import { DayOfTheWeek, WeatherInfo, allowedValues } from "./constants";
 
-interface StoryConfig extends Omit<WeatherInfo, "dayOfTheWeek">, DailyWeatherConfig {
+interface StoryConfig extends Omit<WeatherInfo, "dayOfTheWeek"> {
 	dayOfTheWeek: `${DayOfTheWeek} / ${DayOfTheWeek}`;
 }
 
-const meta: Meta<typeof DailyWeather> = {
+const meta: Meta<StoryConfig> = {
 	args: {
 		dayOfTheWeek: "Today / Tonight",
 		description: "Showers",
 		temperature: 0,
 		temperatureUnit: "F",
-	} as StoryConfig,
+	},
 	argTypes: {
 		dayOfTheWeek: {
 			control: { type: "select" },
@@ -39,18 +39,15 @@ const meta: Meta<typeof DailyWeather> = {
 			control: { type: "select" },
 			options: allowedValues.temperatureUnits,
 		},
-		// @todo need to research how Storybook specifically can let us
-		// overwrite React props with their automation
-	} as any,
-	component: DailyWeather,
+	},
 	title: "App components/Daily Weather",
 };
 
 export default meta;
-type Story = StoryObj<typeof DailyWeather>;
+type Story = StoryObj<StoryConfig>;
 
 export const Default: Story = {
-	render: (args: any) => {
+	render: (args) => {
 		const labels = args.dayOfTheWeek.split(" / ");
 		const consistentArgs = {
 			description: args.description,
@@ -71,6 +68,6 @@ export const Default: Story = {
 			dayOfTheWeek: labels[1] || labels[0],
 		});
 
-		return <DailyWeather day={day} night={night} />;
+		return <DailyWeather day={day as WeatherInfo} night={night as WeatherInfo} />;
 	},
 };

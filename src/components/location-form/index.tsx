@@ -2,7 +2,7 @@ import React, { FormEvent } from "react";
 import { Button, Label, Input, Select, SelectOption } from "../reusable/";
 import { GeocoderData, LocationFormConfig, USStateValues } from "./constants";
 import { getCoordinatesFromAddress } from "./utilities";
-import styles from "./styles.module.scss";
+import styles from "./location-form.module.scss";
 
 export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element => {
 	const onSubmit = (event: FormEvent) => {
