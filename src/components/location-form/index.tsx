@@ -4,13 +4,8 @@ import { GeocoderData, LocationFormConfig, USStateValues } from "./constants";
 import { getCoordinatesFromAddress } from "./utilities";
 import styles from "./location-form.module.scss";
 
-interface FormValidation {
-	submissionError?: string
-}
-
 export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element => {
-	const defaultFormValidation: FormValidation = {};
-	const [formValidation, setFormValidation] = React.useState(defaultFormValidation);
+	const [formValidation, setFormValidation] = React.useState('');
 
 	const onSubmit = (event: FormEvent) => {
 		event.preventDefault();
@@ -30,27 +25,21 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 					if (locationData.errors && locationData.errors.length > 0) {
 						// Handle defined errors from API
 						hookChange && hookChange({x: 0, y: 0});
-						setFormValidation({
-							submissionError: locationData.errors?.join('; ')
-						})
+						setFormValidation(locationData.errors?.join('; '))
 					
 					} else if (locationData.result.addressMatches.length === 0) {
 						// No address found
 						hookChange && hookChange({x: 0, y: 0});
-						setFormValidation({
-							submissionError: 'Invalid address/ Address not found in database, try a new address'
-						})
+						setFormValidation('Invalid address/ Address not found in database, try a new address')
 					} else {
 						// Address found
 						hookChange && hookChange(locationData.result.addressMatches[0].coordinates);
-						setFormValidation(defaultFormValidation);
+						setFormValidation('');
 					}
 				} catch {
 					// Had issues even reaching the database
 					hookChange && hookChange({x: 0, y: 0});
-					setFormValidation({
-						submissionError: 'There was an issue contacting the database'
-					})
+					setFormValidation('There was an issue contacting the database')
 				}
 			}
 		);
@@ -58,29 +47,25 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 
 	const validateZip = (event: InputEvent) => {
 		if (!(event.target as HTMLInputElement).value.match(/^[0-9]{5}(?:-[0-9]{4})?$/)) {
-			setFormValidation({
-				submissionError: 'Invalid zip code, enter a 5-digit number'
-			})
+			setFormValidation('Invalid zip code, enter a 5-digit number');
 		} else {
-			setFormValidation(defaultFormValidation)
+			setFormValidation('')
 		}
 	}
 
 	const validateStreet = (event: InputEvent) => {
 		event.preventDefault();
 		if ((event.target as HTMLInputElement).value.trim() === '') {
-			setFormValidation({
-				submissionError: 'A street address is required'
-			})
+			setFormValidation('A street address is required')
 		} else {
-			setFormValidation(defaultFormValidation)
+			setFormValidation('')
 		}
 	}
 
 	return (
 		<>
-			{formValidation.submissionError && 
-				<Notification attrs={{className: styles.notification }} title="Error" kind="error" >{formValidation.submissionError}</Notification>
+			{formValidation !== '' && 
+				<Notification attrs={{className: styles.notification }} title="Error" kind="error" >{formValidation}</Notification>
 			}
 			<form className={styles.form} onSubmit={onSubmit}>
 				<p className={styles.helperText}>* Denotes required fields</p>
