@@ -8,6 +8,7 @@ export interface hookUpdateConfig {
 export interface ForecastConfig {
 	coordinates: AddressCoordinates;
 	hookUpdate?: ({ location }: hookUpdateConfig) => void;
+	testId?: string;
 }
 
 export interface DailyWeatherConfigConstructor {

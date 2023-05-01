@@ -10,12 +10,12 @@
 - [x] Application with input
 - [x] Styling + Responsive
 - [x] Error handling & form validation
-- [ ] Testing
+- [x] Testing
     - [x] Accessibility
-    - [ ] Functional
+    - [x] Functional
 - [x] Deployment of application
 
-## Additional features
+## Additional features as time allows
 - [ ] Dark theme
 - [ ] Empty/Loading states
 - [ ] Provide more details from API  (modal)
@@ -28,6 +28,7 @@
     - [ ] Setup pre-commit hook
     - [ ] Import order rule
 - [ ] Additional testing
+    - [ ] Functional tests on components
     - [ ] HTML validation - The new Storybook env doesn't support the addon and there isn't a Playwright option so this became more intensive to set up
     - [ ] VRT
 - [ ] Location API working in SB

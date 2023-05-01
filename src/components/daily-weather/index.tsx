@@ -17,7 +17,7 @@ import { IconContext } from "react-icons";
 
 import cardStyles from "../reusable/card/card.module.scss";
 
-export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element => {
+export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.Element => {
 	/**
 	 * Uses the description to determine which icon to render
 	 */
@@ -106,8 +106,14 @@ export const DailyWeather = ({ day, night }: DailyWeatherConfig): JSX.Element =>
 		? styles["dailyWeather--current"]
 		: styles["dailyWeather--future"];
 
+	const opAttrs: { "data-testid"?: string } = {};
+	if (testId) {
+		opAttrs["data-testid"] = testId;
+	}
+
 	return (
 		<div
+			{...opAttrs}
 			className={`${styles.dailyWeather} ${kindClass} ${
 				!day ? styles["dailyWeather--nightOnly"] : ""
 			}`}

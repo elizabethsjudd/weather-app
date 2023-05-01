@@ -64,7 +64,11 @@ export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element =>
 	return (
 		<>
 			{formValidation !== "" && (
-				<Notification attrs={{ className: styles.notification }} kind="error" title="Error">
+				<Notification
+					attrs={{ className: styles.notification, "data-testid": "form-error" }}
+					kind="error"
+					title="Error"
+				>
 					{formValidation}
 				</Notification>
 			)}

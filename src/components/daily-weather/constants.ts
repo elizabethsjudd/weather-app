@@ -37,4 +37,5 @@ export interface WeatherInfo {
 export interface DailyWeatherConfig {
 	day?: WeatherInfo;
 	night: WeatherInfo;
+	testId?: string;
 }

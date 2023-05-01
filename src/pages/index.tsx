@@ -47,7 +47,7 @@ export default function Home() {
 						slotTitle={`Forecast for ${name}`}
 						state="open"
 					>
-						<Forecast coordinates={coordinates} hookUpdate={updateHeaders} />
+						<Forecast coordinates={coordinates} hookUpdate={updateHeaders} testId="forecast" />
 					</CollapsibleSection>
 				)}
 			</main>

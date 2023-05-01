@@ -16,7 +16,7 @@ import styles from "./forecast.module.scss";
  * Component that uses the weather.gov API to pull the forecast for a given location
  * --------------------------------------------------
  */
-export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Element => {
+export const Forecast = ({ coordinates, hookUpdate, testId }: ForecastConfig): JSX.Element => {
 	const defaultWeatherArray: Array<DailyWeatherConfigConstructor> = [];
 	const defaultAPIError = "";
 
@@ -79,8 +79,15 @@ export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Eleme
 		}
 	}, [coordinates, hookUpdate]);
 
-	const getWeatherCards = (weatherArray: Array<DailyWeatherConfig>) => {
-		return weatherArray.map((period, index) => <DailyWeather key={index} {...period} />);
+	const getWeatherCards = (weatherArray: Array<DailyWeatherConfig>, isCurrent = false) => {
+		const opAttrs: { testId?: string } = {};
+
+		return weatherArray.map((period, index) => {
+			if (testId) {
+				opAttrs["testId"] = `${testId}-${isCurrent ? "current" : "future"}`;
+			}
+			return <DailyWeather key={index} {...period} {...opAttrs} />;
+		});
 	};
 
 	if (apiError !== "") {
@@ -100,8 +107,8 @@ export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Eleme
 	}
 
 	return (
-		<div style={{ width: "100%" }}>
-			{getWeatherCards(currentWeather as DailyWeatherConfig[])}
+		<>
+			{getWeatherCards(currentWeather as DailyWeatherConfig[], true)}
 			{futureForecast.length > 0 && (
 				<Heading kind="headline" level={3}>
 					Upcoming forecast
@@ -110,6 +117,6 @@ export const Forecast = ({ coordinates, hookUpdate }: ForecastConfig): JSX.Eleme
 			<div className={styles.futureForecast}>
 				{getWeatherCards(futureForecast as DailyWeatherConfig[])}
 			</div>
-		</div>
+		</>
 	);
 };
