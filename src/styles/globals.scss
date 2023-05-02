@@ -4,7 +4,7 @@
 
 body {
 	background-color: var(--color-background);
-	background-image: radial-gradient(circle at 68% 0, var(--color-background) 16%, rgb(var(--blue-100) / 15%) 100%);
+	background-image: radial-gradient(circle at 68% 0, rgb(var(--white) / 10%) 16%, rgb(var(--blue-100) / 15%) 100%);
 	min-height: 100vh;
 }
 

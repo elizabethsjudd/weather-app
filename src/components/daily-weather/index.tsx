@@ -73,7 +73,7 @@ export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.El
 		const title = dayOfTheWeek?.includes(" Night") ? (
 			<span className={styles["u-visuallyHidden"]}>{dayOfTheWeek}</span>
 		) : (
-			dayOfTheWeek
+			<span className={styles.heading}>{dayOfTheWeek}</span>
 		);
 
 		return (

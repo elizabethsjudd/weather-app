@@ -15,18 +15,6 @@ $night-background: rgb($night-color / 80%);
 	justify-content: space-between;
 }
 
-.timeOfDay {
-	&--day {
-		color: rgb($night-color);
-		padding-right: 0;
-	}
-
-	&--night {
-		color: var(--color-text-inverse);
-		padding-left: var(--space-inset);
-	}
-}
-
 .icon {
 	display: block;
 	flex-shrink: 0;
@@ -35,6 +23,7 @@ $night-background: rgb($night-color / 80%);
 }
 
 .desc {
+	color: var(--color-text-secondary);
 	font-size: var(--type-size-text-xxsmall);
 }
 
@@ -42,6 +31,29 @@ $night-background: rgb($night-color / 80%);
 	display: block;
 	font-size: var(--type-size-text);
 	font-weight: bold;
+}
+
+.timeOfDay--day {
+	color: rgb($night-color);
+	padding-right: 0;
+
+	.heading {
+		color: rgb($night-color);
+	}
+	
+}
+
+.timeOfDay--night {
+	color: var(--color-text-inverse);
+	padding-left: var(--space-inset);
+
+	.desc {
+		color: var(--color-text-inverse-secondary);
+	}
+
+	.heading {
+		color: var(--color-text-inverse);
+	}
 }
 
 // Kind modifier
@@ -72,5 +84,45 @@ $night-background: rgb($night-color / 80%);
 @media (width >= $breakpoint-01) {
 	.dailyWeather--future {
 		gap: var(--spacing-08);
+	}
+}
+
+// Dark theme
+@media (prefers-color-scheme: dark) {
+	$night-background: rgb($night-color / 100%);
+	$day-background: rgb(var(--gray-40) / 95%);
+
+	.dailyWeather {
+		// background: linear-gradient(105deg, var(--color-background) 50%, $night-background 50%);
+		background: linear-gradient(105deg, $day-background 50%, $night-background 50%);
+	}
+	
+	.timeOfDay--day {
+		color: $night-background;
+
+		.desc {
+			color: $night-background;
+		}
+	
+		.heading {
+			color: $night-background;
+		}
+	}
+	
+	.timeOfDay--night {
+		color: $day-background;
+	
+		.desc {
+			color: $day-background;
+		}
+	
+		.heading {
+			color: $day-background;
+		}
+	}
+	
+	// Time of day modifier
+	.dailyWeather--nightOnly {
+		background: $night-background;
 	}
 }

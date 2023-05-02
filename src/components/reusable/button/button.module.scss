@@ -8,15 +8,18 @@
 	&--primary {
 		background-color: var(--color-brand);
 		border-color: transparent;
+		color: var(--color-text-brand);
 
 		&:hover {
 			background-color: var(--color-brand-hover);
 			border-color: transparent;
+			color: var(--color-text-brand);
 		}
 
 		&:active {
 			background-color: var(--color-brand-active);
 			border-color: transparent;
+			color: var(--color-text-brand);
 		}
 
 		&:focus {
