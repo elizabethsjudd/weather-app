@@ -24,9 +24,9 @@
 - [ ] Dynamically open/close sections + focus management
 - [ ] Empty/Loading states
 - [ ] Multiple address matches
-- [ ] Additional linting
+- [x] Additional linting
   - [x] JSON
-  - [ ] Markdown
+  - [x] Markdown
   - [x] Import order rule
 - [ ] Additional testing
   - [ ] Functional tests on components
