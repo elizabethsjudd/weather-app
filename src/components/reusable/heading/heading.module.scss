@@ -8,6 +8,7 @@
 	--heading-weight: var(--type-weight-headline);
 	--heading-height: var(--type-line-height-headline);
 
+	color: var(--color-text-heading);
 	display: flex;
 	font-family: var(--heading-family);
 	font-size: var(--heading-size);
@@ -16,7 +17,6 @@
 }
 
 .heading--headline {
-	--heading-family: var(--font-family-01);
 	--heading-size: var(--type-size-headline);
 	--heading-weight: var(--type-weight-headline);
 	--heading-height: var(--type-line-height-headline);
@@ -30,6 +30,13 @@
 
 .heading--title--secondary {
 	--heading-weight: var(--type-weight-title-secondary);
+}
+
+// There is only 1 size variant of display
+.heading--display {
+	--heading-size: var(--type-size-display);
+	--heading-weight: var(--type-weight-display);
+	--heading-height: var(--type-line-height-display);
 }
 
 // ---- Size modifier ----

@@ -5,7 +5,7 @@ import { Forecast } from "@/components/forecast";
 import { hookUpdateConfig } from "@/components/forecast/constants";
 import { LocationForm } from "@/components/location-form";
 import { AddressCoordinates } from "@/components/location-form/constants";
-import { CollapsibleSection } from "@/components/reusable/collapsible-section";
+import { CollapsibleSection, Heading } from "@/components/reusable/";
 import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
@@ -34,7 +34,9 @@ export default function Home() {
 				<link href="/favicon.ico" rel="icon" />
 			</Head>
 			<header className={styles.header}>
-				<h1>What&apos;s my weather?</h1>
+				<Heading kind="display" level={1}>
+					What&apos;s my weather?
+				</Heading>
 			</header>
 			<main className={styles.main}>
 				<CollapsibleSection slotIcon={<BsPinMapFill />} slotTitle="Set your location" state="open">
