@@ -1,11 +1,11 @@
-# Project roadmap
+# Project road map
 
 ## MVP
 
 - [x] Setup React project
 - [x] Linting
   - [x] ESLint
-  - [x] Stylelint
+  - [x] StyleLint
 - [x] Setup Storybook
 - [x] Application without input
 - [x] Application with input
