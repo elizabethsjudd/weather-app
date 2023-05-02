@@ -68,6 +68,8 @@ $max-full-width-content: 50rem;
 	}
 
 	&#{string.unquote($focus-selector)} {
+		outline: none;
+
 		&::#{string.unquote($pseudo-element)} {
 			border: var(--line-width-focus) solid var(--color-focus);
 			border-radius: calc(#{string.unquote($element-radius)} + var(--line-width-focus) + var(--space-offset-focus));
