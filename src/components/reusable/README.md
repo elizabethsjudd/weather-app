@@ -11,3 +11,7 @@ Business agnostic components that can be re-used across multiple different use-c
 * [Label](./label/README.md)
 * [Select](./select/README.md)
 * [Select Option](./select-option/README.md)
+
+## Global features
+
+All components support different color modes based on the user's system settings.
