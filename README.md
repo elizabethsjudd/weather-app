@@ -1,10 +1,12 @@
+# What's My Weather app
+
 [View application](https://weather-app-ebyrne.vercel.app/) or [view reusable components](https://elizabethsjudd.github.io/weather-app/)
 
 This application supports different color modes based on the user's system settings.
 
 ## Get started developing
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). With a nested [Storybook](https://storybook.js.org/) environment for component development
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with a nested [Storybook](https://storybook.js.org/) environment for component development.
 
 First, run the development servers:
 
