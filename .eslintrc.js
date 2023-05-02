@@ -36,6 +36,16 @@ module.exports = {
 		"no-mixed-spaces-and-tabs": "error",
 		"prettier/prettier": "error",
 		"react/jsx-sort-props": "error",
+		"sort-imports": [
+			"error",
+			{
+				allowSeparatedGroups: false,
+				ignoreCase: false,
+				ignoreDeclarationSort: false,
+				ignoreMemberSort: false,
+				memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+			},
+		],
 		"sort-keys": [
 			"error",
 			"asc",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Forecast } from "./index";
 import { AddressCoordinates } from "../location-form/constants";
+import { Forecast } from "./index";
 
 interface StoryConfig {
 	location: string;

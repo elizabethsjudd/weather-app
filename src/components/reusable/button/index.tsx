@@ -1,6 +1,6 @@
+import { ButtonConfig, defaults } from "./constants";
 import { IconContext } from "react-icons";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
-import { ButtonConfig, defaults } from "./constants";
 import styles from "./button.module.scss";
 
 export const Button = ({

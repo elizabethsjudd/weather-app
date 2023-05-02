@@ -1,21 +1,20 @@
 import * as React from "react";
-import styles from "./daily-weather.module.scss";
 import {
+	BsCloudLightningRainFill,
+	BsCloudRainFill,
 	BsCloudSnowFill,
+	BsCloudSunFill,
+	BsCloudsFill,
 	BsFillCloudMoonFill,
 	BsFillMoonStarsFill,
 	BsSunFill,
-	BsCloudSunFill,
-	BsCloudLightningRainFill,
-	BsCloudRainFill,
-	BsCloudsFill,
 } from "react-icons/bs";
-import { Card } from "../reusable/card";
 import { DailyWeatherConfig, WeatherInfo } from "./constants";
-import { isCurrentDay } from "./utilities";
+import { Card } from "../reusable/card";
 import { IconContext } from "react-icons";
-
 import cardStyles from "../reusable/card/card.module.scss";
+import { isCurrentDay } from "./utilities";
+import styles from "./daily-weather.module.scss";
 
 export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.Element => {
 	/**

@@ -1,7 +1,7 @@
-import { IconContext } from "react-icons";
 import { MdError, MdInfo } from "react-icons/md";
-import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { NotificationConfig, NotificationKind, defaults } from "./constants";
+import { IconContext } from "react-icons";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
 import styles from "./notification.module.scss";
 
 export const Notification = ({

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BsSearch } from "react-icons/bs";
 import { allowedValues, defaults } from "./constants";
+import { BsSearch } from "react-icons/bs";
 import { Button } from "./index";
 
 const meta: Meta<typeof Button> = {

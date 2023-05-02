@@ -1,6 +1,6 @@
+import { InputConfig, defaults } from "./constants";
 import { IconContext } from "react-icons";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
-import { InputConfig, defaults } from "./constants";
 import styles from "./input.module.scss";
 
 export const Input = ({ attrs, slotPersistentIcon }: InputConfig): JSX.Element => {

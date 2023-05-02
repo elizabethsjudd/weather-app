@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Notification } from "./index";
 import { allowedValues, defaults } from "./constants";
+import { Notification } from "./index";
 
 const meta: Meta<typeof Notification> = {
 	args: {

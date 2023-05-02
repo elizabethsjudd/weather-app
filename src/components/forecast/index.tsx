@@ -1,15 +1,15 @@
 import * as React from "react";
-import { DailyWeather } from "../daily-weather";
-import { DailyWeatherConfig } from "../daily-weather/constants";
-import { isCurrentDay } from "../daily-weather/utilities";
-import { Heading, Notification } from "../reusable/";
 import {
 	DailyWeatherConfigConstructor,
 	ForecastConfig,
 	WeatherGovForecastInfo,
 	WeatherGovLocationInfo,
 } from "./constants";
-import { getLocationData, getForecast } from "./utilities";
+import { Heading, Notification } from "../reusable/";
+import { getForecast, getLocationData } from "./utilities";
+import { DailyWeather } from "../daily-weather";
+import { DailyWeatherConfig } from "../daily-weather/constants";
+import { isCurrentDay } from "../daily-weather/utilities";
 import styles from "./forecast.module.scss";
 
 /**

@@ -1,6 +1,6 @@
+import { DayOfTheWeek, WeatherInfo, allowedValues } from "./constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { DailyWeather } from "./index";
-import { DayOfTheWeek, WeatherInfo, allowedValues } from "./constants";
 
 interface StoryConfig extends Omit<WeatherInfo, "dayOfTheWeek"> {
 	dayOfTheWeek: `${DayOfTheWeek} / ${DayOfTheWeek}`;

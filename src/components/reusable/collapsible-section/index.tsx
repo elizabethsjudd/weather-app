@@ -1,7 +1,7 @@
+import { CollapsibleSectionConfig } from "./constants";
+import { Heading } from "../heading";
 import { IconContext } from "react-icons";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
-import { Heading } from "../heading";
-import { CollapsibleSectionConfig } from "./constants";
 import styles from "./collapsible-section.module.scss";
 
 export const CollapsibleSection = ({

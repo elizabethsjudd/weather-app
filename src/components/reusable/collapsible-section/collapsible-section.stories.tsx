@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CollapsibleSection } from "./index";
 import { BsSquare } from "react-icons/bs";
+import { CollapsibleSection } from "./index";
 
 const meta: Meta<typeof CollapsibleSection> = {
 	args: {},

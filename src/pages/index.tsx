@@ -1,12 +1,12 @@
-import Head from "next/head";
-import { useState } from "react";
 import { BsPinMapFill, BsThermometerHalf } from "react-icons/bs";
-import { Forecast } from "@/components/forecast";
-import { hookUpdateConfig } from "@/components/forecast/constants";
-import { LocationForm } from "@/components/location-form";
-import { AddressCoordinates } from "@/components/location-form/constants";
 import { CollapsibleSection, Heading } from "@/components/reusable/";
+import { AddressCoordinates } from "@/components/location-form/constants";
+import { Forecast } from "@/components/forecast";
+import Head from "next/head";
+import { LocationForm } from "@/components/location-form";
+import { hookUpdateConfig } from "@/components/forecast/constants";
 import styles from "@/styles/Home.module.scss";
+import { useState } from "react";
 
 export default function Home() {
 	const [coordinates, setCoordinates] = useState({

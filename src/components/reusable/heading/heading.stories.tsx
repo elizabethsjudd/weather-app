@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Heading } from "./index";
 import { allowedValues, defaults } from "./constants";
+import { Heading } from "./index";
 
 const meta: Meta<typeof Heading> = {
 	args: {

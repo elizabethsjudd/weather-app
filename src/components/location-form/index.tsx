@@ -1,6 +1,6 @@
-import React, { FormEvent } from "react";
-import { Button, Label, Input, Select, SelectOption, Notification } from "../reusable/";
+import { Button, Input, Label, Notification, Select, SelectOption } from "../reusable/";
 import { GeocoderData, LocationFormConfig, USStateValues } from "./constants";
+import React, { FormEvent } from "react";
 import { getCoordinatesFromAddress } from "./utilities";
 import styles from "./location-form.module.scss";
 

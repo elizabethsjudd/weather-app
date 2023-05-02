@@ -1,6 +1,6 @@
+import { HeadingConfig, defaults } from "./constants";
 import React from "react";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
-import { HeadingConfig, defaults } from "./constants";
 import styles from "./heading.module.scss";
 
 export const Heading = ({

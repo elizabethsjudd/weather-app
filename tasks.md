@@ -26,7 +26,7 @@
     - [ ] JSON
     - [ ] Markdown
     - [ ] Setup pre-commit hook
-    - [ ] Import order rule
+    - [x] Import order rule
 - [ ] Additional testing
     - [ ] Functional tests on components
     - [ ] HTML validation - The new Storybook env doesn't support the addon and there isn't a Playwright option so this became more intensive to set up

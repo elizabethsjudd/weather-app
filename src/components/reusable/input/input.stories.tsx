@@ -1,8 +1,7 @@
+import { InputConfig, allowedValues } from "./constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { BsSearch } from "react-icons/bs";
-
 import { Input } from "./index";
-import { allowedValues, InputConfig } from "./constants";
 import { Label } from "../label";
 
 const meta: Meta<typeof Input> = {

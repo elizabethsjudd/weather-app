@@ -1,8 +1,8 @@
-import { IconContext } from "react-icons";
-import styles from "./card.module.scss";
 import { CardConfig } from "./constants";
-import { combineAttributes } from "../../../foundations/scripts/utilities";
 import { Heading } from "../heading";
+import { IconContext } from "react-icons";
+import { combineAttributes } from "../../../foundations/scripts/utilities";
+import styles from "./card.module.scss";
 
 export const Card = ({ attrs = {}, slotTitle, slotIcon, slotDetails }: CardConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, {
