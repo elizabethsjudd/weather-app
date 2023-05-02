@@ -1,34 +1,52 @@
+@use '../../../foundations/styles/utilities' as *;
+
 .section + .section {
 	margin-top: var(--space-stack-section);
 }
 
 .heading {
+	@include focus($pseudo-element: 'before', $element-radius: 'var(--border-radius-content)');
+
 	display: flex;
 	gap: var(--space-stack);
 	margin-bottom: var(--space-stack);
+
+	// Add a bit of padding to allow room for focus state around the icon
+	padding-left: var(--spacing-01);
+
+	&::marker {
+		// display none didn't actually hide the element
+		color: transparent;
+	}
+
+	&::after {
+		background: var(--color-brand);
+		border-radius: var(--border-radius-control);
+		color: var(--color-text-brand);
+		content: '\002B';
+		font-size: var(--font-size-06);
+		font-weight: var(--font-weight-05);
+		line-height: var(--line-height-09);
+		padding: 0 var(--space-inset);
+		text-align: center;
+	}
+
+	&:hover {
+		cursor: pointer;
+
+		&::after {
+			background: var(--color-brand-hover);
+		}
+	}
 }
 
 .icon {
+	color: var(--color-text-heading);
 	margin-right: var(--space-inline-related);
 	width: var(--size-medium);
 }
 
-.heading::marker {
-	// display none didn't actually hide the element
-	color: transparent;
-}
-
-.heading::after {
-	background: var(--color-brand);
-	border-radius: var(--border-radius-control);
-	content: '\002B';
-	font-size: var(--font-size-06);
-	font-weight: var(--font-weight-05);
-	line-height: var(--line-height-09);
-	padding: 0 var(--space-inset);
-	text-align: center;
-}
-
+// Open state
 .section[open] .heading::after {
 	content: '\2212';
 }

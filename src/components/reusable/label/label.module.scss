@@ -3,7 +3,8 @@
 .label {
 	@include text($size: 'xsmall', $is-interactive: 'true');
 
+	color: var(--color-text-label);
 	display: block;
 	margin-bottom: var(--space-stack-tight);
-	margin-top: var(--space-stack)
+	margin-top: var(--space-stack);
 }

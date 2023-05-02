@@ -4,7 +4,7 @@ import { AttrsObject } from "@/foundations/scripts/utilities";
  * Defines enum values for Heading props
  */
 export const allowedValues = {
-	kinds: ["headline", "title"] as const,
+	kinds: ["headline", "title", "display"] as const,
 	levels: [1, 2, 3, 4, 5, 6] as const,
 	sizes: ["large", "medium", "small", "xsmall" as const],
 };

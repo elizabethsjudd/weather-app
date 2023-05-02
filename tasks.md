@@ -16,11 +16,11 @@
 - [x] Deployment of application
 
 ## Additional features as time allows
-- [ ] Dark theme
-- [ ] Empty/Loading states
+- [x] Dark theme
 - [ ] Provide more details from API  (modal)
-- [ ] Dynamically open/close sections + focus management
 - [ ] Deployment of Storybook
+- [ ] Dynamically open/close sections + focus management
+- [ ] Empty/Loading states
 - [ ] Multiple address matches
 - [ ] Additional linting
     - [ ] JSON
@@ -32,5 +32,3 @@
     - [ ] HTML validation - The new Storybook env doesn't support the addon and there isn't a Playwright option so this became more intensive to set up
     - [ ] VRT
 - [ ] Location API working in SB
-- [ ] Play around with design more
-- [ ] Move details/summary to a separate component

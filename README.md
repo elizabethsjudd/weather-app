@@ -1,6 +1,6 @@
 [View application](https://weather-app-ebyrne.vercel.app/)
 
-
+This application supports different color modes based on the user's system settings.
 
 ## Get started developing
 

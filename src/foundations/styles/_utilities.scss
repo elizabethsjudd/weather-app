@@ -68,6 +68,8 @@ $max-full-width-content: 50rem;
 	}
 
 	&#{string.unquote($focus-selector)} {
+		outline: none;
+
 		&::#{string.unquote($pseudo-element)} {
 			border: var(--line-width-focus) solid var(--color-focus);
 			border-radius: calc(#{string.unquote($element-radius)} + var(--line-width-focus) + var(--space-offset-focus));
@@ -121,7 +123,7 @@ $control-border-width: var(--line-width-control);
 /// 
 /// @example @include common-control-styles;
 @mixin common-control-styles() {
-	background: white;
+	background: var(--color-background);
 	border: $control-border-width solid $control-border-color;
 	border-radius: var(--border-radius-control);
 	box-sizing: border-box;

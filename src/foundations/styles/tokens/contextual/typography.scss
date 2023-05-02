@@ -5,6 +5,8 @@
 
 /* Font Size Tokens */
 $contextual-font-size-vars: (
+	"display": "08",
+
 	"headline": "05",
 	"headline-large": "06",
 	"headline-small": "02",
@@ -19,6 +21,8 @@ $contextual-font-size-vars: (
 
 /* Line Height Tokens */
 $contextual-line-height-vars: (
+	"display": "03",
+
 	"headline": "09",
 	"headline-large": "07",
 	"headline-small": "09",
@@ -38,6 +42,7 @@ $contextual-line-height-vars: (
 
 /* Font Weight Tokens */
 $contextual-font-weight-vars: (
+	"display": "05",
 	"headline": "05",
 	"title": "04",
 	"title-secondary": "03",

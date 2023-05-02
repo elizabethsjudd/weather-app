@@ -3,23 +3,26 @@
 /// @group variables
 ////
 
+/// Generates contextual color token that use a non-opacity global color token
+/// @param {SassMap} $token-list - Sass map of token name and it's global token value
+/// @example generate-color-tokens($contextual-color-vars)
+@mixin generate-color-tokens($token-list) {
+	/* Color */
+	@each $token-name, $token-value in $token-list {
+		--color-#{$token-name}: rgb(var(--#{$token-value}));
+	}
+}
+
 $contextual-color-vars: (
 	// --------- Misc --------------
-	// Miscellaneous color tokens
 	"focus": "blue-70",
-	"focus-inverse": "white",
-	"shadows": "black",
-	"brand": "lemon-50",
-	"brand-hover": "lemon-60",
-	"brand-active": "lemon-70",
+	"brand": "yellow-50",
+	"brand-hover": "yellow-60",
+	"brand-active": "yellow-70",
 	"accent": "blue-100",
 
 	// --------- Background --------------
 	"background": "white",
-	"background-hover": "gray-20",
-	"background-active": "gray-90",
-	"background-selected": "gray-90",
-	"background-disabled": "gray-40",
 
 	// Status use cases
 	"background-info": "status-info",
@@ -30,25 +33,21 @@ $contextual-color-vars: (
 	// --------- Line --------------
 	"line": "gray-70",
 	"line-hover": "gray-90",
-	"line-active": "gray-100",
-	"line-selected": "gray-90",
-	"line-disabled": "gray-40",
 
-	// Design calls this "Light" but it's semantically used for dividers
 	"line-divider": "gray-30",
 
 	// --------- Text --------------
 	"text": "gray-80",
 	"text-hover": "gray-90",
-	"text-active": "gray-90",
-	"text-selected": "gray-90",
-	"text-disabled": "gray-40",
 
 	// Static text color options
-	"text-inverse": "white",
 	"text-secondary": "gray-70",
 	"text-label": "gray-90",
 	"text-heading": "gray-100",
+	"text-inverse": "white",
+	"text-inverse-secondary": "gray-20",
+	"text-status": "white", // For use on elements with the status color backgrounds
+	"text-brand": "gray-90", // For use on elements with the brand background color
 
 	// Status colors
 	"text-success": "gray-90", // For success messages on a white background
@@ -58,8 +57,45 @@ $contextual-color-vars: (
 );	
 
 :root {
-	/* Color */
-	@each $token-name, $token-value in $contextual-color-vars {
-		--color-#{$token-name}: rgb(var(--#{$token-value}) / 100%);
+	@include generate-color-tokens($contextual-color-vars);
+
+	// Color variables that don't need the rgb wrapper
+	--color-shadows: var(--black-opacity-00);
+}
+
+// Dark theme
+@media (prefers-color-scheme: dark) {
+	$contextual-color-vars: (
+		// --------- Misc --------------
+		"brand": "yellow-70",
+		"brand-active": "yellow-50",
+		"accent": "blue-10",
+		"focus": "white",
+
+		// --------- Background --------------
+		"background": "black",
+
+		// --------- Text --------------
+		"text": "white",
+		"text-hover": "gray-10",
+
+		"text-heading": "gray-10",
+		"text-label": "gray-20",
+		"text-secondary": "gray-30",
+
+		"text-inverse": "black",
+		"text-inverse-secondary": "gray-70",
+
+		// --------- Line --------------
+		"line": "gray-40",
+		"line-hover": "gray-10",
+		"line-divider": "gray-70",
+	);	
+
+	:root {
+		@include generate-color-tokens($contextual-color-vars);
+
+		// Color variables that don't need the rgb wrapper
+		--color-shadows: var(--black-opacity-03);
 	}
 }
