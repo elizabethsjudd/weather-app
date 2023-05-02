@@ -17,7 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) and [http://localhost:6006](
 
 There are multiple types of tests setup with in this repository:
 
-* Linting: `npm run lint` covers both CSS and JavaScript 
+* Linting: `npm run lint` covers both CSS, JavaScript, and JSON
 * Accessibility: `npm run components:test` runs automated accessibility scans on each Storybook demo. You can also manually run these scans via the Storybook addon
 * Functional: `npm run app:test` runs tests using Playwright on the application
 
