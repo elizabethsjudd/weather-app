@@ -33,6 +33,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright auto-generated files
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Storybook/GitHub Pages auto-generated files
+/storybook-static/

@@ -18,7 +18,7 @@
 ## Additional features as time allows
 - [x] Dark theme
 - [ ] Provide more details from API  (modal)
-- [ ] Deployment of Storybook
+- [x] Deployment of Storybook
 - [ ] Dynamically open/close sections + focus management
 - [ ] Empty/Loading states
 - [ ] Multiple address matches

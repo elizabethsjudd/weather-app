@@ -13,7 +13,6 @@ test("should get street address error if empty", async ({ page }) => {
 });
 
 test("should get zip code error if invalid format", async ({ page }) => {
-	// Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
 	await page.goto("/");
 
 	const input = page.getByLabel("Zip code");
@@ -27,7 +26,6 @@ test("should get zip code error if invalid format", async ({ page }) => {
 });
 
 test("should get API error if invalid address fields", async ({ page }) => {
-	// Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
 	await page.goto("/");
 
 	await page.getByLabel("Street").fill("2001 Blake St");
@@ -39,7 +37,6 @@ test("should get API error if invalid address fields", async ({ page }) => {
 });
 
 test("should get forecast for full address", async ({ page }) => {
-	// Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
 	await page.goto("/");
 
 	await page.getByLabel("Street").fill("2001 Blake St");
