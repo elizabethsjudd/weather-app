@@ -1,4 +1,4 @@
-[View application](https://weather-app-ebyrne.vercel.app/)
+[View application](https://weather-app-ebyrne.vercel.app/) or [view reusable components](https://elizabethsjudd.github.io/weather-app/)
 
 This application supports different color modes based on the user's system settings.
 
