@@ -68,8 +68,9 @@ $night-background: rgb($night-color / 80%);
 	}
 }
 
+// Responsive styles
 @media (width >= $breakpoint-01) {
 	.dailyWeather--future {
-		gap: 0;
+		gap: var(--spacing-08);
 	}
 }
