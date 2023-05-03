@@ -5,7 +5,7 @@ import {
 	WeatherGovForecastInfo,
 	WeatherGovLocationInfo,
 } from "./constants";
-import { Heading, Notification } from "../reusable/";
+import { Heading, Label, Notification, Toggle } from "../reusable/";
 import { getForecast, getLocationData } from "./utilities";
 import { DailyWeather } from "../daily-weather";
 import { DailyWeatherConfig } from "../daily-weather/constants";
@@ -30,8 +30,8 @@ export const Forecast = ({
 	const [temperatureUnit, setTemperatureUnit] = React.useState("us");
 	const [apiError, setAPIError] = React.useState(defaultAPIError);
 
-	const changeUnit = (event: React.ChangeEvent) => {
-		setTemperatureUnit((event?.target as HTMLInputElement).checked ? "us" : "si");
+	const changeUnit = (isChecked: boolean) => {
+		setTemperatureUnit(isChecked ? "us" : "si");
 	};
 
 	// Watch for a forecast change
@@ -134,10 +134,14 @@ export const Forecast = ({
 	return (
 		<>
 			{/* @todo - Long-term we'd want to store the user's preference  */}
-			<label>
-				Preferred Units:
-				<input defaultChecked={true} onChange={changeUnit} type="checkbox" value="us" />
-			</label>
+			<div className={styles.userPreferences}>
+				<Label attrs={{ htmlFor: "unit-toggle" }}>Preferred Unit:</Label>
+				<Toggle
+					attrs={{ defaultChecked: true, id: "unit-toggle", value: "us" }}
+					hookChange={changeUnit}
+					labels={{ off: "°C", on: "°F" }}
+				/>
+			</div>
 			{getWeatherCards(currentWeather as DailyWeatherConfig[], true)}
 			{futureForecast.length > 0 && (
 				<Heading kind="headline" level={3}>
