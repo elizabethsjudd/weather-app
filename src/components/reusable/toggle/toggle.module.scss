@@ -1,0 +1,69 @@
+@use '../../../foundations/styles/utilities' as *;
+
+$input-padding: var(--spacing-01);
+$toggle-size: var(--size-small);
+
+.component {
+	align-items: center;
+	display: inline-flex;
+	position: relative;
+}
+  
+.input {
+	inset: 0;
+	opacity: 0;
+	position: absolute;
+	z-index: 1;
+}
+
+.wrapper {
+	display: inline-flex;
+	margin-right: var(--space-inline-related);
+}
+  
+.display {
+	@include common-control-styles;
+
+	border-radius: $toggle-size;
+	display: inline-block;
+	min-height: calc($toggle-size + $control-border-width * 2 + $input-padding * 2);
+	padding: $input-padding;
+	width: calc($toggle-size * 2);
+}
+  
+.toggle {
+	background: $control-border-color;
+	border-radius: calc($toggle-size / 2);
+	display: inline-block;
+	height: $toggle-size;
+	left: calc($control-border-width + $input-padding);
+	position: absolute;
+	width: $toggle-size;
+}
+
+.icon {
+	color: var(--color-text-brand);
+	display: none;
+}
+  
+.input:not(:checked) ~ span.on {
+	display: none;
+}
+  
+.input:checked ~ span.off {
+	display: none;
+}
+  
+.input:checked ~ .wrapper .toggle {
+	background: var(--color-brand);
+	left: auto;
+	right: calc($control-border-width + $input-padding);
+
+	.icon {
+		display: block;
+	}
+}
+
+.input:focus-visible ~ .wrapper .u-focus-indicator {
+	@include focus-pseudo($element-radius: $toggle-size);
+}

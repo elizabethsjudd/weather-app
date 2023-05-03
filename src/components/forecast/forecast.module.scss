@@ -8,6 +8,17 @@
 	row-gap: var(--space-inline-related);
 }
 
+.userPreferences {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+
+	label {
+		margin-top: auto;
+	}
+}
+
 @media (width >= $breakpoint-01) {
 	.futureForecast { 
 		column-gap: var(--space-inline-related);

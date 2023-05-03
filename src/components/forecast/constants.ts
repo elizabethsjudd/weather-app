@@ -1,13 +1,13 @@
 import { DayOfTheWeek, TempUnit, WeatherInfo } from "../daily-weather/constants";
 import { AddressCoordinates } from "../location-form/constants";
 
-export interface hookUpdateConfig {
+export interface hookUpdateLocationConfig {
 	location: `${string}, ${string}` | "";
 }
 
 export interface ForecastConfig {
 	coordinates: AddressCoordinates;
-	hookUpdate?: ({ location }: hookUpdateConfig) => void;
+	hookUpdateLocation?: ({ location }: hookUpdateLocationConfig) => void;
 	testId?: string;
 }
 
@@ -44,4 +44,5 @@ export interface WeatherGovForecastInfo {
 	properties: {
 		periods: Array<WeatherGovWeatherInfo>;
 	};
+	status?: number;
 }
