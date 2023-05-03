@@ -8,6 +8,12 @@
 // set up variables
 $z-index-increment: 100;
 $z-index-base: 0;
+$z-index-tooltips: $z-index-base + $z-index-increment !default;
+
 
 // Shared z-indexes 
 $z-index-focus: $z-index-base + 1;
+
+// Application layer z-index
+$z-index-tooltips: $z-index-notifications-toast + $z-index-increment !default;
+$z-index-overlays: $z-index-tooltips + $z-index-increment !default;

@@ -1,0 +1,129 @@
+////
+/// Tooltip Content styles
+/// @group Tooltip
+////
+
+@use 'sass:math';
+@use "../../../foundations/styles/tokens/contextual/z-index.scss" as *;
+@use '../../../foundations/styles/utilities' as *;
+
+$tooltip-arrow-width: 8px;
+$tooltip-arrow-horizontal-center: calc(50% - $tooltip-arrow-width / 2);
+$tooltip-arrow-vertical-center: calc($tooltip-arrow-width * -1 / 2 + 1px);
+$tooltip-arrow-size: math.hypot($tooltip-arrow-width, 5px);
+$tooltip-trigger-offset: var(--space-inline-related);
+
+.wrapper {
+	display: inline-flex;
+	position: relative;
+}
+
+.tooltip {
+	@include text($size: 'xsmall');
+
+	background: var(--color-background-inverse);
+	border-radius: var(--border-radius-content);
+	color: var(--color-text-inverse);
+	cursor: default;
+	max-width: calc(var(--spacing-09) * 7);
+	opacity: 0;
+	overflow-wrap: break-word;
+	padding: .125rem .25rem;
+	pointer-events: none;
+	position: absolute;
+	transition-property: opacity;
+	white-space: normal;
+	width: max-content;
+	z-index: $z-index-tooltips;
+}
+
+// Arrow
+.pointer {
+	background: transparent;
+	border-bottom: $tooltip-arrow-size solid var(--color-background-inverse);
+	border-right: $tooltip-arrow-size solid transparent;
+	content: '';
+	height: 0;
+	left: $tooltip-arrow-horizontal-center;
+	opacity: 0;
+	position: absolute;
+	transform: rotate(135deg);
+	transition-property: opacity;
+	width: 0;
+
+	// Intentionally hiding the pointer on left and right position
+	&--left,
+	&--right {
+		display: none;
+	}
+}
+
+// State: Show (Default is hide)
+.is--shown,
+.tooltip:hover,
+.pointer:hover {
+	opacity: 1;
+	pointer-events: inherit;
+
+	// We set these properties only on show so we don't have a delay/animation
+	// when the tooltip is hidden
+	transition-delay: var(--duration-03);
+	transition-duration: var(--duration-03);
+	transition-timing-function: var(--timing-m2);
+}
+
+// Position: Top
+.tooltip--top {
+	bottom: 100%;
+	margin-bottom: $tooltip-trigger-offset;
+	right: 50%;
+	transform: translateX(50%);
+}
+
+.pointer--top {
+	top: calc(($tooltip-arrow-vertical-center + $tooltip-arrow-size + $tooltip-trigger-offset) * -1);
+	transform: rotate(315deg);
+}
+
+.tooltip--start {
+	left: 0;
+	right: initial;
+	transform: none;
+}
+
+.tooltip--end {
+	right: 0;
+	transform: none;
+}
+
+// Position: Bottom
+.tooltip--bottom {
+	margin-top: $tooltip-trigger-offset;
+	top: 100%;
+}
+
+.pointer--bottom {
+	bottom: calc(($tooltip-arrow-vertical-center + $tooltip-arrow-size + $tooltip-trigger-offset) * -1);
+}
+
+.tooltip--bottom.tooltip--center {
+	right: 50%;
+	transform: translateX(50%);
+}
+
+// Position: Left
+.tooltip--left{
+	left: initial;
+	margin-right: $tooltip-trigger-offset;
+	right: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// Position: Right
+.tooltip--right {
+	left: 100%;
+	margin-left: $tooltip-trigger-offset;
+	top: 50%;
+	transform: translateY(-50%);
+}
