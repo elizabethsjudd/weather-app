@@ -137,7 +137,12 @@ export const Forecast = ({
 			<div className={styles.userPreferences}>
 				<Label attrs={{ htmlFor: "unit-toggle" }}>Preferred Unit:</Label>
 				<Toggle
-					attrs={{ defaultChecked: true, id: "unit-toggle", value: "us" }}
+					attrs={{
+						"data-testid": "temp-unit-toggle",
+						defaultChecked: true,
+						id: "unit-toggle",
+						value: "us",
+					}}
 					hookChange={changeUnit}
 					labels={{ off: "°C", on: "°F" }}
 				/>
