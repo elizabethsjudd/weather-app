@@ -4,7 +4,7 @@ import { AddressCoordinates } from "@/components/location-form/constants";
 import { Forecast } from "@/components/forecast";
 import Head from "next/head";
 import { LocationForm } from "@/components/location-form";
-import { hookUpdateConfig } from "@/components/forecast/constants";
+import { hookUpdateLocationConfig } from "@/components/forecast/constants";
 import styles from "@/styles/Home.module.scss";
 import { useState } from "react";
 
@@ -19,7 +19,7 @@ export default function Home() {
 		setCoordinates(coordinates);
 	};
 
-	const updateHeaders = ({ location }: hookUpdateConfig) => {
+	const updateHeaders = ({ location }: hookUpdateLocationConfig) => {
 		setName(location);
 	};
 
@@ -49,7 +49,11 @@ export default function Home() {
 						slotTitle={`Forecast for ${name}`}
 						state="open"
 					>
-						<Forecast coordinates={coordinates} hookUpdate={updateHeaders} testId="forecast" />
+						<Forecast
+							coordinates={coordinates}
+							hookUpdateLocation={updateHeaders}
+							testId="forecast"
+						/>
 					</CollapsibleSection>
 				)}
 			</main>
