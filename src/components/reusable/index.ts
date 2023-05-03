@@ -7,3 +7,4 @@ export { Label } from "./label";
 export { Notification } from "./notification";
 export { Select } from "./select";
 export { SelectOption } from "./select-option";
+export { Toggle } from "./toggle";
