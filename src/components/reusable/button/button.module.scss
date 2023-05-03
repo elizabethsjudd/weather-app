@@ -26,6 +26,28 @@
 			border-color: transparent;
 		}
 	}
+
+	&--ghost {
+		background-color: transparent;
+		border-color: transparent;
+		color: var(--color-text);
+
+		&:hover {
+			background-color: var(--color-background-hover);
+			border-color: transparent;
+			color: var(--color-text);
+		}
+
+		&:active {
+			background-color: var(--color-background-active);
+			border-color: transparent;
+			color: var(--color-text);
+		}
+
+		&:focus {
+			border-color: transparent;
+		}
+	}
 }
 
 .icon {

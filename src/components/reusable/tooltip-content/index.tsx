@@ -17,17 +17,16 @@ export const TooltipContent = ({
 	return (
 		<>
 			<span
-				className={`${styles.pointer} ${styles[`pointer--${position}`]} ${
-					state === "show" ? styles[`is--shown`] : ""
-				}`}
-			></span>
-			<span
 				{...attributes}
 				// Developers should not be allowed to overwrite this attribute for accessibility
 				role="tooltip"
 			>
 				{text}
 			</span>
+			{/* The pointer is a separate element so that we can support any size trigger element and have it align as expected */}
+			<span
+				className={`${styles.pointer} ${styles[`pointer--${position}`]} tooltipContent-pointer`}
+			></span>
 		</>
 	);
 };

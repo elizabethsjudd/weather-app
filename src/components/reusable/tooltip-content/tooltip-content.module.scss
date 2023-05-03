@@ -13,6 +13,33 @@ $tooltip-arrow-vertical-center: calc($tooltip-arrow-width * -1 / 2 + 1px);
 $tooltip-arrow-size: math.hypot($tooltip-arrow-width, 5px);
 $tooltip-trigger-offset: var(--space-inline-related);
 
+/// Common styles for showing the pieces of a tooltip so the animate in consistently
+/// 
+/// @example see tooltip-show mixin in this file
+@mixin tooltip-show-styles() {
+	opacity: 1;
+	pointer-events: inherit;
+
+	// We set these properties only on show so we don't have a delay/animation
+	// when the tooltip is hidden
+	transition-delay: var(--duration-03);
+	transition-duration: var(--duration-03);
+	transition-timing-function: var(--timing-m2);
+}
+
+/// Setups up showing a tooltip via CSS. It uses a globally defined class to ensure we're able to show
+/// all pieces of the tooltip without access to applying classes to it directly
+/// 
+/// @example see icon-button setup in the `icon-button.module.scss` file
+@mixin tooltip-show() {
+	@include tooltip-show-styles;
+
+	// We need to ensure that we are able to show the pointer without directly applying classes to it
+	+ :global(.tooltipContent-pointer) {
+		@include tooltip-show-styles;
+	}
+}
+
 .wrapper {
 	display: inline-flex;
 	position: relative;
@@ -62,14 +89,7 @@ $tooltip-trigger-offset: var(--space-inline-related);
 .is--shown,
 .tooltip:hover,
 .pointer:hover {
-	opacity: 1;
-	pointer-events: inherit;
-
-	// We set these properties only on show so we don't have a delay/animation
-	// when the tooltip is hidden
-	transition-delay: var(--duration-03);
-	transition-duration: var(--duration-03);
-	transition-timing-function: var(--timing-m2);
+	@include tooltip-show;
 }
 
 // Position: Top

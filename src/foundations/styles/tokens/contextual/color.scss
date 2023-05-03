@@ -62,6 +62,8 @@ $contextual-color-vars: (
 
 	// Color variables that don't need the rgb wrapper
 	--color-shadows: var(--black-opacity-00);
+	--color-background-hover: var(--black-opacity-00); // For use on elements with transparent backgrounds and interactions
+	--color-background-active: var(--black-opacity-01); // For use on elements with transparent backgrounds and interactions
 }
 
 // Dark theme
@@ -99,5 +101,7 @@ $contextual-color-vars: (
 
 		// Color variables that don't need the rgb wrapper
 		--color-shadows: var(--black-opacity-03);
+		--color-background-hover: var(--white-opacity-02); // For use on elements with transparent backgrounds and interactions
+		--color-background-active: var(--white-opacity-03); // For use on elements with transparent backgrounds and interactions
 	}
 }

@@ -21,7 +21,7 @@ export interface TooltipContentConfig {
 	anchor: TooltipAnchor;
 	attrs?: AttrsObject;
 	position: TooltipPosition;
-	state: TooltipState;
+	state?: TooltipState;
 	/** Restrict contents of a button to ensure valid HTML and accessibility */
 	text: string;
 }

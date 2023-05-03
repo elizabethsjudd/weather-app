@@ -5,7 +5,7 @@ import styles from "./button.module.scss";
  * Defines enum values for Button props
  */
 export const allowedValues = {
-	kinds: ["secondary", "primary"] as const,
+	kinds: ["secondary", "primary", "ghost"] as const,
 	types: ["button", "submit", "reset"] as const,
 };
 

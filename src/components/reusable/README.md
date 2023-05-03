@@ -9,6 +9,7 @@ Business agnostic components that can be re-used across multiple different use-c
 * [Card](./card/README.md)
 * [Collapsible Section](./collapsible-section/README.md)
 * [Heading](./heading/README.md)
+* [Icon Button](./icon-button/README.md)
 * [Input](./input/README.md)
 * [Label](./label/README.md)
 * [Notification](./notification/README.md)

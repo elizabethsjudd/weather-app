@@ -3,6 +3,7 @@ export { Button } from "./button";
 export { Card } from "./card";
 export { CollapsibleSection } from "./collapsible-section";
 export { Heading } from "./heading";
+export { IconButton } from "./icon-button";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Notification } from "./notification";
