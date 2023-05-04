@@ -36,8 +36,8 @@
 - [ ] Documented component requirements - help prevent misuse and provide better estimation for future work
 - [ ] **Multiple address matches** - allow for potential error correction
 - [ ] Additional application testing for full coverage
-    - [ ] Accessibility scans to cover the combination of components
-    - [ ] VRT - ensure layouts don't break
-    - [ ] HTML validation scans
-- [ ] Automated technical documentation 
+  - [ ] Accessibility scans to cover the combination of components
+  - [ ] VRT - ensure layouts don't break
+  - [ ] HTML validation scans
+- [ ] Automated technical documentation
 - [ ] Location API working in SB
