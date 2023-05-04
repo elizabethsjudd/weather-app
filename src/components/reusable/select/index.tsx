@@ -7,7 +7,7 @@ import { ChangeEvent } from "react";
 export const Select = ({ attrs, children, hookChange }: SelectConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, defaults.attrs);
 
-	const handleChange = (e: Event) => {
+	const handleChange = (e: ChangeEvent) => {
 		hookChange && hookChange((e.target as HTMLSelectElement).value);
 	}
 
