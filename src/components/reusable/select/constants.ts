@@ -5,7 +5,7 @@ import styles from "./select.module.scss";
 /** Expected attributes for the Select component */
 interface SelectAttrs extends AttrsObject {
 	id: string;
-	name: string;
+	name?: string;
 }
 
 /**
@@ -14,6 +14,7 @@ interface SelectAttrs extends AttrsObject {
 export interface SelectConfig {
 	attrs: SelectAttrs;
 	children: React.ReactElement<typeof SelectOption>;
+	hookChange?: (arg0: string) => void;
 }
 
 /** Default values for Select component */

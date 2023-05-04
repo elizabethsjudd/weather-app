@@ -5,7 +5,7 @@ import {
 	WeatherGovForecastInfo,
 	WeatherGovLocationInfo,
 } from "./constants";
-import { Heading, Label, Notification, Toggle } from "../reusable/";
+import { Heading, Label, Notification, Select, SelectOption, Toggle } from "../reusable/";
 import { getForecast, getLocationData } from "./utilities";
 import { DailyWeather } from "../daily-weather";
 import { DailyWeatherConfig } from "../daily-weather/constants";
@@ -29,6 +29,7 @@ export const Forecast = ({
 	const [forecastURL, setForecastURL] = React.useState("");
 	const [temperatureUnit, setTemperatureUnit] = React.useState("us");
 	const [apiError, setAPIError] = React.useState(defaultAPIError);
+	const [daysToShow, setDaysToShow] = React.useState(7);
 
 	const changeUnit = (isChecked: boolean) => {
 		setTemperatureUnit(isChecked ? "us" : "si");
@@ -45,8 +46,10 @@ export const Forecast = ({
 
 				let dayObject = new Object({}) as DailyWeatherConfigConstructor;
 				if (!(forecastData as WeatherGovForecastInfo).status) {
-					(forecastData as WeatherGovForecastInfo).properties.periods.forEach((period) => {
+					(forecastData as WeatherGovForecastInfo).properties.periods.some((period, index) => {
 						const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
+
+						if ((index + 1)/2 > daysToShow) { return; }
 
 						dayObject[currentPeriod] = {
 							dayOfTheWeek: period.name,
@@ -82,7 +85,7 @@ export const Forecast = ({
 				}
 			});
 		}
-	}, [temperatureUnit, forecastURL]);
+	}, [temperatureUnit, forecastURL, daysToShow]);
 
 	// Watch for a Location change
 	React.useEffect(() => {
@@ -103,6 +106,10 @@ export const Forecast = ({
 			});
 		}
 	}, [coordinates, hookUpdateLocation]);
+
+	const handleDayUpdate = (value: string) => {
+		setDaysToShow(parseInt(value));
+	}
 
 	const getWeatherCards = (weatherArray: Array<DailyWeatherConfig>, isCurrent = false) => {
 		const opAttrs: { testId?: string } = {};
@@ -146,6 +153,19 @@ export const Forecast = ({
 					hookChange={changeUnit}
 					labels={{ off: "°C", on: "°F" }}
 				/>
+
+				<Label attrs={{htmlFor: 'days-shown'}}>Number of days to show:</Label>
+				<Select attrs={{ id: 'days-shown', defaultValue: '7'}} hookChange={handleDayUpdate}>
+					<>
+						<SelectOption attrs={{ value: "1"}}>1</SelectOption>
+						<SelectOption attrs={{ value: "2"}}>2</SelectOption>
+						<SelectOption attrs={{ value: "3"}}>3</SelectOption>
+						<SelectOption attrs={{ value: "4"}}>4</SelectOption>
+						<SelectOption attrs={{ value: "5"}}>5</SelectOption>
+						<SelectOption attrs={{ value: "6"}}>6</SelectOption>
+						<SelectOption attrs={{ value: "7"}}>7</SelectOption>
+					</>
+				</Select>
 			</div>
 			{getWeatherCards(currentWeather as DailyWeatherConfig[], true)}
 			{futureForecast.length > 0 && (
