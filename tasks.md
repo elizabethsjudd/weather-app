@@ -19,7 +19,7 @@
 ## Additional features as time allows
 
 - [x] Dark theme
-- [ ] Provide more details from API  (modal)
+- [x] Provide more details from API  (modal)
 - [x] Deployment of Storybook
 - [ ] Dynamically open/close sections + focus management
 - [ ] Empty/Loading states
