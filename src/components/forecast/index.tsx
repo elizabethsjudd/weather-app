@@ -49,7 +49,9 @@ export const Forecast = ({
 					(forecastData as WeatherGovForecastInfo).properties.periods.some((period, index) => {
 						const currentPeriod = period.name.toLowerCase().includes("night") ? "night" : "day";
 
-						if ((index + 1)/2 > daysToShow) { return; }
+						if ((index + 1) / 2 > daysToShow) {
+							return;
+						}
 
 						dayObject[currentPeriod] = {
 							dayOfTheWeek: period.name,
@@ -109,7 +111,7 @@ export const Forecast = ({
 
 	const handleDayUpdate = (value: string) => {
 		setDaysToShow(parseInt(value));
-	}
+	};
 
 	const getWeatherCards = (weatherArray: Array<DailyWeatherConfig>, isCurrent = false) => {
 		const opAttrs: { testId?: string } = {};
@@ -154,16 +156,16 @@ export const Forecast = ({
 					labels={{ off: "°C", on: "°F" }}
 				/>
 
-				<Label attrs={{htmlFor: 'days-shown'}}>Number of days to show:</Label>
-				<Select attrs={{ id: 'days-shown', defaultValue: '7'}} hookChange={handleDayUpdate}>
+				<Label attrs={{ htmlFor: "days-shown" }}>Number of days to show:</Label>
+				<Select attrs={{ defaultValue: "7", id: "days-shown" }} hookChange={handleDayUpdate}>
 					<>
-						<SelectOption attrs={{ value: "1"}}>1</SelectOption>
-						<SelectOption attrs={{ value: "2"}}>2</SelectOption>
-						<SelectOption attrs={{ value: "3"}}>3</SelectOption>
-						<SelectOption attrs={{ value: "4"}}>4</SelectOption>
-						<SelectOption attrs={{ value: "5"}}>5</SelectOption>
-						<SelectOption attrs={{ value: "6"}}>6</SelectOption>
-						<SelectOption attrs={{ value: "7"}}>7</SelectOption>
+						<SelectOption attrs={{ value: "1" }}>1</SelectOption>
+						<SelectOption attrs={{ value: "2" }}>2</SelectOption>
+						<SelectOption attrs={{ value: "3" }}>3</SelectOption>
+						<SelectOption attrs={{ value: "4" }}>4</SelectOption>
+						<SelectOption attrs={{ value: "5" }}>5</SelectOption>
+						<SelectOption attrs={{ value: "6" }}>6</SelectOption>
+						<SelectOption attrs={{ value: "7" }}>7</SelectOption>
 					</>
 				</Select>
 			</div>
