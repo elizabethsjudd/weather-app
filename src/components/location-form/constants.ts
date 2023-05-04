@@ -1,5 +1,13 @@
-/** LocationForm's input fields */
-export interface AddressFields {
+/** Actual fields used with in the Location Form */
+export interface LocationFormFields extends HTMLFormElement {
+	city: HTMLInputElement;
+	state: HTMLSelectElement;
+	street: HTMLInputElement;
+	zip: HTMLInputElement;
+}
+
+/** LocationForm's input field value types */
+export interface AddressFieldValues {
 	city: string;
 	state: string;
 	street: string;

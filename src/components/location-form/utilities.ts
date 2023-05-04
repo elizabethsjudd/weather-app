@@ -3,10 +3,10 @@ import {
 	GenericCallbackFunction,
 	fetchAPIRequest,
 } from "../../foundations/scripts/utilities";
-import { AddressFields, GeocoderData } from "./constants";
+import { AddressFieldValues, GeocoderData } from "./constants";
 
 export const getCoordinatesFromAddress = async (
-	{ street, city, state, zip }: AddressFields,
+	{ street, city, state, zip }: AddressFieldValues,
 	callback: (data: GeocoderData | APIError) => void
 ) => {
 	fetchAPIRequest(

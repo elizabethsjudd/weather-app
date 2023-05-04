@@ -1,5 +1,5 @@
 import { Button, Input, Label, Notification, Select, SelectOption } from "../reusable/";
-import { GeocoderData, LocationFormConfig, USStateValues } from "./constants";
+import { GeocoderData, LocationFormConfig, LocationFormFields, USStateValues } from "./constants";
 import React, { FormEvent } from "react";
 import { getCoordinatesFromAddress } from "./utilities";
 import styles from "./location-form.module.scss";
@@ -7,10 +7,9 @@ import styles from "./location-form.module.scss";
 export const LocationForm = ({ hookChange }: LocationFormConfig): JSX.Element => {
 	const [formValidation, setFormValidation] = React.useState("");
 
-	const onSubmit = (event: FormEvent) => {
+	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		// @todo - Figure out the correct way to type an HTML form's fields
-		const form = event.target as any;
+		const form = event.target as LocationFormFields;
 		getCoordinatesFromAddress(
 			{
 				city: form.city.value,
