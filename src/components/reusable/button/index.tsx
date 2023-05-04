@@ -8,11 +8,13 @@ export const Button = ({
 	text,
 	slotIcon,
 	kind = defaults.kind,
+	hookClick,
+	hookKeyPress,
 }: ButtonConfig): JSX.Element => {
 	const attributes = combineAttributes(attrs, defaults.attrs, styles[`button--${kind}`]);
 
 	return (
-		<button {...attributes}>
+		<button {...attributes} onClick={hookClick} onKeyDown={hookKeyPress}>
 			{slotIcon && (
 				<IconContext.Provider value={{ className: styles.icon, size: "1rem" }}>
 					{slotIcon}

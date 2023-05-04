@@ -5,20 +5,27 @@ import { TooltipContent } from "../tooltip-content";
 import { combineAttributes } from "../../../foundations/scripts/utilities";
 import styles from "./icon-button.module.scss";
 
-export const IconButton = ({
-	attrs = {},
-	text,
-	slotIcon,
-	kind = defaults.kind,
-	anchor = defaults.anchor,
-	position = defaults.position,
-}: IconButtonConfig): JSX.Element => {
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonConfig>(function IconButton(
+	{
+		attrs = {},
+		text,
+		slotIcon,
+		kind = defaults.kind,
+		anchor = defaults.anchor,
+		position = defaults.position,
+		hookClick,
+		hookKeyPress,
+	},
+	ref
+): JSX.Element {
 	const attributes = combineAttributes(attrs, defaults.attrs, styles[`button--${kind}`]);
 
 	const handleKeyPress: KeyboardEventHandler = (event) => {
 		if (event.code === "Escape") {
 			(event.target as HTMLButtonElement).classList.remove(styles.tooltipTrigger);
 		}
+
+		hookKeyPress && hookKeyPress(event);
 	};
 
 	const handleBlur: FocusEventHandler = (event) => {
@@ -26,7 +33,13 @@ export const IconButton = ({
 	};
 
 	return (
-		<button {...attributes} onBlur={handleBlur} onKeyUp={handleKeyPress}>
+		<button
+			ref={ref}
+			{...attributes}
+			onBlur={handleBlur}
+			onClick={hookClick}
+			onKeyDown={handleKeyPress}
+		>
 			{slotIcon && (
 				<IconContext.Provider value={{ className: styles.icon, size: "1rem" }}>
 					{slotIcon}
@@ -42,4 +55,4 @@ export const IconButton = ({
 			></TooltipContent>
 		</button>
 	);
-};
+});

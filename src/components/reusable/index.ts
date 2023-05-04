@@ -6,6 +6,7 @@ export { Heading } from "./heading";
 export { IconButton } from "./icon-button";
 export { Input } from "./input";
 export { Label } from "./label";
+export { Modal } from "./modal";
 export { Notification } from "./notification";
 export { Select } from "./select";
 export { SelectOption } from "./select-option";

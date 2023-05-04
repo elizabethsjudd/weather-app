@@ -12,6 +12,7 @@ Business agnostic components that can be re-used across multiple different use-c
 * [Icon Button](./icon-button/README.md)
 * [Input](./input/README.md)
 * [Label](./label/README.md)
+* [Modal](./modal/README.md)
 * [Notification](./notification/README.md)
 * [Select](./select/README.md)
 * [Select Option](./select-option/README.md)
