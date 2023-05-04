@@ -66,3 +66,13 @@ test("should allow user to change temperature unit", async ({ page }) => {
 	await input.click();
 	await expect(page.getByTestId("forecast-current")).toContainText("°C");
 });
+
+test("should be able to get forecast details for a given day", async ({ page }) => {
+	await page.goto("/");
+
+	await completelyFillOutForm(page);
+
+	await expect(page.locator("details")).toHaveCount(2);
+	await page.getByTestId("forecast-current-button").click();
+	await expect(page.getByRole("dialog")).toContainText("Wind");
+});

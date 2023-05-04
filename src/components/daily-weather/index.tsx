@@ -10,13 +10,17 @@ import {
 	BsSunFill,
 } from "react-icons/bs";
 import { DailyWeatherConfig, WeatherInfo } from "./constants";
+import { WiHumidity, WiRaindrops, WiWindDeg, WiWindy } from "react-icons/wi";
 import { Card } from "../reusable/card";
 import { IconContext } from "react-icons";
+import { Modal } from "../reusable";
 import cardStyles from "../reusable/card/card.module.scss";
 import { isCurrentDay } from "./utilities";
 import styles from "./daily-weather.module.scss";
 
 export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.Element => {
+	const [displayDetails, setDisplayDetails] = React.useState(false);
+
 	/**
 	 * Uses the description to determine which icon to render
 	 */
@@ -100,6 +104,73 @@ export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.El
 		);
 	};
 
+	const getModalDetails = (
+		{
+			temperature,
+			temperatureUnit,
+			details,
+			description,
+			windDirection,
+			windSpeed,
+			humidity,
+			precipitationProbability,
+		}: WeatherInfo,
+		hasTitle: boolean
+	) => {
+		return (
+			<>
+				<Card
+					slotDetails={
+						<>
+							<span className={styles.modalTemp}>
+								{temperature}°{temperatureUnit}
+							</span>
+							<div className={styles.longDescription}>{details}</div>
+						</>
+					}
+					slotIcon={
+						<span className={`${cardStyles.icon} ${styles.modalIcon}`}>
+							<IconContext.Provider value={{ className: `${cardStyles.icon}`, size: "100%" }}>
+								{getIcon(description.toLowerCase())}
+							</IconContext.Provider>
+						</span>
+					}
+					slotTitle={hasTitle && <span className={styles.modalSubtitle}>Night</span>}
+				/>
+				<div className={styles.quickOverview}>
+					<div>
+						<WiWindDeg /> Wind<span className={styles["u-visuallyHidden"]}> direction</span>:{" "}
+						{windDirection}
+					</div>
+					<div>
+						<WiWindy />
+						<span className={styles["u-visuallyHidden"]}>Wind </span>Speed: {windSpeed}
+					</div>
+				</div>
+				<div className={styles.quickOverview}>
+					<div>
+						<WiHumidity />
+						Humidity: {humidity}%
+					</div>
+					{precipitationProbability && (
+						<div>
+							<WiRaindrops />
+							Precipitation: {precipitationProbability}%
+						</div>
+					)}
+				</div>
+			</>
+		);
+	};
+
+	const openDetailsModal = () => {
+		setDisplayDetails(true);
+	};
+
+	const syncModalState = () => {
+		setDisplayDetails(false);
+	};
+
 	// Have to use the night object because in the evening, the "day" value does not exist
 	const kindClass = isCurrentDay(night.dayOfTheWeek)
 		? styles["dailyWeather--current"]
@@ -110,15 +181,40 @@ export const DailyWeather = ({ day, night, testId }: DailyWeatherConfig): JSX.El
 		opAttrs["data-testid"] = testId;
 	}
 
+	const modalId = testId ? `${testId}-modal` : "details-modal";
+	const buttonId = testId ? `${testId}-button` : "details-modal-button";
+
 	return (
-		<div
-			{...opAttrs}
-			className={`${styles.dailyWeather} ${kindClass} ${
-				!day ? styles["dailyWeather--nightOnly"] : ""
-			}`}
-		>
-			{day && getCard(day)}
-			{getCard(night, true)}
+		<div className={styles.wrapper}>
+			<div
+				{...opAttrs}
+				className={`${styles.dailyWeather} ${kindClass} ${
+					!day ? styles["dailyWeather--nightOnly"] : ""
+				}`}
+			>
+				{day && getCard(day)}
+				{getCard(night, true)}
+			</div>
+			<button
+				aria-controls={modalId}
+				aria-label="View more details"
+				className={styles.detailsButton}
+				data-testid={buttonId}
+				onClick={openDetailsModal}
+			></button>
+			<Modal
+				attrs={{ id: modalId }}
+				hookClose={syncModalState}
+				slotHeading={
+					isCurrentDay(night.dayOfTheWeek) ? "Today" : night.dayOfTheWeek.replace(" Night", "")
+				}
+				state={displayDetails ? "open" : "close"}
+			>
+				<>
+					{day && getModalDetails(day, false)}
+					{getModalDetails(night, !!day)}
+				</>
+			</Modal>
 		</div>
 	);
 };

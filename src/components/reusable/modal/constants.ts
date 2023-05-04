@@ -15,13 +15,13 @@ export interface ModalConfig {
 	attrs: ModalAttrs;
 	children: React.ReactNode;
 	hookClose?: () => void;
-	slotFooter: React.ReactElement;
+	slotFooter?: React.ReactElement;
 	slotHeading: React.ReactNode;
 	state: "open" | "close";
 }
 
 /** Default values for Modal component */
-export const defaults: Omit<ModalConfig, "slotHeading" | "slotFooter" | "children"> = {
+export const defaults: Omit<ModalConfig, "slotHeading" | "children"> = {
 	attrs: {
 		className: styles.backdrop,
 		id: "",

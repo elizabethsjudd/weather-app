@@ -40,6 +40,22 @@ const meta: Meta<StoryConfig> = {
 			options: allowedValues.temperatureUnits,
 		},
 	},
+	parameters: {
+		a11y: {
+			config: {
+				rules: [
+					{
+						// This is a violation within React Icon
+						id: "duplicate-id",
+						selector: "svg",
+					},
+				],
+			},
+			element: "#storybook-root",
+			manual: true,
+			options: {},
+		},
+	},
 	title: "App components/Daily Weather",
 };
 

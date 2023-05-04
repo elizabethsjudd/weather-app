@@ -111,6 +111,10 @@ export const Modal = ({
 		// The observer also needs to be on the main Div in order to support vertical
 		// resizing of the entire modal.
 		observer.observe(element.current as HTMLDivElement);
+
+		return () => {
+			observer.disconnect();
+		};
 	}, [setFocusTrap]);
 
 	React.useEffect(() => {
