@@ -63,7 +63,7 @@ export const Modal = ({
 		removeFocusTrap();
 	}, [hookClose, previouslyFocusedEl, removeFocusTrap]);
 
-	const handleTab = (e: KeyboardEvent) => {
+	const handleTab: React.KeyboardEventHandler = (e) => {
 		if (e.key === "Tab" && e.shiftKey === false) {
 			firstFocusableEl?.focus();
 			e.preventDefault();

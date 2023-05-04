@@ -22,8 +22,8 @@ interface ButtonAttrs extends AttrsObject {
  */
 export interface ButtonConfig {
 	attrs?: ButtonAttrs;
-	hookClick?: (e: MouseEvent) => void;
-	hookKeyPress?: (e: KeyboardEvent) => void;
+	hookClick?: React.MouseEventHandler;
+	hookKeyPress?: React.KeyboardEventHandler;
 	kind?: ButtonKind;
 	slotIcon?: React.ReactElement;
 	/** Restrict contents of a button to ensure valid HTML and accessibility */
