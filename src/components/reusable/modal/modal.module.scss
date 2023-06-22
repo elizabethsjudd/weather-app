@@ -1,0 +1,82 @@
+@use '../../../foundations/styles/utilities' as *;
+@use '../../../foundations/styles/tokens/contextual/z-index.scss' as *;
+@use '../../../foundations/styles/tokens/global/breakpoints.scss' as *;
+
+$close-offset: 8px;
+$horizontal-padding: 2rem;
+
+.backdrop {
+	align-items: center;
+	background: var(--black-opacity-06);
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	position: fixed;
+	z-index: $z-index-overlays;
+}
+
+.modal {
+	background: var(--color-background);
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	height: 100vh;
+	overflow: auto;
+	position: relative;
+	width: 100vw;
+}
+
+.close {
+	position: absolute;
+	right: $close-offset;
+	top: $close-offset;
+}
+
+.header {
+	padding: 1.5rem $horizontal-padding;
+}
+
+.footer {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-inline-related);
+	padding: 1.5rem $horizontal-padding;
+	width: 100%;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	overflow: auto;
+	padding: 2px $horizontal-padding;
+
+	&:focus-visible {
+		// Because this is a non-standard tab-able element, we may have limitations with
+		// styling options of the focus ring.
+		outline: 2px solid blue;
+		outline-offset: 2px;
+	}
+}
+
+// Closed state
+.is--closed {
+	display: none;
+}
+
+/// Media queries' styles for desktop
+@media screen and (min-width: $breakpoint-01) {
+	.modal {
+		border-radius: 1rem; // var(--mrl-modal-border-radius);
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 8%), var(--shadow-03);
+		height: auto;
+		margin: var(--spacing-08);
+		max-height: 95vh;
+		max-width: $max-full-width-content;
+	}
+
+	.footer {
+		flex-direction: row;
+		justify-content: right;
+	}
+}

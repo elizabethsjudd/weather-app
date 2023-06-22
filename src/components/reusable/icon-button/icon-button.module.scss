@@ -1,0 +1,12 @@
+@use '../../../foundations/styles/utilities' as *;
+@use '../button/button.module.scss';
+@use '../tooltip-content/tooltip-content.module.scss' as *;
+
+.icon {
+	margin-right: 0;
+}
+
+.tooltipTrigger:hover .tooltip,
+.tooltipTrigger:focus-visible .tooltip {
+	@include tooltip-show;
+}

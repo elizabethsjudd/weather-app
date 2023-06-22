@@ -21,10 +21,19 @@ export interface DailyWeatherConfigConstructor {
  * --------------------------------------------------
  */
 export interface WeatherGovWeatherInfo {
+	detailedForecast: string;
 	name: DayOfTheWeek;
+	probabilityOfPrecipitation: {
+		value: number;
+	};
+	relativeHumidity: {
+		value: number;
+	};
 	shortForecast: string;
 	temperature: number;
 	temperatureUnit: TempUnit;
+	windDirection: string;
+	windSpeed: string;
 }
 
 export interface WeatherGovLocationInfo {

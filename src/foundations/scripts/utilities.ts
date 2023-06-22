@@ -38,6 +38,30 @@ export const combineAttributes = (
 	});
 };
 
+export const FOCUSABLE_ELEMENTS =
+	'*[tabindex]:not([tabindex="-1"]), a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled])';
+/**
+ * Debounce function to help increase performance when calling functions
+ * when the user is scrolling, resizing, etc. The callback function will be
+ * called after the observer stops calling the decorated function after
+ * a specified interval.
+ *
+ * @param callback - function to debounce
+ * @param interval - time interval in milliseconds
+ * @returns - callback function that will only be executed after the interval passes
+ */
+export const debounce = (
+	callback: ResizeObserverCallback,
+	interval = 300
+): ResizeObserverCallback => {
+	let debounceTimeoutId: NodeJS.Timeout;
+
+	return (...args: [entries: ResizeObserverEntry[], observer: ResizeObserver]) => {
+		clearTimeout(debounceTimeoutId);
+		debounceTimeoutId = setTimeout(() => callback.apply(this, args), interval);
+	};
+};
+
 // API related utilities
 // ------------------------------------------------------------------
 

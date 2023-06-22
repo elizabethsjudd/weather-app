@@ -5,7 +5,7 @@ import styles from "./button.module.scss";
  * Defines enum values for Button props
  */
 export const allowedValues = {
-	kinds: ["secondary", "primary"] as const,
+	kinds: ["secondary", "primary", "ghost"] as const,
 	types: ["button", "submit", "reset"] as const,
 };
 
@@ -22,6 +22,8 @@ interface ButtonAttrs extends AttrsObject {
  */
 export interface ButtonConfig {
 	attrs?: ButtonAttrs;
+	hookClick?: React.MouseEventHandler;
+	hookKeyPress?: React.KeyboardEventHandler;
 	kind?: ButtonKind;
 	slotIcon?: React.ReactElement;
 	/** Restrict contents of a button to ensure valid HTML and accessibility */
@@ -29,7 +31,7 @@ export interface ButtonConfig {
 }
 
 /** Default values for Button component */
-export const defaults: Omit<ButtonConfig, "text"> = {
+export const defaults: Omit<ButtonConfig, "text" | "hookKeyPress" | "hookClick"> = {
 	attrs: {
 		className: styles.button,
 		type: "button",

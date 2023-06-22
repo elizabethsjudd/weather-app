@@ -51,8 +51,13 @@ export const Forecast = ({
 						dayObject[currentPeriod] = {
 							dayOfTheWeek: period.name,
 							description: period.shortForecast,
+							details: period.detailedForecast,
+							humidity: period.relativeHumidity.value,
+							precipitationProbability: period.probabilityOfPrecipitation.value,
 							temperature: period.temperature,
 							temperatureUnit: period.temperatureUnit,
+							windDirection: period.windDirection,
+							windSpeed: period.windSpeed,
 						};
 
 						if (currentPeriod === "night") {

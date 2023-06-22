@@ -27,8 +27,13 @@ export type TempUnit = (typeof allowedValues.temperatureUnits)[number];
 export interface WeatherInfo {
 	dayOfTheWeek: DayOfTheWeek;
 	description: string;
+	details: string;
+	humidity: number;
+	precipitationProbability: number;
 	temperature: number;
 	temperatureUnit: TempUnit;
+	windDirection: string;
+	windSpeed: string;
 }
 
 /**
